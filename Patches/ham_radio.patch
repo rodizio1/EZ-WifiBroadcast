@@ -1,0 +1,215 @@
+diff -ur linux/drivers/net/wireless/ath/ath9k/common.c linux_modified/drivers/net/wireless/ath/ath9k/common.c
+--- linux/drivers/net/wireless/ath/ath9k/common.c	2016-08-04 13:04:02.760445041 +0200
++++ linux_modified/drivers/net/wireless/ath/ath9k/common.c	2016-08-04 08:34:53.328730271 +0200
+@@ -296,19 +296,34 @@
+ /*
+  * Update internal channel flags.
+  */
+-static void ath9k_cmn_update_ichannel(struct ath9k_channel *ichan,
++static void ath9k_cmn_update_ichannel(struct ath_common *common,
++					struct ath9k_channel *ichan,
+ 				      struct cfg80211_chan_def *chandef)
+ {
+ 	struct ieee80211_channel *chan = chandef->chan;
+ 	u16 flags = 0;
+-
++	int width;
++	
+ 	ichan->channel = chan->center_freq;
+ 	ichan->chan = chan;
+ 
+ 	if (chan->band == IEEE80211_BAND_5GHZ)
+ 		flags |= CHANNEL_5GHZ;
+ 
+-	switch (chandef->width) {
++	switch (common->chan_bw) { 
++	case 5: 
++		width = NL80211_CHAN_WIDTH_5; 
++		break; 
++	case 10: 
++		width = NL80211_CHAN_WIDTH_10; 
++		break; 
++	default: 
++		width = chandef->width; 
++		break; 
++	} 
++ 		
++	
++	switch (width) {
+ 	case NL80211_CHAN_WIDTH_5:
+ 		flags |= CHANNEL_QUARTER;
+ 		break;
+@@ -341,10 +356,11 @@
+ 					    struct cfg80211_chan_def *chandef)
+ {
+ 	struct ieee80211_channel *curchan = chandef->chan;
++	struct ath_common *common = ath9k_hw_common(ah); 
+ 	struct ath9k_channel *channel;
+ 
+ 	channel = &ah->channels[curchan->hw_value];
+-	ath9k_cmn_update_ichannel(channel, chandef);
++	ath9k_cmn_update_ichannel(common, channel, chandef);
+ 
+ 	return channel;
+ }
+
+diff -ur linux/drivers/net/wireless/ath/ath9k/common-init.c linux_modified/drivers/net/wireless/ath/ath9k/common-init.c
+--- linux/drivers/net/wireless/ath/ath9k/common-init.c	2016-08-04 13:04:02.760445041 +0200
++++ linux_modified/drivers/net/wireless/ath/ath9k/common-init.c	2016-08-04 08:49:41.080714591 +0200
+@@ -22,7 +22,7 @@
+ 	.band = IEEE80211_BAND_2GHZ, \
+ 	.center_freq = (_freq), \
+ 	.hw_value = (_idx), \
+-	.max_power = 20, \
++	.max_power = 30, \
+ }
+ 
+ #define CHAN5G(_freq, _idx) { \
+@@ -37,6 +37,26 @@
+  * we have calibration data for all cards though to make
+  * this static */
+ static const struct ieee80211_channel ath9k_2ghz_chantable[] = {
++	CHAN2G(2312, 33), /* Channel -19 */
++	CHAN2G(2317, 32), /* Channel -18 */
++	CHAN2G(2322, 31), /* Channel -17 */
++	CHAN2G(2327, 30), /* Channel -16 */
++	CHAN2G(2332, 29), /* Channel -15 */
++	CHAN2G(2337, 28), /* Channel -14 */
++	CHAN2G(2342, 27), /* Channel -13 */
++	CHAN2G(2347, 26), /* Channel -12 */
++	CHAN2G(2352, 25), /* Channel -11 */
++	CHAN2G(2357, 24), /* Channel -10 */
++	CHAN2G(2362, 23), /* Channel -9 */
++	CHAN2G(2367, 22), /* Channel -8 */
++	CHAN2G(2372, 21), /* Channel -7 */
++	CHAN2G(2377, 20), /* Channel -6 */
++	CHAN2G(2382, 19), /* Channel -5 */
++	CHAN2G(2387, 18), /* Channel -4 */
++	CHAN2G(2392, 17), /* Channel -3 */
++	CHAN2G(2397, 16), /* Channel -2 */
++	CHAN2G(2402, 15), /* Channel -1 */
++	CHAN2G(2407, 14), /* Channel 0 */
+ 	CHAN2G(2412, 0), /* Channel 1 */
+ 	CHAN2G(2417, 1), /* Channel 2 */
+ 	CHAN2G(2422, 2), /* Channel 3 */
+diff -ur linux/drivers/net/wireless/ath/ath9k/debug.c linux_modified/drivers/net/wireless/ath/ath9k/debug.c
+--- linux/drivers/net/wireless/ath/ath9k/debug.c	2016-08-04 13:04:02.760445041 +0200
++++ linux_modified/drivers/net/wireless/ath/ath9k/debug.c	2016-08-04 08:27:34.768738017 +0200
+@@ -1301,6 +1301,50 @@
+ 	ath9k_cmn_spectral_deinit_debug(&sc->spec_priv);
+ }
+ 
++static ssize_t read_file_chan_bw(struct file *file, char __user *user_buf, 
++ 		                             size_t count, loff_t *ppos) 
++{ 
++	struct ath_softc *sc = file->private_data; 
++	struct ath_common *common = ath9k_hw_common(sc->sc_ah); 
++	char buf[32]; 
++	unsigned int len; 
++	
++	len = sprintf(buf, "0x%08x\n", common->chan_bw); 
++	return simple_read_from_buffer(user_buf, count, ppos, buf, len); 
++} 
++ 		 
++static ssize_t write_file_chan_bw(struct file *file, const char __user *user_buf, 
++ 		                             size_t count, loff_t *ppos) 
++{ 
++ 	struct ath_softc *sc = file->private_data; 
++ 	struct ath_common *common = ath9k_hw_common(sc->sc_ah); 
++ 	unsigned long chan_bw; 
++ 	char buf[32]; 
++ 	ssize_t len; 
++ 	
++ 	len = min(count, sizeof(buf) - 1); 
++ 	if (copy_from_user(buf, user_buf, len)) 
++ 		return -EFAULT; 
++ 	
++ 	buf[len] = '\0'; 
++ 	if (kstrtoul(buf, 0, &chan_bw)) 
++ 		return -EINVAL; 
++ 	
++ 	common->chan_bw = chan_bw; 
++ 	if (!test_bit(ATH_OP_INVALID, &common->op_flags)) 
++ 		ath9k_ops.config(sc->hw, IEEE80211_CONF_CHANGE_CHANNEL); 
++ 	
++ 	return count; 
++} 
++ 		 
++static const struct file_operations fops_chanbw = { 
++	.read = read_file_chan_bw, 
++	.write = write_file_chan_bw, 
++	.open = simple_open, 
++	.owner = THIS_MODULE, 
++	.llseek = default_llseek, 
++}; 
++
+ int ath9k_init_debug(struct ath_hw *ah)
+ {
+ 	struct ath_common *common = ath9k_hw_common(ah);
+@@ -1320,6 +1364,9 @@
+ 	ath9k_tx99_init_debug(sc);
+ 	ath9k_cmn_spectral_init_debug(&sc->spec_priv, sc->debug.debugfs_phy);
+ 
++	debugfs_create_file("chanbw", S_IRUSR | S_IWUSR, sc->debug.debugfs_phy, 
++				sc, &fops_chanbw); 
++	
+ 	debugfs_create_devm_seqfile(sc->dev, "dma", sc->debug.debugfs_phy,
+ 				    read_file_dma);
+ 	debugfs_create_devm_seqfile(sc->dev, "interrupt", sc->debug.debugfs_phy,
+diff -ur linux/drivers/net/wireless/ath/ath9k/hw.h linux_modified/drivers/net/wireless/ath/ath9k/hw.h
+--- linux/drivers/net/wireless/ath/ath9k/hw.h	2016-08-04 13:04:02.768445041 +0200
++++ linux_modified/drivers/net/wireless/ath/ath9k/hw.h	2016-08-04 08:50:03.596714194 +0200
+@@ -73,7 +73,7 @@
+ 
+ #define ATH9K_RSSI_BAD			-128
+ 
+-#define ATH9K_NUM_CHANNELS	38
++#define ATH9K_NUM_CHANNELS	58
+ 
+ /* Register read/write primitives */
+ #define REG_WRITE(_ah, _reg, _val) \
+diff -ur linux/drivers/net/wireless/ath/ath.h linux_modified/drivers/net/wireless/ath/ath.h
+--- linux/drivers/net/wireless/ath/ath.h	2016-08-04 13:04:02.724445042 +0200
++++ linux_modified/drivers/net/wireless/ath/ath.h	2016-08-04 08:28:14.500737315 +0200
+@@ -151,7 +151,8 @@
+ 	int debug_mask;
+ 	enum ath_device_state state;
+ 	unsigned long op_flags;
+-
++	u32 chan_bw;
++	
+ 	struct ath_ani ani;
+ 
+ 	u16 cachelsz;
+diff -ur linux/drivers/net/wireless/ath/regd.c linux_modified/drivers/net/wireless/ath/regd.c
+--- linux/drivers/net/wireless/ath/regd.c	2016-08-04 13:04:02.776445041 +0200
++++ linux_modified/drivers/net/wireless/ath/regd.c	2016-08-04 08:19:03.108747054 +0200
+@@ -33,12 +33,12 @@
+  */
+ 
+ /* Only these channels all allow active scan on all world regulatory domains */
+-#define ATH9K_2GHZ_CH01_11	REG_RULE(2412-10, 2462+10, 40, 0, 20, 0)
++#define ATH9K_2GHZ_CH01_11	REG_RULE(2312-10, 2462+10, 40, 0, 30, 0)
+ 
+ /* We enable active scan on these a case by case basis by regulatory domain */
+-#define ATH9K_2GHZ_CH12_13	REG_RULE(2467-10, 2472+10, 40, 0, 20,\
++#define ATH9K_2GHZ_CH12_13	REG_RULE(2467-10, 2472+10, 40, 0, 30,\
+ 					 NL80211_RRF_NO_IR)
+-#define ATH9K_2GHZ_CH14		REG_RULE(2484-10, 2484+10, 40, 0, 20,\
++#define ATH9K_2GHZ_CH14		REG_RULE(2484-10, 2484+10, 40, 0, 30,\
+ 					 NL80211_RRF_NO_IR | \
+ 					 NL80211_RRF_NO_OFDM)
+diff -ur linux/net/wireless/util.c linux_modified/net/wireless/util.c
+--- linux/net/wireless/util.c	2016-08-04 13:04:05.068445000 +0200
++++ linux_modified/net/wireless/util.c	2016-08-04 08:21:35.744744358 +0200
+@@ -71,6 +71,9 @@
+ 	 * there are overlapping channel numbers in 5GHz and 2GHz bands */
+ 	if (chan <= 0)
+ 		return 0; /* not supported */
++	
++	chan = (int)(char)chan;
++	
+ 	switch (band) {
+ 	case IEEE80211_BAND_2GHZ:
+ 		if (chan == 14)
+
