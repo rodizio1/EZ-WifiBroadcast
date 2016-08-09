@@ -1,0 +1,2367 @@
+Only in linux-modified/: .config.old
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/: .missing-syscalls.d
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/: .tmp_versions
+Only in linux-modified/: .version
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/Module.symvers linux-modified/Module.symvers
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/Module.symvers	2016-08-08 11:04:43.811298596 +0200
++++ linux-modified/Module.symvers	2016-08-06 13:38:24.428883362 +0200
+@@ -259,7 +259,7 @@
+ 0x56d697ce	cpu_up	vmlinux	EXPORT_SYMBOL_GPL
+ 0x6ee69b67	snd_card_free	sound/core/snd	EXPORT_SYMBOL
+ 0xf460a486	lc_is_used	lib/lru_cache	EXPORT_SYMBOL
+-0x481f3720	ath9k_hw_disable_interrupts	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x8bc4c3ae	ath9k_hw_disable_interrupts	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x3646e38f	dm_tm_issue_prefetches	drivers/md/persistent-data/dm-persistent-data	EXPORT_SYMBOL_GPL
+ 0xf072689d	dma_buf_map_attachment	vmlinux	EXPORT_SYMBOL_GPL
+ 0x23575753	load_nls	vmlinux	EXPORT_SYMBOL
+@@ -303,7 +303,7 @@
+ 0xb16b07cf	nfs_remove_bad_delegation	vmlinux	EXPORT_SYMBOL_GPL
+ 0xc597bc34	jbd2_journal_load	vmlinux	EXPORT_SYMBOL
+ 0xfed11ed1	usb_mon_deregister	vmlinux	EXPORT_SYMBOL_GPL
+-0x8dd5d0b5	ar9003_mci_send_wlan_channels	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x5321371f	ar9003_mci_send_wlan_channels	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x22ae352f	v4l2_ctrl_notify	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL
+ 0xcc0df4f2	videobuf_mmap_free	drivers/media/v4l2-core/videobuf-core	EXPORT_SYMBOL_GPL
+ 0xff5a8cfe	cn_del_callback	drivers/connector/cn	EXPORT_SYMBOL_GPL
+@@ -367,7 +367,7 @@
+ 0x347268d4	mem_cgroup_begin_page_stat	vmlinux	EXPORT_SYMBOL
+ 0x8a7841e1	regmap_get_raw_write_max	vmlinux	EXPORT_SYMBOL_GPL
+ 0x94e4a425	snd_pcm_lib_default_mmap	sound/core/snd-pcm	EXPORT_SYMBOL_GPL
+-0xcb94682a	ar9003_mci_cleanup	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x885f6301	ar9003_mci_cleanup	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x9caf7f20	iio_buffer_get	drivers/iio/industrialio	EXPORT_SYMBOL_GPL
+ 0x7a711aef	iio_channel_start_all_cb	drivers/iio/buffer/industrialio-buffer-cb	EXPORT_SYMBOL_GPL
+ 0x670248f2	drm_atomic_helper_prepare_planes	drivers/gpu/drm/drm_kms_helper	EXPORT_SYMBOL
+@@ -378,7 +378,7 @@
+ 0xb8675f5e	wiphy_to_ieee80211_hw	net/mac80211/mac80211	EXPORT_SYMBOL
+ 0xb4c876c2	ipv6_getsockopt	net/ipv6/ipv6	EXPORT_SYMBOL
+ 0xa234f58b	usb_ftdi_elan_edset_setup	drivers/usb/misc/ftdi-elan	EXPORT_SYMBOL_GPL
+-0x0b39667f	ath9k_hw_setmcastfilter	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x07c7b9ba	ath9k_hw_setmcastfilter	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xf3bbf597	v4l2_clk_put	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL
+ 0x68d8dd71	roccat_connect	drivers/hid/hid-roccat	EXPORT_SYMBOL_GPL
+ 0xdc047fc4	scsi_dev_info_list_add_keyed	vmlinux	EXPORT_SYMBOL
+@@ -466,7 +466,7 @@
+ 0x31b31f5c	csum_partial_copy_nocheck	vmlinux	EXPORT_SYMBOL
+ 0x883afa4a	__hw_addr_unsync_dev	vmlinux	EXPORT_SYMBOL
+ 0xdc14c00e	snd_soc_test_bits	sound/soc/snd-soc-core	EXPORT_SYMBOL_GPL
+-0xfe27f2cf	ath_is_mybeacon	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
++0x870d4e91	ath_is_mybeacon	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
+ 0x341a76a5	ip_defrag	vmlinux	EXPORT_SYMBOL
+ 0x7d1d65d0	scsi_flush_work	vmlinux	EXPORT_SYMBOL_GPL
+ 0xa3b958ce	reset_hung_task_detector	vmlinux	EXPORT_SYMBOL_GPL
+@@ -550,7 +550,7 @@
+ 0x62f934e0	backlight_force_update	vmlinux	EXPORT_SYMBOL
+ 0x16f27348	ieee80211_sched_scan_stopped	net/mac80211/mac80211	EXPORT_SYMBOL
+ 0x72d1b3c9	p54_free_common	drivers/net/wireless/p54/p54common	EXPORT_SYMBOL_GPL
+-0x31eccdae	ath9k_hw_addrxbuf_edma	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xc04e0dc3	ath9k_hw_addrxbuf_edma	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xa8721b97	system_state	vmlinux	EXPORT_SYMBOL
+ 0x2cb820de	__irq_domain_add	vmlinux	EXPORT_SYMBOL_GPL
+ 0x92708933	generic_file_splice_read	vmlinux	EXPORT_SYMBOL
+@@ -562,7 +562,7 @@
+ 0xc7a4fbed	rtnl_lock	vmlinux	EXPORT_SYMBOL
+ 0x6966503b	llc_add_pack	net/llc/llc	EXPORT_SYMBOL
+ 0x3dff1da3	xfrm6_tunnel_alloc_spi	net/ipv6/xfrm6_tunnel	EXPORT_SYMBOL
+-0x76ea7b42	ath9k_hw_deinit	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x0e30a1d0	ath9k_hw_deinit	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x3d6125cb	rhashtable_destroy	vmlinux	EXPORT_SYMBOL_GPL
+ 0xd90e0f90	param_ops_uint	vmlinux	EXPORT_SYMBOL
+ 0x0a04bb70	udp_push_pending_frames	vmlinux	EXPORT_SYMBOL
+@@ -585,7 +585,7 @@
+ 0x2ae48704	l2tp_tunnel_delete	net/l2tp/l2tp_core	EXPORT_SYMBOL_GPL
+ 0x9016042c	inet_diag_bc_sk	net/ipv4/inet_diag	EXPORT_SYMBOL_GPL
+ 0x76576069	rt2800_read_eeprom_efuse	drivers/net/wireless/rt2x00/rt2800lib	EXPORT_SYMBOL_GPL
+-0x2fecee83	ath9k_hw_abortpcurecv	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xdd3bd69e	ath9k_hw_abortpcurecv	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x62ecf5d9	s921_attach	drivers/media/dvb-frontends/s921	EXPORT_SYMBOL
+ 0x34a6fa23	__bpf_call_base	vmlinux	EXPORT_SYMBOL_GPL
+ 0x462a2e75	match_strlcpy	vmlinux	EXPORT_SYMBOL
+@@ -716,7 +716,7 @@
+ 0xed70b9e6	skb_pull_rcsum	vmlinux	EXPORT_SYMBOL_GPL
+ 0xaf10d009	vchi_get_peer_version	vmlinux	EXPORT_SYMBOL
+ 0x994f647d	dlm_posix_unlock	fs/dlm/dlm	EXPORT_SYMBOL_GPL
+-0x44234b5b	ath9k_hw_request_gpio	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x609ad5e8	ath9k_hw_request_gpio	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x2025e954	dm_array_info_init	drivers/md/persistent-data/dm-persistent-data	EXPORT_SYMBOL_GPL
+ 0x4aab5242	locks_alloc_lock	vmlinux	EXPORT_SYMBOL_GPL
+ 0x8a435879	usbnet_set_msglevel	vmlinux	EXPORT_SYMBOL_GPL
+@@ -789,7 +789,7 @@
+ 0x71f6c6a2	devm_kfree	vmlinux	EXPORT_SYMBOL_GPL
+ 0xe699664c	hdmi_infoframe_log	vmlinux	EXPORT_SYMBOL
+ 0x4eb4b212	generic_start_io_acct	vmlinux	EXPORT_SYMBOL
+-0x12776b2a	ath9k_hw_check_alive	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x17cef05d	ath9k_hw_check_alive	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xc9bc4e82	mtd_erase_callback	drivers/mtd/mtd	EXPORT_SYMBOL_GPL
+ 0x749732a8	__ablkcipher_walk_complete	vmlinux	EXPORT_SYMBOL_GPL
+ 0x53f93e14	sb_min_blocksize	vmlinux	EXPORT_SYMBOL
+@@ -803,7 +803,7 @@
+ 0x39d1a796	trace_hardirqs_on_caller	vmlinux	EXPORT_SYMBOL
+ 0x83fcaccf	devm_backlight_device_unregister	vmlinux	EXPORT_SYMBOL
+ 0xf353a698	register_module_notifier	vmlinux	EXPORT_SYMBOL
+-0x74044b03	ath9k_hw_setopmode	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x2c37334f	ath9k_hw_setopmode	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xaa8b2525	irda_unregister_dongle	drivers/net/irda/sir-dev	EXPORT_SYMBOL
+ 0xafbbacde	bitmap_start_sync	drivers/md/md-mod	EXPORT_SYMBOL
+ 0xee2cc6dd	drm_atomic_helper_check	drivers/gpu/drm/drm_kms_helper	EXPORT_SYMBOL
+@@ -925,7 +925,7 @@
+ 0xaab7ab3e	iscsi_conn_login_event	vmlinux	EXPORT_SYMBOL_GPL
+ 0x0422fe4a	inet_csk_timer_bug_msg	vmlinux	EXPORT_SYMBOL
+ 0x41d1c18d	p9_client_renameat	net/9p/9pnet	EXPORT_SYMBOL
+-0x69d8d2be	ath9k_hw_stop_dma_queue	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x60ee02c9	ath9k_hw_stop_dma_queue	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xda65844c	media_entity_pipeline_stop	drivers/media/media	EXPORT_SYMBOL_GPL
+ 0x3f7ace39	inet_hash	vmlinux	EXPORT_SYMBOL_GPL
+ 0xe751258b	seq_lseek	vmlinux	EXPORT_SYMBOL
+@@ -970,7 +970,7 @@
+ 0x97a6e1c8	blk_rq_unprep_clone	vmlinux	EXPORT_SYMBOL_GPL
+ 0x84fef289	cfg80211_sched_scan_results	net/wireless/cfg80211	EXPORT_SYMBOL
+ 0x33c763bc	register_ip_vs_app_inc	net/netfilter/ipvs/ip_vs	EXPORT_SYMBOL
+-0xbad59528	ath_cmn_process_fft	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0xe5a4d8df	ath_cmn_process_fft	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0x9cf61fc4	video_device_release	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL
+ 0x2af0e975	drm_mode_set_config_internal	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0x9c70d0a5	inode_sub_rsv_space	vmlinux	EXPORT_SYMBOL
+@@ -985,7 +985,7 @@
+ 0x02d2d8a7	fuse_conn_put	fs/fuse/fuse	EXPORT_SYMBOL_GPL
+ 0x8ccbd1fa	usbip_recv_xbuff	drivers/usb/usbip/usbip-core	EXPORT_SYMBOL_GPL
+ 0x898e4d32	rt2x00mac_sw_scan_start	drivers/net/wireless/rt2x00/rt2x00lib	EXPORT_SYMBOL_GPL
+-0xc5f6e611	ath9k_hw_btcoex_init_2wire	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xa022ec6e	ath9k_hw_btcoex_init_2wire	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xf6720336	bcm2835_smi_get_settings_from_regs	drivers/misc/bcm2835_smi	EXPORT_SYMBOL
+ 0x481bb9d9	v4l2_subdev_querymenu	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL
+ 0x0219a253	drm_helper_mode_fill_fb_struct	drivers/gpu/drm/drm_kms_helper	EXPORT_SYMBOL
+@@ -1015,8 +1015,8 @@
+ 0xd294a247	mii_ethtool_sset	vmlinux	EXPORT_SYMBOL
+ 0xc98ddc61	__kernel_write	vmlinux	EXPORT_SYMBOL
+ 0xb602c57e	nf_ct_l3proto_module_put	net/netfilter/nf_conntrack	EXPORT_SYMBOL_GPL
+-0xd1c16cde	ar9003_mci_set_bt_version	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+-0xc1a3d8c2	ar9003_is_paprd_enabled	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x5798c75c	ar9003_mci_set_bt_version	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x91a552cb	ar9003_is_paprd_enabled	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xd91ba846	gameport_stop_polling	drivers/input/gameport/gameport	EXPORT_SYMBOL
+ 0x73b6e97a	drm_i2c_encoder_init	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0x14999890	DWC_MUTEX_FREE	vmlinux	EXPORT_SYMBOL
+@@ -1026,7 +1026,7 @@
+ 0x6042606b	__snd_rawmidi_transmit_peek	sound/core/snd-rawmidi	EXPORT_SYMBOL
+ 0xbfbc31d9	snd_pcm_hw_constraint_msbits	sound/core/snd-pcm	EXPORT_SYMBOL
+ 0xeb6d7c6c	ieee80211_ie_split	net/wireless/cfg80211	EXPORT_SYMBOL
+-0xb4401959	ath9k_hw_btcoex_set_concur_txprio	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xb63fbe20	ath9k_hw_btcoex_set_concur_txprio	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x80e87059	v4l2_device_register_subdev_nodes	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL_GPL
+ 0x7cafb4c4	usbnet_status_stop	vmlinux	EXPORT_SYMBOL_GPL
+ 0x2fbc3123	unmap_underlying_metadata	vmlinux	EXPORT_SYMBOL
+@@ -1157,7 +1157,7 @@
+ 0xb379ffe1	subsys_dev_iter_exit	vmlinux	EXPORT_SYMBOL_GPL
+ 0x6e514ffa	snd_soc_card_get_kcontrol	sound/soc/snd-soc-core	EXPORT_SYMBOL_GPL
+ 0xe7e810f8	spk_serial_in	drivers/staging/speakup/speakup	EXPORT_SYMBOL_GPL
+-0xa3b22788	ath9k_hw_rxprocdesc	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xed013288	ath9k_hw_rxprocdesc	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x20c93b7f	phy_register_fixup	drivers/net/phy/libphy	EXPORT_SYMBOL
+ 0x7ab62672	vb2_wait_for_all_buffers	drivers/media/v4l2-core/videobuf2-core	EXPORT_SYMBOL_GPL
+ 0xb89d4381	dib9000_set_gpio	drivers/media/dvb-frontends/dib9000	EXPORT_SYMBOL
+@@ -1274,7 +1274,7 @@
+ 0x0b6c9857	snd_ac97_update	sound/pci/ac97/snd-ac97-codec	EXPORT_SYMBOL
+ 0xf6f4f228	snd_device_free	sound/core/snd	EXPORT_SYMBOL
+ 0xe4bce05a	nf_ct_l3protos	net/netfilter/nf_conntrack	EXPORT_SYMBOL_GPL
+-0x0ec488ee	ath9k_cmn_spectral_deinit_debug	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0x8c52c079	ath9k_cmn_spectral_deinit_debug	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0x84fd530b	nand_calculate_ecc	drivers/mtd/nand/nand_ecc	EXPORT_SYMBOL
+ 0xa91cc402	drm_mode_create_rotation_property	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0x86eb23c3	drm_of_component_probe	drivers/gpu/drm/drm	EXPORT_SYMBOL
+@@ -1396,7 +1396,7 @@
+ 0x598cd828	udp_table	vmlinux	EXPORT_SYMBOL
+ 0x5cd1ba11	usbip_recv_iso	drivers/usb/usbip/usbip-core	EXPORT_SYMBOL_GPL
+ 0xefc73d42	__lbtf_cmd	drivers/net/wireless/libertas_tf/libertas_tf	EXPORT_SYMBOL_GPL
+-0xf5d6a501	ath9k_hw_reset_tsf	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x9fce4537	ath9k_hw_reset_tsf	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xf23fcb99	__kfifo_in	vmlinux	EXPORT_SYMBOL
+ 0x1bf45d74	power_supply_am_i_supplied	vmlinux	EXPORT_SYMBOL_GPL
+ 0x66940955	nla_put	vmlinux	EXPORT_SYMBOL
+@@ -1419,8 +1419,8 @@
+ 0x7a944007	rcu_idle_enter	vmlinux	EXPORT_SYMBOL_GPL
+ 0x636b12c8	nf_nat_need_gre	net/ipv4/netfilter/nf_nat_proto_gre	EXPORT_SYMBOL_GPL
+ 0xec892660	ip_tunnel_init_net	net/ipv4/ip_tunnel	EXPORT_SYMBOL_GPL
+-0x185019fb	ath9k_hw_getrxfilter	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+-0x8058bab7	ath9k_hw_setrxfilter	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x7a179668	ath9k_hw_getrxfilter	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x29f32c9e	ath9k_hw_setrxfilter	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xfa139012	dvb_usb_device_init	drivers/media/usb/dvb-usb/dvb-usb	EXPORT_SYMBOL
+ 0x953c6602	drm_modeset_backoff	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0xb195f10a	of_get_nand_ecc_strength	vmlinux	EXPORT_SYMBOL_GPL
+@@ -1462,8 +1462,8 @@
+ 0x062a53a6	dlmlock	fs/ocfs2/dlm/ocfs2_dlm	EXPORT_SYMBOL_GPL
+ 0x4de2f83a	usb_serial_generic_write	drivers/usb/serial/usbserial	EXPORT_SYMBOL_GPL
+ 0x82337ec0	pps_register_source	drivers/pps/pps_core	EXPORT_SYMBOL
+-0x37c8740a	ar9003_paprd_is_done	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+-0xd94fa660	ar9003_get_pll_sqsum_dvc	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xd12ee6de	ar9003_paprd_is_done	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x4e26e23b	ar9003_get_pll_sqsum_dvc	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x4bc2a858	v4l2_ctrl_new_std	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL
+ 0x9cba3c37	_raw_read_unlock_irqrestore	vmlinux	EXPORT_SYMBOL
+ 0xabf149b3	svc_unreg_xprt_class	vmlinux	EXPORT_SYMBOL_GPL
+@@ -1529,7 +1529,7 @@
+ 0x33f5532e	p9_client_xattrcreate	net/9p/9pnet	EXPORT_SYMBOL_GPL
+ 0xcf9f3328	dlm_release_lockspace	fs/dlm/dlm	EXPORT_SYMBOL_GPL
+ 0x78e10413	usb_wwan_close	drivers/usb/serial/usb_wwan	EXPORT_SYMBOL
+-0x0f58109a	ath9k_hw_getnf	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x3e807477	ath9k_hw_getnf	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x17752cd6	drm_gem_put_pages	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0xa904a1af	drm_gem_get_pages	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0xa46166e2	in6_dev_finish_destroy	vmlinux	EXPORT_SYMBOL
+@@ -1619,13 +1619,13 @@
+ 0x91150146	snd_soc_get_dai_substream	sound/soc/snd-soc-core	EXPORT_SYMBOL_GPL
+ 0xda5a5196	_snd_pcm_lib_alloc_vmalloc_buffer	sound/core/snd-pcm	EXPORT_SYMBOL
+ 0xa6316ea2	ircomm_control_request	net/irda/ircomm/ircomm	EXPORT_SYMBOL
+-0x76d5d9c1	ath9k_hw_computetxtime	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xe7817ffc	ath9k_hw_computetxtime	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xdba40d9d	__netdev_alloc_skb	vmlinux	EXPORT_SYMBOL
+ 0x130fb6e8	perf_event_create_kernel_counter	vmlinux	EXPORT_SYMBOL_GPL
+ 0x0bfa3a19	rcu_idle_exit	vmlinux	EXPORT_SYMBOL_GPL
+ 0xf1400fe7	snd_soc_dapm_sync	sound/soc/snd-soc-core	EXPORT_SYMBOL_GPL
+ 0x90ff6c9f	nf_ct_invert_tuplepr	net/netfilter/nf_conntrack	EXPORT_SYMBOL_GPL
+-0x2986b888	ath9k_hw_init_btcoex_hw	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xe0dcf203	ath9k_hw_init_btcoex_hw	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xf0e8692c	v4l2_s_ext_ctrls	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL
+ 0xcfa1980f	tty_kref_put	vmlinux	EXPORT_SYMBOL
+ 0x124445da	fb_set_suspend	vmlinux	EXPORT_SYMBOL
+@@ -1634,7 +1634,7 @@
+ 0x36ec6e80	try_module_get	vmlinux	EXPORT_SYMBOL
+ 0x92bcc072	snd_dmaengine_pcm_open	sound/core/snd-pcm-dmaengine	EXPORT_SYMBOL_GPL
+ 0x8a490c90	rfkill_set_sw_state	net/rfkill/rfkill	EXPORT_SYMBOL
+-0x77978f2f	ar9003_paprd_create_curve	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x2877cbd7	ar9003_paprd_create_curve	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xc70d82eb	screen_glyph	vmlinux	EXPORT_SYMBOL_GPL
+ 0xcdc96c3d	srcu_notifier_call_chain	vmlinux	EXPORT_SYMBOL_GPL
+ 0x02f28104	fill_inquiry_response	vmlinux	EXPORT_SYMBOL_GPL
+@@ -1643,7 +1643,7 @@
+ 0xf7802486	__aeabi_uidivmod	vmlinux	EXPORT_SYMBOL
+ 0x7a5006b8	register_net_sysctl	vmlinux	EXPORT_SYMBOL_GPL
+ 0x296182c3	rpc_delay	vmlinux	EXPORT_SYMBOL_GPL
+-0x7d0737cc	ath9k_hw_gpio_get	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x675a0e49	ath9k_hw_gpio_get	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x00deb245	drm_vblank_pre_modeset	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0x4168c6b1	btintel_set_event_mask	drivers/bluetooth/btintel	EXPORT_SYMBOL_GPL
+ 0xdfdfb7c0	regmap_check_range_table	vmlinux	EXPORT_SYMBOL_GPL
+@@ -1942,7 +1942,7 @@
+ 0xa1ae48e1	o2hb_check_node_heartbeating_no_sem	fs/ocfs2/cluster/ocfs2_nodemanager	EXPORT_SYMBOL_GPL
+ 0x9321df95	dlm_lock	fs/dlm/dlm	EXPORT_SYMBOL_GPL
+ 0xecfe48ed	hostap_set_roaming	drivers/net/wireless/hostap/hostap	EXPORT_SYMBOL
+-0x43adaa3c	ath9k_hw_setpower	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x97c4958a	ath9k_hw_setpower	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xa7da218e	mtd_blktrans_cease_background	drivers/mtd/mtd_blkdevs	EXPORT_SYMBOL_GPL
+ 0xf0cf54c7	videobuf_read_stream	drivers/media/v4l2-core/videobuf-core	EXPORT_SYMBOL_GPL
+ 0xda7ca6cb	fb_mode_is_equal	vmlinux	EXPORT_SYMBOL
+@@ -2167,7 +2167,7 @@
+ 0x9545af6d	tasklet_init	vmlinux	EXPORT_SYMBOL
+ 0x60d1d7e2	unregister_netdevice_queue	vmlinux	EXPORT_SYMBOL
+ 0x4855a895	nf_nat_setup_info	net/netfilter/nf_nat	EXPORT_SYMBOL
+-0x736bb378	ath9k_hw_setup_statusring	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xe8c9202b	ath9k_hw_setup_statusring	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x2ef4d512	stop_machine	vmlinux	EXPORT_SYMBOL_GPL
+ 0xe16ddc5c	rpc_sleep_on_priority	vmlinux	EXPORT_SYMBOL_GPL
+ 0x88ec1a71	thermal_zone_of_sensor_unregister	vmlinux	EXPORT_SYMBOL_GPL
+@@ -2203,7 +2203,7 @@
+ 0x07d3647c	irlmp_register_service	net/irda/irda	EXPORT_SYMBOL
+ 0xbe0a7518	usb_cdc_wdm_register	drivers/usb/class/cdc-wdm	EXPORT_SYMBOL
+ 0x94bb8ef3	iscsi_update_cmdsn	drivers/scsi/libiscsi	EXPORT_SYMBOL_GPL
+-0xd976431c	ath9k_hw_set_tx_filter	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xba47c6f9	ath9k_hw_set_tx_filter	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xf4dcd1af	phy_device_remove	drivers/net/phy/libphy	EXPORT_SYMBOL
+ 0xf69ec888	m88rs2000_attach	drivers/media/dvb-frontends/m88rs2000	EXPORT_SYMBOL
+ 0x23bb4ccd	drm_atomic_helper_wait_for_vblanks	drivers/gpu/drm/drm_kms_helper	EXPORT_SYMBOL
+@@ -2326,7 +2326,7 @@
+ 0x7d970510	dev_pm_disable_wake_irq	vmlinux	EXPORT_SYMBOL_GPL
+ 0xc76f457f	param_ops_ulong	vmlinux	EXPORT_SYMBOL
+ 0x268e323e	usb_find_alt_setting	vmlinux	EXPORT_SYMBOL_GPL
+-0x7b818a28	ath9k_cmn_init_crypto	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0x6cc409c1	ath9k_cmn_init_crypto	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0x303fe01e	v4l2_ctrl_find	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL
+ 0x45a44c24	v4l2_ctrl_fill	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL
+ 0xbc5671dc	v4l_printk_ioctl	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL
+@@ -2377,7 +2377,7 @@
+ 0x7faea1c7	mntget	vmlinux	EXPORT_SYMBOL
+ 0xf3b451ca	kdb_poll_funcs	vmlinux	EXPORT_SYMBOL_GPL
+ 0x7c9b16fa	lbs_start_card	drivers/net/wireless/libertas/libertas	EXPORT_SYMBOL_GPL
+-0x9cf9ad99	ath9k_cmn_spectral_init_debug	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0xbbffea80	ath9k_cmn_spectral_init_debug	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0x341a3afb	phy_write_mmd_indirect	drivers/net/phy/libphy	EXPORT_SYMBOL
+ 0x3f2c0f58	mount_mtd	drivers/mtd/mtd	EXPORT_SYMBOL_GPL
+ 0x801d7de8	dibusb_dib3000mc_frontend_attach	drivers/media/usb/dvb-usb/dvb-usb-dibusb-common	EXPORT_SYMBOL
+@@ -2421,13 +2421,13 @@
+ 0x99466696	scsi_ioctl	vmlinux	EXPORT_SYMBOL
+ 0x1376d203	set_binfmt	vmlinux	EXPORT_SYMBOL
+ 0xd316fa84	netpoll_cleanup	vmlinux	EXPORT_SYMBOL
+-0xcc6096cd	ath9k_cmn_spectral_scan_config	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0x67b9dac1	ath9k_cmn_spectral_scan_config	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0x9e4faeef	dm_io_client_destroy	drivers/md/dm-mod	EXPORT_SYMBOL
+ 0x63dbaed1	elv_rb_find	vmlinux	EXPORT_SYMBOL
+ 0x970229e1	spi_unregister_master	vmlinux	EXPORT_SYMBOL_GPL
+ 0xc1cb1f07	km_policy_expired	vmlinux	EXPORT_SYMBOL
+ 0xceab0311	strchrnul	vmlinux	EXPORT_SYMBOL
+-0x01144401	dfs_pattern_detector_init	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
++0x8347753d	dfs_pattern_detector_init	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
+ 0x4c6d6cb0	__drm_atomic_helper_connector_destroy_state	drivers/gpu/drm/drm_kms_helper	EXPORT_SYMBOL
+ 0x7697538f	fscache_object_mark_killed	vmlinux	EXPORT_SYMBOL
+ 0x5feebfdd	DWC_CPU_TO_BE32	vmlinux	EXPORT_SYMBOL
+@@ -2619,8 +2619,8 @@
+ 0x878ab3ce	sysctl_tcp_adv_win_scale	vmlinux	EXPORT_SYMBOL
+ 0xff633558	vprintk_default	vmlinux	EXPORT_SYMBOL_GPL
+ 0x7081955e	hostap_set_hostapd	drivers/net/wireless/hostap/hostap	EXPORT_SYMBOL
+-0xa86da390	ath9k_hw_puttxbuf	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+-0x209da46d	ath9k_hw_putrxbuf	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x27b0d3c2	ath9k_hw_puttxbuf	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xa72347be	ath9k_hw_putrxbuf	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x80a09613	ath6kl_info	drivers/net/wireless/ath/ath6kl/ath6kl_core	EXPORT_SYMBOL
+ 0x3d1f6180	radio_tea5777_exit	drivers/media/radio/shark2	EXPORT_SYMBOL_GPL
+ 0x2c65fb09	drm_helper_crtc_mode_set	drivers/gpu/drm/drm_kms_helper	EXPORT_SYMBOL
+@@ -2728,7 +2728,7 @@
+ 0x0dc1a78c	bin2hex	vmlinux	EXPORT_SYMBOL
+ 0xf811e69d	scsi_eh_flush_done_q	vmlinux	EXPORT_SYMBOL
+ 0x2421b312	xt_hook_unlink	net/netfilter/x_tables	EXPORT_SYMBOL_GPL
+-0x60374bac	ath9k_hw_setantenna	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xba82fbd7	ath9k_hw_setantenna	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xb346573b	can_dlc2len	drivers/net/can/can-dev	EXPORT_SYMBOL_GPL
+ 0xbeb3c0ad	serio_unregister_port	drivers/input/serio/serio	EXPORT_SYMBOL
+ 0x4cf37d14	drm_mode_equal	drivers/gpu/drm/drm	EXPORT_SYMBOL
+@@ -2771,7 +2771,7 @@
+ 0x04df82dc	atm_init_aal5	net/atm/atm	EXPORT_SYMBOL
+ 0xc2cbf516	usbip_event_add	drivers/usb/usbip/usbip-core	EXPORT_SYMBOL_GPL
+ 0xcd7bdcb2	rt2800_reset_tuner	drivers/net/wireless/rt2x00/rt2800lib	EXPORT_SYMBOL_GPL
+-0xa4f3b9c7	ath9k_hw_releasetxqueue	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xce7335b0	ath9k_hw_releasetxqueue	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x2887871a	v4l2_ctrl_sub_ev_ops	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL
+ 0xbe687e88	wake_up_all_idle_cpus	vmlinux	EXPORT_SYMBOL_GPL
+ 0xef29f61e	serial8250_get_port	vmlinux	EXPORT_SYMBOL_GPL
+@@ -2968,7 +2968,7 @@
+ 0x6ca4bf88	async_synchronize_full_domain	vmlinux	EXPORT_SYMBOL_GPL
+ 0x9b320db0	usb_serial_generic_throttle	drivers/usb/serial/usbserial	EXPORT_SYMBOL_GPL
+ 0xca0356ff	iscsi_tcp_task_xmit	drivers/scsi/libiscsi_tcp	EXPORT_SYMBOL_GPL
+-0x807fb9ac	ar9003_paprd_enable	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xcdabae82	ar9003_paprd_enable	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x2891c69c	dibusb2_0_streaming_ctrl	drivers/media/usb/dvb-usb/dvb-usb-dibusb-common	EXPORT_SYMBOL
+ 0x09e4be3e	cdrom_mode_select	drivers/cdrom/cdrom	EXPORT_SYMBOL
+ 0xf031c3ac	of_get_cpu_node	vmlinux	EXPORT_SYMBOL
+@@ -2995,7 +2995,7 @@
+ 0xd3ddafcf	devm_of_pwm_get	vmlinux	EXPORT_SYMBOL_GPL
+ 0x2d070245	aarp_send_ddp	net/appletalk/appletalk	EXPORT_SYMBOL
+ 0x7535c868	p54_rx	drivers/net/wireless/p54/p54common	EXPORT_SYMBOL_GPL
+-0x492960cd	ath9k_hw_set_gpio	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xecd5444e	ath9k_hw_set_gpio	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x1d4ab71b	rc_unregister_device	drivers/media/rc/rc-core	EXPORT_SYMBOL_GPL
+ 0x5ca0079e	serio_interrupt	drivers/input/serio/serio	EXPORT_SYMBOL
+ 0x45116b38	drm_legacy_rmmap	drivers/gpu/drm/drm	EXPORT_SYMBOL
+@@ -3110,7 +3110,7 @@
+ 0x8060e5f1	inet_unhash	vmlinux	EXPORT_SYMBOL_GPL
+ 0xf9eb4413	ip6_xmit	net/ipv6/ipv6	EXPORT_SYMBOL
+ 0x5e3163fe	ip_tunnel_init	net/ipv4/ip_tunnel	EXPORT_SYMBOL_GPL
+-0xacc127b0	ath9k_cmn_debug_modal_eeprom	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0xf863802d	ath9k_cmn_debug_modal_eeprom	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0xcd3c5714	dm_cell_visit_release	drivers/md/dm-bio-prison	EXPORT_SYMBOL_GPL
+ 0xdebbc689	iio_channel_get_all_cb	drivers/iio/buffer/industrialio-buffer-cb	EXPORT_SYMBOL_GPL
+ 0x0d7d4d70	rcu_batches_completed	vmlinux	EXPORT_SYMBOL_GPL
+@@ -3167,7 +3167,7 @@
+ 0xf4e13362	inet6_del_offload	vmlinux	EXPORT_SYMBOL
+ 0xf0e17998	netif_stacked_transfer_operstate	vmlinux	EXPORT_SYMBOL
+ 0xcaededab	d_alloc_name	vmlinux	EXPORT_SYMBOL
+-0xab402321	ar9003_hw_disable_phy_restart	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x924dee4f	ar9003_hw_disable_phy_restart	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x72db83c4	bcm2835_smi_set_address	drivers/misc/bcm2835_smi	EXPORT_SYMBOL
+ 0x01137c55	drm_encoder_cleanup	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0x20e92204	of_translate_address	vmlinux	EXPORT_SYMBOL
+@@ -3346,7 +3346,7 @@
+ 0x68869bae	panic_notifier_list	vmlinux	EXPORT_SYMBOL
+ 0x9bd703e0	trace_event_reg	vmlinux	EXPORT_SYMBOL_GPL
+ 0xa1c56b75	ip_set_elem_len	net/netfilter/ipset/ip_set	EXPORT_SYMBOL_GPL
+-0x01a01cd0	ath9k_hw_wait	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x42833ade	ath9k_hw_wait	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x0815a8b2	ath_regd_init	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
+ 0x3d13cd92	unregister_mtd_chip_driver	drivers/mtd/chips/chipreg	EXPORT_SYMBOL
+ 0x2c359521	mxl111sf_demod_attach	drivers/media/usb/dvb-usb-v2/mxl111sf-demod	EXPORT_SYMBOL_GPL
+@@ -3419,7 +3419,7 @@
+ 0x0c3a4502	mbox_chan_txdone	vmlinux	EXPORT_SYMBOL_GPL
+ 0xa00eb15b	ioremap_page	vmlinux	EXPORT_SYMBOL
+ 0x8fea24bd	bt_sock_unregister	net/bluetooth/bluetooth	EXPORT_SYMBOL
+-0x34a5435d	ath9k_hw_setuptxqueue	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xa463d96d	ath9k_hw_setuptxqueue	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x59490ac9	pinctrl_pm_select_sleep_state	vmlinux	EXPORT_SYMBOL_GPL
+ 0x2fbab418	napi_gro_flush	vmlinux	EXPORT_SYMBOL
+ 0xc0a98385	profile_pc	vmlinux	EXPORT_SYMBOL
+@@ -3441,7 +3441,7 @@
+ 0x42e1262a	__list_lru_init	vmlinux	EXPORT_SYMBOL_GPL
+ 0x8a7062a5	ieee80211_mandatory_rates	net/wireless/cfg80211	EXPORT_SYMBOL
+ 0xe5887255	inet_diag_register	net/ipv4/inet_diag	EXPORT_SYMBOL_GPL
+-0xa314d0c2	ath9k_hw_set_sta_beacon_timers	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xc8e98d89	ath9k_hw_set_sta_beacon_timers	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x81e7be1e	vb2_ops_wait_finish	drivers/media/v4l2-core/videobuf2-v4l2	EXPORT_SYMBOL_GPL
+ 0x873fc80c	dm_rh_dirty_log	drivers/md/dm-region-hash	EXPORT_SYMBOL_GPL
+ 0x598542b2	_raw_spin_lock_irqsave	vmlinux	EXPORT_SYMBOL
+@@ -3511,7 +3511,7 @@
+ 0x24eb2e52	cpufreq_cpu_get_raw	vmlinux	EXPORT_SYMBOL_GPL
+ 0xade88e76	snd_malloc_pages	sound/core/snd-pcm	EXPORT_SYMBOL
+ 0x60771b09	ovs_vport_free	net/openvswitch/openvswitch	EXPORT_SYMBOL_GPL
+-0xf20eb5dd	ieee80211_rate_control_register	net/mac80211/mac80211	EXPORT_SYMBOL
++0x72a0606b	ieee80211_rate_control_register	net/mac80211/mac80211	EXPORT_SYMBOL
+ 0x6fccd330	inet_diag_unregister	net/ipv4/inet_diag	EXPORT_SYMBOL_GPL
+ 0xed88d3c8	import_iovec	vmlinux	EXPORT_SYMBOL
+ 0x07513b01	sock_sendmsg	vmlinux	EXPORT_SYMBOL
+@@ -3524,7 +3524,7 @@
+ 0xfed4d591	cfg80211_find_vendor_ie	net/wireless/cfg80211	EXPORT_SYMBOL
+ 0x1d40948a	l2tp_recv_common	net/l2tp/l2tp_core	EXPORT_SYMBOL
+ 0x234e67c7	rt2x00usb_vendor_request_buff	drivers/net/wireless/rt2x00/rt2x00usb	EXPORT_SYMBOL_GPL
+-0x3d90d0b3	ath9k_cmn_rx_accept	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0xaa056d95	ath9k_cmn_rx_accept	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0x1afae5e7	down_interruptible	vmlinux	EXPORT_SYMBOL
+ 0x205da5fa	__sock_create	vmlinux	EXPORT_SYMBOL
+ 0x6a706fbb	netlink_kernel_release	vmlinux	EXPORT_SYMBOL
+@@ -3543,10 +3543,10 @@
+ 0x98351a4b	get_task_mm	vmlinux	EXPORT_SYMBOL_GPL
+ 0x756fe7ed	sdio_writew	vmlinux	EXPORT_SYMBOL_GPL
+ 0x3744cf36	vmalloc_to_pfn	vmlinux	EXPORT_SYMBOL
+-0x3de66d62	ieee80211_ctstoself_duration	net/mac80211/mac80211	EXPORT_SYMBOL
++0xb2e6e558	ieee80211_ctstoself_duration	net/mac80211/mac80211	EXPORT_SYMBOL
+ 0x370b10e4	__ieee80211_get_assoc_led_name	net/mac80211/mac80211	EXPORT_SYMBOL
+ 0x1172bdb5	fuse_request_send	fs/fuse/fuse	EXPORT_SYMBOL_GPL
+-0x58d73a0b	ath9k_hw_btcoex_set_weight	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x202ac2be	ath9k_hw_btcoex_set_weight	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x42f2c81f	nfs4_client_id_uniquifier	vmlinux	EXPORT_SYMBOL_GPL
+ 0xf10526ac	verify_spi_info	vmlinux	EXPORT_SYMBOL
+ 0x5b02f498	inet_csk_prepare_forced_close	vmlinux	EXPORT_SYMBOL
+@@ -3652,7 +3652,7 @@
+ 0xd635534d	user_preparse	vmlinux	EXPORT_SYMBOL_GPL
+ 0xd0ec6f1f	mmc_start_req	vmlinux	EXPORT_SYMBOL
+ 0x01516249	snd_timer_stop	sound/core/snd-timer	EXPORT_SYMBOL
+-0x906f4936	ath9k_hw_stopdmarecv	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x6f66a8fe	ath9k_hw_stopdmarecv	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x36f3cf21	drm_crtc_vblank_reset	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0x2458467d	sdio_register_driver	vmlinux	EXPORT_SYMBOL_GPL
+ 0x2afe8da3	iscsi_destroy_all_flashnode	vmlinux	EXPORT_SYMBOL_GPL
+@@ -3773,7 +3773,7 @@
+ 0xc0f0458a	ip_tunnel_unneed_metadata	vmlinux	EXPORT_SYMBOL_GPL
+ 0x2aae43f7	__srcu_read_lock	vmlinux	EXPORT_SYMBOL_GPL
+ 0xc40d0cf9	iscsi_conn_stop	drivers/scsi/libiscsi	EXPORT_SYMBOL_GPL
+-0x0746f088	ar9003_mci_send_message	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xd66fa4e4	ar9003_mci_send_message	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xb7b77a77	v4l2_clk_get	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL
+ 0xd03c7700	secure_ipv4_port_ephemeral	vmlinux	EXPORT_SYMBOL_GPL
+ 0x9c9ec2a0	proc_dointvec_minmax	vmlinux	EXPORT_SYMBOL
+@@ -3850,7 +3850,7 @@
+ 0xe73fc23a	get_pid_task	vmlinux	EXPORT_SYMBOL_GPL
+ 0xc46adfd2	snd_cards	sound/core/snd	EXPORT_SYMBOL
+ 0x6b76aa70	hashbin_delete	net/irda/irda	EXPORT_SYMBOL
+-0x4f9102cd	ath9k_hw_disable_mib_counters	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x890b247f	ath9k_hw_disable_mib_counters	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x300b1554	cn_add_callback	drivers/connector/cn	EXPORT_SYMBOL_GPL
+ 0xb645f45b	bcma_chipco_chipctl_maskset	drivers/bcma/bcma	EXPORT_SYMBOL_GPL
+ 0x73d59bb4	sdhci_resume_host	vmlinux	EXPORT_SYMBOL_GPL
+@@ -4013,7 +4013,7 @@
+ 0xecfa2419	ct_sip_parse_request	net/netfilter/nf_conntrack_sip	EXPORT_SYMBOL_GPL
+ 0x93583518	udp_tunnel6_xmit_skb	net/ipv6/ip6_udp_tunnel	EXPORT_SYMBOL_GPL
+ 0xb1da5094	devm_lcd_device_unregister	drivers/video/backlight/lcd	EXPORT_SYMBOL
+-0xbb5976cd	ath9k_hw_phy_disable	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xf5b670d9	ath9k_hw_phy_disable	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xf53ce17c	mtd_lock	drivers/mtd/mtd	EXPORT_SYMBOL_GPL
+ 0x4d35af9c	flexcop_sram_set_dest	drivers/media/common/b2c2/b2c2-flexcop	EXPORT_SYMBOL
+ 0x4ea1f5a2	drm_gem_object_free	drivers/gpu/drm/drm	EXPORT_SYMBOL
+@@ -4064,7 +4064,7 @@
+ 0xcc2675ae	is_bad_inode	vmlinux	EXPORT_SYMBOL
+ 0x4626d52d	fat_build_inode	vmlinux	EXPORT_SYMBOL_GPL
+ 0x37f8cff8	param_get_int	vmlinux	EXPORT_SYMBOL
+-0xe85a0de6	ath9k_hw_process_rxdesc_edma	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x3a076fe6	ath9k_hw_process_rxdesc_edma	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x389a2454	hdlcdrv_receiver	drivers/net/hamradio/hdlcdrv	EXPORT_SYMBOL
+ 0xe4689576	ktime_get_with_offset	vmlinux	EXPORT_SYMBOL_GPL
+ 0x4da72813	shash_ahash_finup	vmlinux	EXPORT_SYMBOL_GPL
+@@ -4140,7 +4140,7 @@
+ 0x87703d6e	ip_ct_attach	vmlinux	EXPORT_SYMBOL
+ 0x86389c82	bcm_dma_chan_free	vmlinux	EXPORT_SYMBOL_GPL
+ 0x5052d5a5	wimax_state_get	net/wimax/wimax	EXPORT_SYMBOL_GPL
+-0x1a053dc4	ath9k_hw_gettsf32	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x0826d394	ath9k_hw_gettsf32	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x68956406	static_key_slow_dec	vmlinux	EXPORT_SYMBOL_GPL
+ 0x565b6892	uuid_le_gen	vmlinux	EXPORT_SYMBOL_GPL
+ 0x25631afd	fscache_cache_cleared_wq	vmlinux	EXPORT_SYMBOL
+@@ -4148,7 +4148,7 @@
+ 0x335c570f	enable_percpu_irq	vmlinux	EXPORT_SYMBOL_GPL
+ 0x2919b156	xdr_decode_string_inplace	vmlinux	EXPORT_SYMBOL_GPL
+ 0x8797a759	rt2800_config_pairwise_key	drivers/net/wireless/rt2x00/rt2800lib	EXPORT_SYMBOL_GPL
+-0x2405a6b1	ath_key_delete	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
++0x6ecd4d16	ath_key_delete	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
+ 0x367b0010	vb2_core_queue_init	drivers/media/v4l2-core/videobuf2-core	EXPORT_SYMBOL_GPL
+ 0x63f46561	driver_register	vmlinux	EXPORT_SYMBOL_GPL
+ 0x1427a475	should_remove_suid	vmlinux	EXPORT_SYMBOL
+@@ -4200,7 +4200,7 @@
+ 0xf1f56cd6	mmc_gpiod_request_ro	vmlinux	EXPORT_SYMBOL
+ 0x46d3b28c	__div0	vmlinux	EXPORT_SYMBOL
+ 0x07cfd8c0	nf_conntrack_locks	net/netfilter/nf_conntrack	EXPORT_SYMBOL_GPL
+-0x6fe99a1e	ath_hw_setbssidmask	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
++0x098e949f	ath_hw_setbssidmask	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
+ 0x146dfdfe	ad714x_enable	drivers/input/misc/ad714x	EXPORT_SYMBOL
+ 0x603946f1	zap_vma_ptes	vmlinux	EXPORT_SYMBOL_GPL
+ 0x0402b504	__percpu_ida_init	vmlinux	EXPORT_SYMBOL_GPL
+@@ -4217,8 +4217,8 @@
+ 0x36bbc7f4	elv_rb_add	vmlinux	EXPORT_SYMBOL
+ 0xda8dac48	init_user_ns	vmlinux	EXPORT_SYMBOL_GPL
+ 0x0d7190f3	wpan_phy_free	net/ieee802154/ieee802154	EXPORT_SYMBOL
+-0x79e20c74	ath9k_hw_gettsf64	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+-0xcbbb28e5	ath9k_hw_settsf64	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x0f575636	ath9k_hw_gettsf64	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x8cb8bb08	ath9k_hw_settsf64	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xd76cf8a2	drm_pci_init	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0x5a907873	drm_pci_exit	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0xe7d2864a	netif_skb_features	vmlinux	EXPORT_SYMBOL
+@@ -4266,7 +4266,7 @@
+ 0xc0a96e14	rcu_gp_is_expedited	vmlinux	EXPORT_SYMBOL_GPL
+ 0xb1518e62	prepare_creds	vmlinux	EXPORT_SYMBOL
+ 0x9b0809d6	nla_reserve_nohdr	vmlinux	EXPORT_SYMBOL
+-0x75cdb4ad	ath9k_hw_init_global_settings	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x98d64012	ath9k_hw_init_global_settings	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xf0939f31	alloc_can_skb	drivers/net/can/can-dev	EXPORT_SYMBOL_GPL
+ 0xc609a078	drm_unplug_dev	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0x0006b1c2	dev_addr_flush	vmlinux	EXPORT_SYMBOL
+@@ -4315,7 +4315,7 @@
+ 0xdc9283c2	usb_wwan_write	drivers/usb/serial/usb_wwan	EXPORT_SYMBOL
+ 0x14f06fe7	spk_serial_in_nowait	drivers/staging/speakup/speakup	EXPORT_SYMBOL_GPL
+ 0x41f71234	rt2x00mac_conf_tx	drivers/net/wireless/rt2x00/rt2x00lib	EXPORT_SYMBOL_GPL
+-0xbdca0945	ath9k_hw_getchan_noise	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x5331529e	ath9k_hw_getchan_noise	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xc8cea5a5	vb2_buffer_done	drivers/media/v4l2-core/videobuf2-core	EXPORT_SYMBOL_GPL
+ 0xeb7d12cc	fb_bl_default_curve	vmlinux	EXPORT_SYMBOL_GPL
+ 0xa5f8854a	usb_unlink_anchored_urbs	vmlinux	EXPORT_SYMBOL_GPL
+@@ -4379,7 +4379,7 @@
+ 0x774a0d80	regmap_raw_read	vmlinux	EXPORT_SYMBOL_GPL
+ 0xfb7f7a0f	snd_dmaengine_pcm_close	sound/core/snd-pcm-dmaengine	EXPORT_SYMBOL_GPL
+ 0x0445748c	usb_serial_handle_sysrq_char	drivers/usb/serial/usbserial	EXPORT_SYMBOL_GPL
+-0x43defb83	ath9k_hw_abort_tx_dma	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xd6cf6f33	ath9k_hw_abort_tx_dma	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xad84bef8	dm_table_event	drivers/md/dm-mod	EXPORT_SYMBOL
+ 0x1d47ca69	clk_add_alias	vmlinux	EXPORT_SYMBOL
+ 0xba1fe7f9	kill_litter_super	vmlinux	EXPORT_SYMBOL
+@@ -4479,7 +4479,7 @@
+ 0xd0641d51	cfg80211_assoc_timeout	net/wireless/cfg80211	EXPORT_SYMBOL
+ 0x20b812e6	ieee80211_cqm_rssi_notify	net/mac80211/mac80211	EXPORT_SYMBOL
+ 0x8bc11086	iscsi_session_teardown	drivers/scsi/libiscsi	EXPORT_SYMBOL_GPL
+-0x3428242d	ath_hw_get_listen_time	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
++0x1352ff67	ath_hw_get_listen_time	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
+ 0xde38e6c0	v4l2_subdev_g_ext_ctrls	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL
+ 0x34338b64	v4l2_subdev_s_ext_ctrls	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL
+ 0x8a9f41fd	btintel_regmap_init	drivers/bluetooth/btintel	EXPORT_SYMBOL_GPL
+@@ -4508,7 +4508,7 @@
+ 0xcd5c3d4d	nf_send_unreach	net/ipv4/netfilter/nf_reject_ipv4	EXPORT_SYMBOL_GPL
+ 0x1750d704	rt2x00usb_probe	drivers/net/wireless/rt2x00/rt2x00usb	EXPORT_SYMBOL_GPL
+ 0x82878899	p54_register_common	drivers/net/wireless/p54/p54common	EXPORT_SYMBOL_GPL
+-0x473b98f4	ar9003_mci_get_interrupt	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xd8016f64	ar9003_mci_get_interrupt	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x68a1abfd	mddev_resume	drivers/md/md-mod	EXPORT_SYMBOL_GPL
+ 0x73ec9434	__put_cred	vmlinux	EXPORT_SYMBOL
+ 0xc2d62259	get_thermal_instance	vmlinux	EXPORT_SYMBOL
+@@ -4526,7 +4526,7 @@
+ 0xac1df846	skb_try_coalesce	vmlinux	EXPORT_SYMBOL
+ 0xfa5d00aa	inet_add_offload	vmlinux	EXPORT_SYMBOL
+ 0x478c5c66	lbs_get_firmware	drivers/net/wireless/libertas/libertas	EXPORT_SYMBOL_GPL
+-0x219b3468	ath9k_cmn_get_channel	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0xe450cb11	ath9k_cmn_get_channel	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0x69dce373	i2400m_is_boot_barker	drivers/net/wimax/i2400m/i2400m	EXPORT_SYMBOL_GPL
+ 0xa28078b2	drm_edid_duplicate	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0xefc1db9e	register_framebuffer	vmlinux	EXPORT_SYMBOL
+@@ -4652,7 +4652,7 @@
+ 0xe2e8065e	memdup_user	vmlinux	EXPORT_SYMBOL
+ 0xf982d2a5	napi_disable	vmlinux	EXPORT_SYMBOL
+ 0xbd54643a	pinctrl_find_gpio_range_from_pin	vmlinux	EXPORT_SYMBOL_GPL
+-0x7ab48ba1	ath_gen_timer_free	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xcbd0a318	ath_gen_timer_free	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x1e716e2f	drm_atomic_helper_connector_reset	drivers/gpu/drm/drm_kms_helper	EXPORT_SYMBOL
+ 0x98cb68a5	blk_mq_free_request	vmlinux	EXPORT_SYMBOL_GPL
+ 0xdc7c613f	thermal_cooling_device_unregister	vmlinux	EXPORT_SYMBOL_GPL
+@@ -4707,7 +4707,7 @@
+ 0x8bbb2225	configfs_unregister_default_group	vmlinux	EXPORT_SYMBOL
+ 0x40728a63	xt_find_revision	net/netfilter/x_tables	EXPORT_SYMBOL_GPL
+ 0xcbe56bc2	zs_get_total_pages	mm/zsmalloc	EXPORT_SYMBOL_GPL
+-0xca076784	ath9k_hw_set_interrupts	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xf06cfba2	ath9k_hw_set_interrupts	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x0084962b	_gpiochip_irqchip_add	vmlinux	EXPORT_SYMBOL_GPL
+ 0x5db3802d	rpc_peeraddr2str	vmlinux	EXPORT_SYMBOL_GPL
+ 0x4587c37a	of_node_put	vmlinux	EXPORT_SYMBOL
+@@ -4758,7 +4758,7 @@
+ 0xc0d26387	kmsg_dump_unregister	vmlinux	EXPORT_SYMBOL_GPL
+ 0x131db64a	system_long_wq	vmlinux	EXPORT_SYMBOL_GPL
+ 0x3e0839f4	iscsi_create_session	vmlinux	EXPORT_SYMBOL_GPL
+-0x9121fd00	ath9k_cmn_debug_base_eeprom	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0xe8125ac8	ath9k_cmn_debug_base_eeprom	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0xd0078960	cx231xx_enable656	drivers/media/usb/cx231xx/cx231xx	EXPORT_SYMBOL_GPL
+ 0xa51e983c	extcon_get_cable_state_	drivers/extcon/extcon	EXPORT_SYMBOL_GPL
+ 0xb361a269	extcon_set_cable_state_	drivers/extcon/extcon	EXPORT_SYMBOL_GPL
+@@ -4833,7 +4833,7 @@
+ 0x1f8544b8	panic_timeout	vmlinux	EXPORT_SYMBOL_GPL
+ 0xbf9068ab	ocfs2_cluster_connect	fs/ocfs2/ocfs2_stackglue	EXPORT_SYMBOL_GPL
+ 0xb4a6bf0a	rt2x00usb_uninitialize	drivers/net/wireless/rt2x00/rt2x00usb	EXPORT_SYMBOL_GPL
+-0x232ef0fb	ar9003_paprd_init_table	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xfc6905cf	ar9003_paprd_init_table	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x0e294ea7	extcon_dev_unregister	drivers/extcon/extcon	EXPORT_SYMBOL_GPL
+ 0x6f38d3a6	af_alg_complete	crypto/af_alg	EXPORT_SYMBOL_GPL
+ 0xa2e751dc	list_lru_destroy	vmlinux	EXPORT_SYMBOL_GPL
+@@ -5066,7 +5066,7 @@
+ 0xf0ab61af	block_write_end	vmlinux	EXPORT_SYMBOL
+ 0xf7f5e975	disk_part_iter_next	vmlinux	EXPORT_SYMBOL_GPL
+ 0x7874b7ce	cfg80211_roamed_bss	net/wireless/cfg80211	EXPORT_SYMBOL
+-0xba58696e	ath9k_hw_beaconinit	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xf6f830b1	ath9k_hw_beaconinit	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xce55f182	nfs_link	vmlinux	EXPORT_SYMBOL_GPL
+ 0x0b9c2003	sdhci_runtime_resume_host	vmlinux	EXPORT_SYMBOL_GPL
+ 0x21df74d9	bitmap_set	vmlinux	EXPORT_SYMBOL
+@@ -5171,7 +5171,7 @@
+ 0x70ddce44	fib_rules_lookup	vmlinux	EXPORT_SYMBOL_GPL
+ 0x7b1ade38	lz4_decompress	vmlinux	EXPORT_SYMBOL
+ 0x4059792f	print_hex_dump	vmlinux	EXPORT_SYMBOL
+-0xc704e135	ieee80211_rts_duration	net/mac80211/mac80211	EXPORT_SYMBOL
++0xab12fff8	ieee80211_rts_duration	net/mac80211/mac80211	EXPORT_SYMBOL
+ 0x6a60a4bc	ieee80211_ave_rssi	net/mac80211/mac80211	EXPORT_SYMBOL_GPL
+ 0xae808bac	o2net_register_handler	fs/ocfs2/cluster/ocfs2_nodemanager	EXPORT_SYMBOL_GPL
+ 0xec32138b	s5h1420_get_tuner_i2c_adapter	drivers/media/dvb-frontends/s5h1420	EXPORT_SYMBOL
+@@ -5358,7 +5358,7 @@
+ 0x25379e73	clk_set_min_rate	vmlinux	EXPORT_SYMBOL_GPL
+ 0x5283d2b9	i2c_release_client	vmlinux	EXPORT_SYMBOL
+ 0xb09faf79	register_atmdevice_notifier	net/atm/atm	EXPORT_SYMBOL_GPL
+-0x84bdee0d	ath9k_hw_setrxabort	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x660cdcea	ath9k_hw_setrxabort	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xd8daf2e1	tda665x_attach	drivers/media/dvb-frontends/tda665x	EXPORT_SYMBOL
+ 0xac4ca1b0	intlog2	drivers/media/dvb-core/dvb-core	EXPORT_SYMBOL
+ 0x8fe33a6d	rtnl_link_register	vmlinux	EXPORT_SYMBOL_GPL
+@@ -5556,7 +5556,7 @@
+ 0x94515554	posix_clock_unregister	vmlinux	EXPORT_SYMBOL_GPL
+ 0x5ee410d5	nf_ct_nat_ext_add	net/netfilter/nf_nat	EXPORT_SYMBOL_GPL
+ 0xbbe7c23c	lc_element_by_index	lib/lru_cache	EXPORT_SYMBOL
+-0x7e8255cf	ath9k_hw_startpcureceive	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x08a3e152	ath9k_hw_startpcureceive	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xa5ce9e19	iio_read_channel_raw	drivers/iio/industrialio	EXPORT_SYMBOL_GPL
+ 0x4d45d89e	udp_memory_allocated	vmlinux	EXPORT_SYMBOL
+ 0xfb94103e	__clzdi2	vmlinux	EXPORT_SYMBOL
+@@ -5615,7 +5615,7 @@
+ 0xf58d17d7	nf_conntrack_l4proto_udp4	net/netfilter/nf_conntrack	EXPORT_SYMBOL_GPL
+ 0x44d2c2c0	p9stat_free	net/9p/9pnet	EXPORT_SYMBOL
+ 0xc3679d7b	o2hb_get_all_regions	fs/ocfs2/cluster/ocfs2_nodemanager	EXPORT_SYMBOL_GPL
+-0xc5df0d5d	ath9k_hw_btcoex_init_scheme	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x07a62b31	ath9k_hw_btcoex_init_scheme	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xfeb66699	ubi_do_get_device_info	drivers/mtd/ubi/ubi	EXPORT_SYMBOL_GPL
+ 0xfcd6f5c8	dm_rh_inc_pending	drivers/md/dm-region-hash	EXPORT_SYMBOL_GPL
+ 0xbc3b8881	async_gen_syndrome	crypto/async_tx/async_pq	EXPORT_SYMBOL_GPL
+@@ -5626,7 +5626,7 @@
+ 0x12994981	usb_choose_configuration	vmlinux	EXPORT_SYMBOL_GPL
+ 0xd5f77261	regcache_cache_only	vmlinux	EXPORT_SYMBOL_GPL
+ 0x3564ad43	ip_set_get_byname	net/netfilter/ipset/ip_set	EXPORT_SYMBOL_GPL
+-0xce0dda61	ath9k_hw_gen_timer_stop	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xdb133b8b	ath9k_hw_gen_timer_stop	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x298fab00	mtd_add_partition	drivers/mtd/mtd	EXPORT_SYMBOL_GPL
+ 0xab7c7018	bus_get_kset	vmlinux	EXPORT_SYMBOL_GPL
+ 0x5c6fcac2	of_get_fb_videomode	vmlinux	EXPORT_SYMBOL_GPL
+@@ -5642,8 +5642,8 @@
+ 0x61c2dac6	kstrtoll_from_user	vmlinux	EXPORT_SYMBOL
+ 0xf1969a8e	__usecs_to_jiffies	vmlinux	EXPORT_SYMBOL
+ 0x8778f6ce	snd_rawmidi_new	sound/core/snd-rawmidi	EXPORT_SYMBOL
+-0x92dec95c	ath9k_hw_updatetxtriglevel	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+-0x2ba748db	ath9k_cmn_spectral_scan_trigger	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0x0b8a0bdc	ath9k_hw_updatetxtriglevel	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xf45e20db	ath9k_cmn_spectral_scan_trigger	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0xd8aa4284	dm_rh_region_context	drivers/md/dm-region-hash	EXPORT_SYMBOL_GPL
+ 0xf07592ae	svc_max_payload	vmlinux	EXPORT_SYMBOL_GPL
+ 0x685bb1c9	vlan_vids_add_by_dev	vmlinux	EXPORT_SYMBOL
+@@ -5841,7 +5841,7 @@
+ 0x33abda89	register_ip_vs_app	net/netfilter/ipvs/ip_vs	EXPORT_SYMBOL
+ 0x7b783d8a	l2tp_tunnel_find_nth	net/l2tp/l2tp_core	EXPORT_SYMBOL_GPL
+ 0x2a32b7c4	fb_sys_write	drivers/video/fbdev/core/fb_sys_fops	EXPORT_SYMBOL_GPL
+-0x5f5dbf0a	ath9k_cmn_init_channels_rates	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0x150e4eb3	ath9k_cmn_init_channels_rates	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0xf2a353ac	v4l2_i2c_tuner_addrs	drivers/media/v4l2-core/v4l2-common	EXPORT_SYMBOL_GPL
+ 0x34871adf	drm_dp_channel_eq_ok	drivers/gpu/drm/drm_kms_helper	EXPORT_SYMBOL
+ 0x4708a24e	spi_statistics_add_transfer_stats	vmlinux	EXPORT_SYMBOL_GPL
+@@ -5864,7 +5864,7 @@
+ 0x58b22d05	bsg_register_queue	vmlinux	EXPORT_SYMBOL_GPL
+ 0xd13b4d69	vchi_msg_queue	vmlinux	EXPORT_SYMBOL
+ 0x0857f379	generic_ro_fops	vmlinux	EXPORT_SYMBOL
+-0xf112ea89	ar9003_hw_bb_watchdog_check	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x3f209824	ar9003_hw_bb_watchdog_check	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x7dfd4f1c	iscsi_free_session	vmlinux	EXPORT_SYMBOL_GPL
+ 0x6e250fb7	pm_runtime_force_resume	vmlinux	EXPORT_SYMBOL_GPL
+ 0x55a77e23	user_path_create	vmlinux	EXPORT_SYMBOL
+@@ -5946,7 +5946,7 @@
+ 0x080ddce6	DWC_TIME	vmlinux	EXPORT_SYMBOL
+ 0x9f55d406	snd_soc_dapm_kcontrol_widget	sound/soc/snd-soc-core	EXPORT_SYMBOL_GPL
+ 0xff6104d0	snd_pcm_rate_bit_to_rate	sound/core/snd-pcm	EXPORT_SYMBOL
+-0x11dab842	ath9k_hw_btcoex_enable	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xaa9934a9	ath9k_hw_btcoex_enable	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xd34b21fc	serial8250_register_8250_port	vmlinux	EXPORT_SYMBOL
+ 0x98d96567	of_dev_put	vmlinux	EXPORT_SYMBOL
+ 0x8c03d20c	destroy_workqueue	vmlinux	EXPORT_SYMBOL_GPL
+@@ -5979,7 +5979,7 @@
+ 0x4ad596d0	p9_client_mkdir_dotl	net/9p/9pnet	EXPORT_SYMBOL
+ 0xcd119dc2	p9_client_mknod_dotl	net/9p/9pnet	EXPORT_SYMBOL
+ 0x388d6b72	mwifiex_enable_hs	drivers/net/wireless/mwifiex/mwifiex	EXPORT_SYMBOL_GPL
+-0xcf72729e	ath9k_hw_gettxbuf	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x35973881	ath9k_hw_gettxbuf	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x62af218e	sp8870_attach	drivers/media/dvb-frontends/sp8870	EXPORT_SYMBOL
+ 0x854fa432	dib0090_dcc_freq	drivers/media/dvb-frontends/dib0090	EXPORT_SYMBOL
+ 0xe8a2ee19	au8522_init	drivers/media/dvb-frontends/au8522_common	EXPORT_SYMBOL
+@@ -6011,7 +6011,7 @@
+ 0x2d30596c	from_kqid_munged	vmlinux	EXPORT_SYMBOL
+ 0xd8f87608	snd_pcm_lib_free_vmalloc_buffer	sound/core/snd-pcm	EXPORT_SYMBOL
+ 0x3621b7e0	nfnetlink_subsys_register	net/netfilter/nfnetlink	EXPORT_SYMBOL_GPL
+-0xbfebb23e	ath9k_hw_gen_timer_start	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x084a15a0	ath9k_hw_gen_timer_start	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xa59205bc	mtd_is_partition	drivers/mtd/mtd	EXPORT_SYMBOL_GPL
+ 0x165fc196	vb2_thread_stop	drivers/media/v4l2-core/videobuf2-v4l2	EXPORT_SYMBOL_GPL
+ 0xeedca6c9	drm_dp_mst_topology_mgr_destroy	drivers/gpu/drm/drm_kms_helper	EXPORT_SYMBOL
+@@ -6216,7 +6216,7 @@
+ 0xcc793d6c	snd_soc_runtime_set_dai_fmt	sound/soc/snd-soc-core	EXPORT_SYMBOL_GPL
+ 0x7957f728	irlmp_update_client	net/irda/irda	EXPORT_SYMBOL
+ 0x8a3ec37f	garp_uninit_applicant	net/802/garp	EXPORT_SYMBOL_GPL
+-0xbe797bc2	ar9003_mci_get_next_gpm_offset	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x7c4a2b18	ar9003_mci_get_next_gpm_offset	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x918deb55	cx231xx_uninit_isoc	drivers/media/usb/cx231xx/cx231xx	EXPORT_SYMBOL_GPL
+ 0xac0156b2	__rtnl_register	vmlinux	EXPORT_SYMBOL_GPL
+ 0x41e839c5	rtmsg_ifinfo	vmlinux	EXPORT_SYMBOL
+@@ -6356,7 +6356,7 @@
+ 0x8d0f8874	file_ns_capable	vmlinux	EXPORT_SYMBOL
+ 0x18bd1f31	inode_init_owner	vmlinux	EXPORT_SYMBOL
+ 0xd4cb6873	raid6_call	lib/raid6/raid6_pq	EXPORT_SYMBOL_GPL
+-0x7e6b0af9	ath9k_hw_numtxpending	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x33c4c4af	ath9k_hw_numtxpending	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xd3a123bd	lirc_dev_fop_write	drivers/media/rc/lirc_dev	EXPORT_SYMBOL
+ 0x3f616ce2	queue_delayed_work_on	vmlinux	EXPORT_SYMBOL
+ 0x5852fc7d	list_lru_count_one	vmlinux	EXPORT_SYMBOL_GPL
+@@ -6381,7 +6381,7 @@
+ 0x39314bfe	usbnet_unlink_rx_urbs	vmlinux	EXPORT_SYMBOL_GPL
+ 0x222fa684	lg_global_lock	vmlinux	EXPORT_SYMBOL
+ 0x01277fa5	iscsi_verify_itt	drivers/scsi/libiscsi	EXPORT_SYMBOL_GPL
+-0x71aa655d	ath9k_hw_btcoex_init_3wire	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x00edd9e7	ath9k_hw_btcoex_init_3wire	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x9bfe4990	dm_get_rq_mapinfo	drivers/md/dm-mod	EXPORT_SYMBOL_GPL
+ 0x8b2f1fde	scsi_bios_ptable	vmlinux	EXPORT_SYMBOL
+ 0x6d37d963	start_critical_timings	vmlinux	EXPORT_SYMBOL_GPL
+@@ -6400,7 +6400,7 @@
+ 0xa74f0f2c	param_set_ushort	vmlinux	EXPORT_SYMBOL
+ 0xfcf5ce22	snd_timer_notify	sound/core/snd-timer	EXPORT_SYMBOL
+ 0x432e4871	bt_sock_recvmsg	net/bluetooth/bluetooth	EXPORT_SYMBOL
+-0x05fdd20e	ath_key_config	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
++0xb0b2c608	ath_key_config	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
+ 0xf083a771	l64781_attach	drivers/media/dvb-frontends/l64781	EXPORT_SYMBOL
+ 0x8b90e936	bitmap_unplug	drivers/md/md-mod	EXPORT_SYMBOL
+ 0x52f31a6d	udp_flush_pending_frames	vmlinux	EXPORT_SYMBOL
+@@ -6432,7 +6432,7 @@
+ 0xfa6132b1	__fscache_wait_on_page_write	vmlinux	EXPORT_SYMBOL
+ 0x565ad59c	rpc_task_reset_client	vmlinux	EXPORT_SYMBOL_GPL
+ 0x8a36c005	usbatm_usb_disconnect	drivers/usb/atm/usbatm	EXPORT_SYMBOL_GPL
+-0xe3ea587e	ath9k_hw_set_txpowerlimit	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xb47bc4ac	ath9k_hw_set_txpowerlimit	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x2aaad7e5	v4l2_src_change_event_subdev_subscribe	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL_GPL
+ 0x65a8336b	videobuf_queue_core_init	drivers/media/v4l2-core/videobuf-core	EXPORT_SYMBOL_GPL
+ 0x2fa964e5	drm_crtc_get_hv_timing	drivers/gpu/drm/drm	EXPORT_SYMBOL
+@@ -6518,7 +6518,7 @@
+ 0xdc77c0af	inet_addr_type_dev_table	vmlinux	EXPORT_SYMBOL
+ 0x6e8f6507	d_instantiate	vmlinux	EXPORT_SYMBOL
+ 0x747195f0	hdmi_vendor_infoframe_init	vmlinux	EXPORT_SYMBOL
+-0x5f901d9b	ath_rxbuf_alloc	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
++0xb03f8f4e	ath_rxbuf_alloc	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
+ 0x19fa5052	vb2_queue_init	drivers/media/v4l2-core/videobuf2-v4l2	EXPORT_SYMBOL_GPL
+ 0xfcf54a4f	drm_mm_scan_remove_block	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0x1d3ad277	register_sound_special_device	vmlinux	EXPORT_SYMBOL
+@@ -6601,7 +6601,7 @@
+ 0x6a75e2c2	ieee80211_sta_ps_transition	net/mac80211/mac80211	EXPORT_SYMBOL
+ 0x0f8a2742	raid6_2data_recov	lib/raid6/raid6_pq	EXPORT_SYMBOL_GPL
+ 0xa06fbc10	ocfs2_cluster_connect_agnostic	fs/ocfs2/ocfs2_stackglue	EXPORT_SYMBOL_GPL
+-0xea5162c8	ath9k_cmn_beacon_config_adhoc	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0xc973d20d	ath9k_cmn_beacon_config_adhoc	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0x98fa1e20	dm_get_reserved_rq_based_ios	drivers/md/dm-mod	EXPORT_SYMBOL_GPL
+ 0x78985975	drm_fb_helper_setcmap	drivers/gpu/drm/drm_kms_helper	EXPORT_SYMBOL
+ 0x446efbf9	drm_gem_vm_open	drivers/gpu/drm/drm	EXPORT_SYMBOL
+@@ -6655,7 +6655,7 @@
+ 0x389d53a5	gpiod_count	vmlinux	EXPORT_SYMBOL_GPL
+ 0x93139913	gre_del_protocol	net/ipv4/gre	EXPORT_SYMBOL_GPL
+ 0x98494cc6	mwifiex_deauthenticate_all	drivers/net/wireless/mwifiex/mwifiex	EXPORT_SYMBOL_GPL
+-0xd1549bf0	ath9k_hw_check_nav	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x2cfb1453	ath9k_hw_check_nav	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x82199055	drm_gem_private_object_init	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0x54001c9a	bcma_core_dma_translation	drivers/bcma/bcma	EXPORT_SYMBOL
+ 0x6b7ca930	simple_write_end	vmlinux	EXPORT_SYMBOL
+@@ -6668,7 +6668,7 @@
+ 0x919edf7c	class_unregister	vmlinux	EXPORT_SYMBOL_GPL
+ 0x7f417421	hid_open_report	vmlinux	EXPORT_SYMBOL_GPL
+ 0x538f66b2	sys_imageblit	drivers/video/fbdev/core/sysimgblt	EXPORT_SYMBOL
+-0x498ab075	ath9k_hw_btcoex_disable	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xc0876fdd	ath9k_hw_btcoex_disable	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x8ff6b592	__regmap_init_i2c	drivers/base/regmap/regmap-i2c	EXPORT_SYMBOL_GPL
+ 0x57c1ec55	spi_async	vmlinux	EXPORT_SYMBOL_GPL
+ 0x739a5eb8	ping_init_sock	vmlinux	EXPORT_SYMBOL_GPL
+@@ -6706,8 +6706,8 @@
+ 0x048d2c32	hci_conn_check_secure	net/bluetooth/bluetooth	EXPORT_SYMBOL
+ 0x8032248b	rt2x00queue_get_entry	drivers/net/wireless/rt2x00/rt2x00lib	EXPORT_SYMBOL_GPL
+ 0x75a52677	rt2x00mac_get_antenna	drivers/net/wireless/rt2x00/rt2x00lib	EXPORT_SYMBOL_GPL
+-0x49d6adce	ath9k_hw_write_associd	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+-0x58e37440	ath9k_hw_enable_interrupts	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x0402d6fb	ath9k_hw_write_associd	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xe82fd6bc	ath9k_hw_enable_interrupts	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x3eda4fd0	video_unregister_device	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL
+ 0x729a0a03	dib7000m_get_i2c_master	drivers/media/dvb-frontends/dib7000m	EXPORT_SYMBOL
+ 0xb3e558f8	dm_get_table_device	drivers/md/dm-mod	EXPORT_SYMBOL_GPL
+@@ -6763,7 +6763,7 @@
+ 0x40e857b6	blkg_rwstat_recursive_sum	vmlinux	EXPORT_SYMBOL_GPL
+ 0x0fd21783	snd_soc_platform_trigger	sound/soc/snd-soc-core	EXPORT_SYMBOL_GPL
+ 0x366a826a	nf_xfrm_me_harder	net/netfilter/nf_nat	EXPORT_SYMBOL
+-0x860fd15f	ath9k_hw_beaconq_setup	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xc6840e03	ath9k_hw_beaconq_setup	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xcc841d24	drm_i2c_encoder_prepare	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0x85aabccb	dev_loopback_xmit	vmlinux	EXPORT_SYMBOL
+ 0xa50e12d7	gpiod_get_raw_value_cansleep	vmlinux	EXPORT_SYMBOL_GPL
+@@ -6789,7 +6789,7 @@
+ 0xb54ad7f2	nf_nat_tftp_hook	net/netfilter/nf_conntrack_tftp	EXPORT_SYMBOL_GPL
+ 0x01a7731b	nf_nat_snmp_hook	net/netfilter/nf_conntrack_snmp	EXPORT_SYMBOL_GPL
+ 0x39fb9641	get_h225_addr	net/netfilter/nf_conntrack_h323	EXPORT_SYMBOL_GPL
+-0x6522345e	ath9k_cmn_beacon_config_ap	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0x113621bf	ath9k_cmn_beacon_config_ap	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0xf246e195	v4l2_ctrl_handler_free	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL
+ 0xbea3dbff	dvb_usbv2_generic_rw_locked	drivers/media/usb/dvb-usb-v2/dvb_usb_v2	EXPORT_SYMBOL
+ 0x5b41d8f5	seq_write	vmlinux	EXPORT_SYMBOL
+@@ -6854,7 +6854,7 @@
+ 0x03c3b5d3	nf_ct_tmpl_alloc	net/netfilter/nf_conntrack	EXPORT_SYMBOL_GPL
+ 0x343599c5	p9_client_open	net/9p/9pnet	EXPORT_SYMBOL
+ 0x5ad7111c	fuse_direct_io	fs/fuse/fuse	EXPORT_SYMBOL_GPL
+-0x750dc51e	ath9k_cmn_reload_chainmask	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0x92964b3a	ath9k_cmn_reload_chainmask	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0xf821d629	dvb_frontend_sleep_until	drivers/media/dvb-core/dvb-core	EXPORT_SYMBOL
+ 0x832bf228	dm_array_del	drivers/md/persistent-data/dm-persistent-data	EXPORT_SYMBOL_GPL
+ 0xb6d5c65d	dm_deferred_set_add_work	drivers/md/dm-bio-prison	EXPORT_SYMBOL_GPL
+@@ -6909,7 +6909,7 @@
+ 0xf801c1ba	led_classdev_suspend	vmlinux	EXPORT_SYMBOL_GPL
+ 0x1fab5905	wait_for_completion	vmlinux	EXPORT_SYMBOL
+ 0x603ba77b	snd_soc_dpcm_can_be_free_stop	sound/soc/snd-soc-core	EXPORT_SYMBOL_GPL
+-0x6c3d7b4b	ath_hw_cycle_counters_update	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
++0x1f717f31	ath_hw_cycle_counters_update	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
+ 0x9850cb88	dvb_ringbuffer_write_user	drivers/media/dvb-core/dvb-core	EXPORT_SYMBOL
+ 0x490cfb78	drm_mm_reserve_node	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0x8c05a08a	usb_unlink_urb	vmlinux	EXPORT_SYMBOL_GPL
+@@ -7128,7 +7128,7 @@
+ 0x0f6a3b5c	string_get_size	vmlinux	EXPORT_SYMBOL
+ 0x69bc0b89	fat_fill_super	vmlinux	EXPORT_SYMBOL_GPL
+ 0x6bea3ad7	fl6_sock_lookup	net/ipv6/ipv6	EXPORT_SYMBOL_GPL
+-0x2f2fed02	ath9k_cmn_process_rate	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0x0bf63dcc	ath9k_cmn_process_rate	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0x4bb5a15f	of_mdio_find_bus	drivers/net/phy/libphy	EXPORT_SYMBOL
+ 0xf27977e2	async_synchronize_cookie_domain	vmlinux	EXPORT_SYMBOL_GPL
+ 0xa5337e3d	cpufreq_governor_dbs	vmlinux	EXPORT_SYMBOL_GPL
+@@ -7137,7 +7137,7 @@
+ 0x0cdd158d	sg_alloc_table	vmlinux	EXPORT_SYMBOL
+ 0x61482163	call_usermodehelper_exec	vmlinux	EXPORT_SYMBOL
+ 0x8fb0567f	snd_info_free_entry	sound/core/snd	EXPORT_SYMBOL
+-0x5e66ff18	ath9k_hw_reset_calvalid	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xab0f4b10	ath9k_hw_reset_calvalid	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x0294725e	v4l2_ctrl_handler_init_class	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL
+ 0x844539ae	sms_get_board	drivers/media/common/siano/smsmdtv	EXPORT_SYMBOL_GPL
+ 0x86a1cf3d	drm_gem_prime_fd_to_handle	drivers/gpu/drm/drm	EXPORT_SYMBOL
+@@ -7211,7 +7211,7 @@
+ 0xb24e4f49	nfs_post_op_update_inode	vmlinux	EXPORT_SYMBOL_GPL
+ 0x56c8799d	scsi_kunmap_atomic_sg	vmlinux	EXPORT_SYMBOL
+ 0xadeef6b3	wpan_phy_new	net/ieee802154/ieee802154	EXPORT_SYMBOL
+-0x30be6e02	ath9k_hw_setuprxdesc	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x47385bf3	ath9k_hw_setuprxdesc	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x42801d20	ubi_sync	drivers/mtd/ubi/ubi	EXPORT_SYMBOL_GPL
+ 0xdc24f776	dvb_generic_release	drivers/media/dvb-core/dvb-core	EXPORT_SYMBOL
+ 0xb3ac1469	of_pwm_get	vmlinux	EXPORT_SYMBOL_GPL
+@@ -7349,7 +7349,7 @@
+ 0xa0cd1896	usb_put_intf	vmlinux	EXPORT_SYMBOL_GPL
+ 0xdb566cab	xfrm6_input_addr	net/ipv6/ipv6	EXPORT_SYMBOL
+ 0x4a9433c8	rt2800_write_tx_data	drivers/net/wireless/rt2x00/rt2800lib	EXPORT_SYMBOL_GPL
+-0x92e70f0c	ar9003_hw_bb_watchdog_dbg_info	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x9e5e3ccc	ar9003_hw_bb_watchdog_dbg_info	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x4ee59fa4	tda8083_attach	drivers/media/dvb-frontends/tda8083	EXPORT_SYMBOL
+ 0x58d633c7	neigh_proc_dointvec_jiffies	vmlinux	EXPORT_SYMBOL
+ 0x3d4d6140	usb_stor_probe1	vmlinux	EXPORT_SYMBOL_GPL
+@@ -7415,7 +7415,7 @@
+ 0x408036a6	skb_append_datato_frags	vmlinux	EXPORT_SYMBOL
+ 0x37befc70	jiffies_to_msecs	vmlinux	EXPORT_SYMBOL
+ 0x7f24de73	jiffies_to_usecs	vmlinux	EXPORT_SYMBOL
+-0x8d3ed8d5	ar9003_mci_state	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xa910a606	ar9003_mci_state	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xbec19e26	devm_mdiobus_alloc_size	drivers/net/phy/libphy	EXPORT_SYMBOL_GPL
+ 0xc4197708	drm_atomic_helper_update_plane	drivers/gpu/drm/drm_kms_helper	EXPORT_SYMBOL
+ 0x1a770ac3	drm_detect_hdmi_monitor	drivers/gpu/drm/drm	EXPORT_SYMBOL
+@@ -7495,7 +7495,7 @@
+ 0xc8c2081d	inet_stream_connect	vmlinux	EXPORT_SYMBOL
+ 0xa05c03df	mempool_kmalloc	vmlinux	EXPORT_SYMBOL
+ 0x38de51b5	dma_buf_end_cpu_access	vmlinux	EXPORT_SYMBOL_GPL
+-0x140e4b69	ath9k_hw_ani_monitor	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x9b2f39ba	ath9k_hw_ani_monitor	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xb1e71ee3	rpc_mkpipe_dentry	vmlinux	EXPORT_SYMBOL_GPL
+ 0x32bdd90d	find_lock_entry	vmlinux	EXPORT_SYMBOL
+ 0x9352db9a	qdisc_warn_nonwc	vmlinux	EXPORT_SYMBOL
+@@ -7519,7 +7519,7 @@
+ 0x19e902e0	sock_diag_check_cookie	vmlinux	EXPORT_SYMBOL_GPL
+ 0x9d97a716	perf_event_read_value	vmlinux	EXPORT_SYMBOL_GPL
+ 0xf9561016	inet6_csk_addr2sockaddr	net/ipv6/ipv6	EXPORT_SYMBOL_GPL
+-0xc6e0b5ee	ath_gen_timer_alloc	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xa4fa8c21	ath_gen_timer_alloc	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x046c0240	gspca_suspend	drivers/media/usb/gspca/gspca_main	EXPORT_SYMBOL
+ 0x7c9f693e	drm_mode_parse_command_line_for_connector	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0x0fee475c	usb_disable_lpm	vmlinux	EXPORT_SYMBOL_GPL
+@@ -7636,7 +7636,7 @@
+ 0x222e7ce2	sysfs_streq	vmlinux	EXPORT_SYMBOL
+ 0xd067d3c5	system_freezable_power_efficient_wq	vmlinux	EXPORT_SYMBOL_GPL
+ 0x630c2ce1	cache_purge	vmlinux	EXPORT_SYMBOL_GPL
+-0xbb2555f8	ath9k_hw_set_tsfadjust	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x53ce91e4	ath9k_hw_set_tsfadjust	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x3427d01d	cx231xx_disable656	drivers/media/usb/cx231xx/cx231xx	EXPORT_SYMBOL_GPL
+ 0x37f42566	dm_accept_partial_bio	drivers/md/dm-mod	EXPORT_SYMBOL_GPL
+ 0x439c12e8	gameport_unregister_port	drivers/input/gameport/gameport	EXPORT_SYMBOL
+@@ -7747,7 +7747,7 @@
+ 0xa05ce813	scsi_eh_finish_cmd	vmlinux	EXPORT_SYMBOL
+ 0xe331efae	usb_set_device_state	vmlinux	EXPORT_SYMBOL_GPL
+ 0xd975560e	cfg80211_auth_timeout	net/wireless/cfg80211	EXPORT_SYMBOL
+-0xf83a5e00	ath9k_hw_bstuck_nfcal	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x10dfb9ab	ath9k_hw_bstuck_nfcal	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x444561e9	v4l2_ctrl_new_std_menu	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL
+ 0x196e1e0b	drm_add_edid_modes	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0xd627480b	strncat	vmlinux	EXPORT_SYMBOL
+@@ -7888,7 +7888,7 @@
+ 0x5352b238	snd_soc_of_parse_audio_simple_widgets	sound/soc/snd-soc-core	EXPORT_SYMBOL_GPL
+ 0xd0382d79	nf_ct_iterate_cleanup	net/netfilter/nf_conntrack	EXPORT_SYMBOL_GPL
+ 0xcf47613e	lbs_suspend	drivers/net/wireless/libertas/libertas	EXPORT_SYMBOL_GPL
+-0x9ceb9dd3	ath9k_hw_kill_interrupts	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x4ffffc44	ath9k_hw_kill_interrupts	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xab936de8	deregister_mtd_blktrans	drivers/mtd/mtd_blkdevs	EXPORT_SYMBOL_GPL
+ 0xb986d7e9	drm_legacy_mmap	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0xca9360b5	rb_next	vmlinux	EXPORT_SYMBOL
+@@ -7938,7 +7938,7 @@
+ 0x8010d2c6	percpu_ida_free	vmlinux	EXPORT_SYMBOL_GPL
+ 0x01e93d3e	ieee80211_iterate_active_interfaces_atomic	net/mac80211/mac80211	EXPORT_SYMBOL_GPL
+ 0xb2869bac	ip6_datagram_send_ctl	net/ipv6/ipv6	EXPORT_SYMBOL_GPL
+-0xf8f466b9	ath9k_hw_init	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x1b812045	ath9k_hw_init	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xf3713aa6	async_xor_val	crypto/async_tx/async_xor	EXPORT_SYMBOL_GPL
+ 0x91bca493	udp_ioctl	vmlinux	EXPORT_SYMBOL
+ 0xecc5ad2f	alarm_forward_now	vmlinux	EXPORT_SYMBOL_GPL
+@@ -8016,8 +8016,8 @@
+ 0xd764c87a	load_nls_default	vmlinux	EXPORT_SYMBOL
+ 0xe29e1d0e	out_of_line_wait_on_atomic_t	vmlinux	EXPORT_SYMBOL
+ 0xfedf695f	mbox_free_channel	vmlinux	EXPORT_SYMBOL_GPL
+-0x075415ba	ath9k_hw_btcoex_bt_stomp	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+-0xb41caca4	ath9k_hw_txstart	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xc09c1f12	ath9k_hw_btcoex_bt_stomp	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x0310d2d9	ath9k_hw_txstart	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x89d463c8	ath9k_cmn_get_hw_crypto_keytype	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0x30eca761	phy_get_eee_err	drivers/net/phy/libphy	EXPORT_SYMBOL
+ 0x5e6aea80	dm_btree_walk	drivers/md/persistent-data/dm-persistent-data	EXPORT_SYMBOL_GPL
+@@ -8215,7 +8215,7 @@
+ 0x302b1309	ircomm_connect_request	net/irda/ircomm/ircomm	EXPORT_SYMBOL
+ 0x2ad707e6	w1_reset_bus	drivers/w1/wire	EXPORT_SYMBOL_GPL
+ 0xb4b77c8b	hostap_80211_get_hdrlen	drivers/net/wireless/hostap/hostap	EXPORT_SYMBOL
+-0x17e9d5de	ath9k_hw_reset	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xb447c2ab	ath9k_hw_reset	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x1c132024	request_any_context_irq	vmlinux	EXPORT_SYMBOL_GPL
+ 0x0c9c6239	blk_mq_complete_request	vmlinux	EXPORT_SYMBOL
+ 0x00b25fb7	skb_insert	vmlinux	EXPORT_SYMBOL
+@@ -8286,7 +8286,7 @@
+ 0xd2663b3b	debugfs_create_size_t	vmlinux	EXPORT_SYMBOL_GPL
+ 0xcced1973	platform_device_add	vmlinux	EXPORT_SYMBOL_GPL
+ 0xf354d71a	tcf_action_exec	vmlinux	EXPORT_SYMBOL
+-0x02d09f14	ieee80211_tx_status_noskb	net/mac80211/mac80211	EXPORT_SYMBOL
++0x57b62687	ieee80211_tx_status_noskb	net/mac80211/mac80211	EXPORT_SYMBOL
+ 0x829e493e	ipv6_opt_accepted	net/ipv6/ipv6	EXPORT_SYMBOL_GPL
+ 0x86b715e7	arpt_register_table	net/ipv4/netfilter/arp_tables	EXPORT_SYMBOL
+ 0xf8396d5f	ssb_bus_powerup	drivers/ssb/ssb	EXPORT_SYMBOL
+@@ -8407,7 +8407,7 @@
+ 0xa67adf3a	tty_port_open	vmlinux	EXPORT_SYMBOL
+ 0x9e77f4b0	snd_pcm_hw_param_last	sound/core/snd-pcm	EXPORT_SYMBOL
+ 0x1577d6d3	fbtft_register_backlight	drivers/staging/fbtft/fbtft	EXPORT_SYMBOL
+-0xd2d38231	ath9k_hw_cfg_gpio_input	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x3ebf1983	ath9k_hw_cfg_gpio_input	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x328995b5	tracing_generic_entry_update	vmlinux	EXPORT_SYMBOL_GPL
+ 0x339ce991	uart_update_timeout	vmlinux	EXPORT_SYMBOL
+ 0x7ddaeb2e	__module_put_and_exit	vmlinux	EXPORT_SYMBOL
+@@ -8497,7 +8497,7 @@
+ 0x64e24a5e	memory_cgrp_subsys_enabled_key	vmlinux	EXPORT_SYMBOL_GPL
+ 0x9a132738	snd_ac97_write	sound/pci/ac97/snd-ac97-codec	EXPORT_SYMBOL
+ 0x60d497d1	brcmu_pktq_pflush	drivers/net/wireless/brcm80211/brcmutil/brcmutil	EXPORT_SYMBOL
+-0x0b383d3b	ar9003_paprd_populate_single_table	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x6e7cee8e	ar9003_paprd_populate_single_table	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x2bd51119	ath9k_cmn_debug_recv	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0x29e45f04	ablkcipher_walk_phys	vmlinux	EXPORT_SYMBOL_GPL
+ 0xb023d391	DWC_MUTEX_ALLOC	vmlinux	EXPORT_SYMBOL
+@@ -8643,7 +8643,7 @@
+ 0x718327ca	of_prop_next_string	vmlinux	EXPORT_SYMBOL_GPL
+ 0x4afe9a77	scsi_partsize	vmlinux	EXPORT_SYMBOL
+ 0x5e0265c0	dquot_set_dqinfo	vmlinux	EXPORT_SYMBOL
+-0xa661db7a	ath9k_cmn_setup_ht_cap	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0x51bd7020	ath9k_cmn_setup_ht_cap	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0xa918183b	vb2_streamoff	drivers/media/v4l2-core/videobuf2-v4l2	EXPORT_SYMBOL_GPL
+ 0xd8b9ddd0	drm_pci_alloc	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0xebdb2277	cryptd_alloc_ahash	crypto/cryptd	EXPORT_SYMBOL_GPL
+@@ -8664,7 +8664,7 @@
+ 0x13aade6f	blk_end_request	vmlinux	EXPORT_SYMBOL
+ 0x266005f0	nfc_se_transaction	net/nfc/nfc	EXPORT_SYMBOL
+ 0x22ba2a6a	inet_diag_dump_icsk	net/ipv4/inet_diag	EXPORT_SYMBOL_GPL
+-0x86bcbc16	ath9k_hw_name	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x16422240	ath9k_hw_name	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x8f39e142	ubi_leb_write	drivers/mtd/ubi/ubi	EXPORT_SYMBOL_GPL
+ 0xbd54f743	mtd_concat_create	drivers/mtd/mtd	EXPORT_SYMBOL
+ 0x30ce431d	videobuf_dvb_find_frontend	drivers/media/v4l2-core/videobuf-dvb	EXPORT_SYMBOL
+@@ -8745,7 +8745,7 @@
+ 0x714aad6e	crypto_alloc_tfm	vmlinux	EXPORT_SYMBOL_GPL
+ 0xa00464cb	bdi_destroy	vmlinux	EXPORT_SYMBOL
+ 0x7f08f148	rt2800_vco_calibration	drivers/net/wireless/rt2x00/rt2800lib	EXPORT_SYMBOL_GPL
+-0x7eb05199	ath_hw_keyreset	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
++0xaaf5f9dd	ath_hw_keyreset	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
+ 0xe3b35744	__videobuf_mmap_setup	drivers/media/v4l2-core/videobuf-core	EXPORT_SYMBOL_GPL
+ 0xc7cd4ea4	stop_critical_timings	vmlinux	EXPORT_SYMBOL_GPL
+ 0x418a5367	__scsi_format_command	vmlinux	EXPORT_SYMBOL
+@@ -8770,7 +8770,7 @@
+ 0x8a0cc9c6	write_bytes_to_xdr_buf	vmlinux	EXPORT_SYMBOL_GPL
+ 0xdc1af9b4	block_write_begin	vmlinux	EXPORT_SYMBOL
+ 0x55784228	regmap_irq_get_virq	vmlinux	EXPORT_SYMBOL_GPL
+-0xdb8170cb	ath9k_cmn_rx_skb_postprocess	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0xd35918d0	ath9k_cmn_rx_skb_postprocess	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0xb7022043	blk_mq_start_hw_queues	vmlinux	EXPORT_SYMBOL
+ 0x42614bce	fb_deferred_io_fsync	vmlinux	EXPORT_SYMBOL_GPL
+ 0x2a514fd9	sysfs_remove_groups	vmlinux	EXPORT_SYMBOL_GPL
+@@ -8949,7 +8949,7 @@
+ 0xa4215141	skb_zerocopy_headlen	vmlinux	EXPORT_SYMBOL_GPL
+ 0x2fceae60	zero_fill_bio	vmlinux	EXPORT_SYMBOL
+ 0xcc0e0fe8	mmc_switch	vmlinux	EXPORT_SYMBOL_GPL
+-0xc967da82	ath9k_hw_cfg_output	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xc807f826	ath9k_hw_cfg_output	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x93cc1318	videobuf_dvb_register_bus	drivers/media/v4l2-core/videobuf-dvb	EXPORT_SYMBOL
+ 0xd5ca2659	v4l2_spi_subdev_init	drivers/media/v4l2-core/v4l2-common	EXPORT_SYMBOL_GPL
+ 0x0a650a9a	iio_read_const_attr	drivers/iio/industrialio	EXPORT_SYMBOL
+@@ -9082,7 +9082,7 @@
+ 0xb8a898f4	devm_memremap	vmlinux	EXPORT_SYMBOL
+ 0xaf3612b9	task_tgid_nr_ns	vmlinux	EXPORT_SYMBOL
+ 0x8278d8cb	devm_memunmap	vmlinux	EXPORT_SYMBOL
+-0x97464e6a	ieee80211_rts_get	net/mac80211/mac80211	EXPORT_SYMBOL
++0x7d3c3708	ieee80211_rts_get	net/mac80211/mac80211	EXPORT_SYMBOL
+ 0x2c173bea	ip6_expire_frag_queue	net/ipv6/ipv6	EXPORT_SYMBOL
+ 0xaf5a7c49	w1_read_block	drivers/w1/wire	EXPORT_SYMBOL_GPL
+ 0x32b6f603	video_ioctl2	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL
+@@ -9530,7 +9530,7 @@
+ 0xfc6b8a90	dma_request_slave_channel_reason	vmlinux	EXPORT_SYMBOL_GPL
+ 0x9b36da88	nf_conntrack_helper_unregister	net/netfilter/nf_conntrack	EXPORT_SYMBOL_GPL
+ 0x7e67ca6e	irias_new_object	net/irda/irda	EXPORT_SYMBOL
+-0xec8b9088	ar9003_mci_setup	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xb6bfa36d	ar9003_mci_setup	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xdff8e89d	tm6000_tuner_callback	drivers/media/usb/tm6000/tm6000	EXPORT_SYMBOL_GPL
+ 0x84b42af1	cond_synchronize_sched	vmlinux	EXPORT_SYMBOL_GPL
+ 0xc7a1840e	llist_add_batch	vmlinux	EXPORT_SYMBOL_GPL
+@@ -9573,7 +9573,7 @@
+ 0x824802db	snd_ac97_tune_hardware	sound/pci/ac97/snd-ac97-codec	EXPORT_SYMBOL
+ 0x30b5ecae	w1_write_8	drivers/w1/wire	EXPORT_SYMBOL_GPL
+ 0x48ed2e44	rt2x00queue_start_queue	drivers/net/wireless/rt2x00/rt2x00lib	EXPORT_SYMBOL_GPL
+-0x56dda2b9	ath9k_hw_btcoex_init_mci	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x890e76fc	ath9k_hw_btcoex_init_mci	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xddc733b0	nfs4_schedule_stateid_recovery	vmlinux	EXPORT_SYMBOL_GPL
+ 0xbb5cb4f2	xfrm_policy_walk_done	vmlinux	EXPORT_SYMBOL
+ 0xd966ddc2	__do_once_done	vmlinux	EXPORT_SYMBOL
+@@ -9592,8 +9592,8 @@
+ 0x7dccc294	proc_doulongvec_minmax	vmlinux	EXPORT_SYMBOL
+ 0x50214c28	ieee80211_bss_get_ie	net/wireless/cfg80211	EXPORT_SYMBOL
+ 0xf8b73ae8	rt2x00mac_set_tim	drivers/net/wireless/rt2x00/rt2x00lib	EXPORT_SYMBOL_GPL
+-0x405a64a4	ath9k_hw_get_txq_props	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+-0xf97de015	ath9k_hw_set_txq_props	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x460496e2	ath9k_hw_get_txq_props	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x31face79	ath9k_hw_set_txq_props	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xddffafc9	hwmon_device_register	drivers/hwmon/hwmon	EXPORT_SYMBOL_GPL
+ 0x2bfb1594	drm_fb_helper_blank	drivers/gpu/drm/drm_kms_helper	EXPORT_SYMBOL
+ 0x17f3dcfc	drm_vblank_post_modeset	drivers/gpu/drm/drm	EXPORT_SYMBOL
+@@ -9701,7 +9701,7 @@
+ 0xbb0540aa	zlib_inflateReset	vmlinux	EXPORT_SYMBOL
+ 0xfc8665d1	arp_send	vmlinux	EXPORT_SYMBOL
+ 0x7d10e117	ssb_driver_unregister	drivers/ssb/ssb	EXPORT_SYMBOL
+-0x729fcc8a	ar9003_paprd_setup_gain_table	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xb1d1adb1	ar9003_paprd_setup_gain_table	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x9670af2c	gspca_debug	drivers/media/usb/gspca/gspca_main	EXPORT_SYMBOL
+ 0x912f6750	drm_gem_dumb_destroy	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0x0a9dbdee	async_xor	crypto/async_tx/async_xor	EXPORT_SYMBOL_GPL
+@@ -9892,7 +9892,7 @@
+ 0x46967bcc	iscsi_host_for_each_session	vmlinux	EXPORT_SYMBOL_GPL
+ 0x083e27b7	blk_queue_split	vmlinux	EXPORT_SYMBOL
+ 0x6ef8fcd8	snd_pcm_format_linear	sound/core/snd-pcm	EXPORT_SYMBOL
+-0x71c634f7	ieee80211_rate_control_unregister	net/mac80211/mac80211	EXPORT_SYMBOL
++0xf34e1c4a	ieee80211_rate_control_unregister	net/mac80211/mac80211	EXPORT_SYMBOL
+ 0x5f561b59	inet6_ioctl	net/ipv6/ipv6	EXPORT_SYMBOL
+ 0x4e014f5c	fuse_get_req	fs/fuse/fuse	EXPORT_SYMBOL_GPL
+ 0x5be441f8	rt2x00usb_watchdog	drivers/net/wireless/rt2x00/rt2x00usb	EXPORT_SYMBOL_GPL
+@@ -9907,7 +9907,7 @@
+ 0x9d2b60de	tcp_getsockopt	vmlinux	EXPORT_SYMBOL
+ 0x53bb8964	dequeue_signal	vmlinux	EXPORT_SYMBOL_GPL
+ 0xb5b19c42	rt2x00mac_start	drivers/net/wireless/rt2x00/rt2x00lib	EXPORT_SYMBOL_GPL
+-0x0c2855d5	ath9k_cmn_beacon_config_sta	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0x7300b408	ath9k_cmn_beacon_config_sta	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0x18d48b30	crypto_ablkcipher_type	vmlinux	EXPORT_SYMBOL_GPL
+ 0x5f81e128	arizona_of_get_named_gpio	vmlinux	EXPORT_SYMBOL_GPL
+ 0x8e54710f	__rtnl_af_unregister	vmlinux	EXPORT_SYMBOL_GPL
+@@ -9971,7 +9971,7 @@
+ 0x68a9107a	blk_get_request	vmlinux	EXPORT_SYMBOL
+ 0x1f2a6bb9	usbnet_read_cmd_nopm	vmlinux	EXPORT_SYMBOL_GPL
+ 0xecea7548	bpf_prog_free	vmlinux	EXPORT_SYMBOL_GPL
+-0x3b21198d	ath9k_hw_set_rx_bufsize	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0xb13be7ff	ath9k_hw_set_rx_bufsize	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x0ec0519d	sms_board_lna_control	drivers/media/common/siano/smsmdtv	EXPORT_SYMBOL_GPL
+ 0x52b964d1	drm_set_preferred_mode	drivers/gpu/drm/drm	EXPORT_SYMBOL
+ 0x71dc9998	crypto_il_tab	vmlinux	EXPORT_SYMBOL_GPL
+@@ -10084,7 +10084,7 @@
+ 0x330a302d	inverse_translate	vmlinux	EXPORT_SYMBOL_GPL
+ 0xde9463a6	freezer_cgrp_subsys_on_dfl_key	vmlinux	EXPORT_SYMBOL_GPL
+ 0xe67228e7	rpc_call_async	vmlinux	EXPORT_SYMBOL_GPL
+-0x9ca4cd80	ath9k_cmn_update_txpow	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0xa24e19e6	ath9k_cmn_update_txpow	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0x40e25ef9	btmrvl_send_hscfg_cmd	drivers/bluetooth/btmrvl	EXPORT_SYMBOL_GPL
+ 0xfdab79e6	af_alg_free_sg	crypto/af_alg	EXPORT_SYMBOL_GPL
+ 0x6ad45dec	af_alg_make_sg	crypto/af_alg	EXPORT_SYMBOL_GPL
+@@ -10100,8 +10100,8 @@
+ 0xb711d130	cpuacct_cgrp_subsys_enabled_key	vmlinux	EXPORT_SYMBOL_GPL
+ 0x5fae9ed9	nobh_write_begin	vmlinux	EXPORT_SYMBOL
+ 0x48db3dd4	rt2800_gain_calibration	drivers/net/wireless/rt2x00/rt2800lib	EXPORT_SYMBOL_GPL
+-0x8b49ccd2	ath9k_hw_disable	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+-0xb7f9784a	ath_printk	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
++0x7caef0bd	ath9k_hw_disable	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x96937de9	ath_printk	drivers/net/wireless/ath/ath	EXPORT_SYMBOL
+ 0x2681433e	bio_alloc_pages	vmlinux	EXPORT_SYMBOL
+ 0x5b7bfcc6	netlink_ack	vmlinux	EXPORT_SYMBOL
+ 0xb1453b1e	param_set_charp	vmlinux	EXPORT_SYMBOL
+@@ -10113,7 +10113,7 @@
+ 0x35a88f28	zlib_inflateInit2	vmlinux	EXPORT_SYMBOL
+ 0x1852bcf1	sock_get_timestamp	vmlinux	EXPORT_SYMBOL
+ 0x1686c8ab	iscsi_session_failure	drivers/scsi/libiscsi	EXPORT_SYMBOL_GPL
+-0xaec6c92b	ath9k_hw_resettxqueue	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x3ff9a142	ath9k_hw_resettxqueue	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xcfa7c442	v4l2_event_unsubscribe_all	drivers/media/v4l2-core/videodev	EXPORT_SYMBOL_GPL
+ 0xbe0497aa	dm_tm_create_with_sm	drivers/md/persistent-data/dm-persistent-data	EXPORT_SYMBOL_GPL
+ 0x78779c0b	set_fiq_handler	vmlinux	EXPORT_SYMBOL
+@@ -10185,7 +10185,7 @@
+ 0x96e8c71e	unregister_pernet_subsys	vmlinux	EXPORT_SYMBOL_GPL
+ 0x3d30409d	iommu_tbl_range_free	vmlinux	EXPORT_SYMBOL
+ 0x8ffe7e89	nf_conntrack_htable_size	net/netfilter/nf_conntrack	EXPORT_SYMBOL_GPL
+-0x2e1641a1	ieee80211_ctstoself_get	net/mac80211/mac80211	EXPORT_SYMBOL
++0x0b9d745b	ieee80211_ctstoself_get	net/mac80211/mac80211	EXPORT_SYMBOL
+ 0xa336feb7	nand_manuf_ids	drivers/mtd/nand/nand_ids	EXPORT_SYMBOL
+ 0x2309a6d6	tm6000_xc5000_callback	drivers/media/usb/tm6000/tm6000	EXPORT_SYMBOL_GPL
+ 0x32b6220c	em28xx_register_extension	drivers/media/usb/em28xx/em28xx	EXPORT_SYMBOL
+@@ -10373,7 +10373,7 @@
+ 0xbf0cae8f	ovs_vport_receive	net/openvswitch/openvswitch	EXPORT_SYMBOL_GPL
+ 0x7b5f2f92	nf_ct_expect_alloc	net/netfilter/nf_conntrack	EXPORT_SYMBOL_GPL
+ 0x7042bc54	irlmp_register_client	net/irda/irda	EXPORT_SYMBOL
+-0x2969fcaa	ath9k_hw_intrpend	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x7a839024	ath9k_hw_intrpend	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0xac5e6d7c	lgdt3306a_attach	drivers/media/dvb-frontends/lgdt3306a	EXPORT_SYMBOL
+ 0xbb58362f	drm_kms_helper_poll_init	drivers/gpu/drm/drm_kms_helper	EXPORT_SYMBOL
+ 0x79defbe1	kthread_should_park	vmlinux	EXPORT_SYMBOL_GPL
+@@ -10533,7 +10533,7 @@
+ 0xde433e0b	cpufreq_get_policy	vmlinux	EXPORT_SYMBOL
+ 0x79800598	dquot_set_dqblk	vmlinux	EXPORT_SYMBOL
+ 0x32daf4be	rpc_create_xprt	vmlinux	EXPORT_SYMBOL_GPL
+-0x7c1cc44c	ath_gen_timer_isr	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
++0x0cd7fa2d	ath_gen_timer_isr	drivers/net/wireless/ath/ath9k/ath9k_hw	EXPORT_SYMBOL
+ 0x08543db6	__serio_register_driver	drivers/input/serio/serio	EXPORT_SYMBOL
+ 0xe302ff31	svc_pool_stats_open	vmlinux	EXPORT_SYMBOL
+ 0x9022d5bc	memory_cgrp_subsys_on_dfl_key	vmlinux	EXPORT_SYMBOL_GPL
+@@ -10620,7 +10620,7 @@
+ 0x5b458d31	nfs_request_remove_commit_list	vmlinux	EXPORT_SYMBOL_GPL
+ 0xaed3fe70	xfrm_prepare_input	vmlinux	EXPORT_SYMBOL
+ 0xe7b2fa6f	nf_connlabels_replace	net/netfilter/nf_conntrack	EXPORT_SYMBOL_GPL
+-0xa70172d8	ath9k_cmn_process_rssi	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
++0x728649ec	ath9k_cmn_process_rssi	drivers/net/wireless/ath/ath9k/ath9k_common	EXPORT_SYMBOL
+ 0xfd1de6a2	phy_mii_ioctl	drivers/net/phy/libphy	EXPORT_SYMBOL
+ 0x4866f314	drm_atomic_helper_plane_destroy_state	drivers/gpu/drm/drm_kms_helper	EXPORT_SYMBOL
+ 0xc87e2d7a	sprint_OID	vmlinux	EXPORT_SYMBOL_GPL
+Only in linux-modified/arch/arm/boot/dts/overlays: adau1977-adc.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: ads7846.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: akkordion-iqdacplus.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: at86rf233.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: audioinjector-wm8731-audio.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: bmp085_i2c-sensor.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: boomberry-dac.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: boomberry-digi.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: dht11.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: dpi24.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: dwc-otg.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: dwc2.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: enc28j60.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: gpio-ir.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: gpio-poweroff.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: hifiberry-amp.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: hifiberry-dac.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: hifiberry-dacplus.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: hifiberry-digi.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: hy28a.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: hy28b.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: i2c-gpio.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: i2c-mux.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: i2c-pwm-pca9685a.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: i2c-rtc.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: i2c0-bcm2708.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: i2c1-bcm2708.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: i2s-gpio28-31.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: i2s-mmap.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: iqaudio-dac.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: iqaudio-dacplus.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: lirc-rpi.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: mcp2515-can0.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: mcp2515-can1.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: mmc.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: mz61581.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: pi3-act-led.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: pi3-disable-bt.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: pi3-miniuart-bt.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: piscreen.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: piscreen2r.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: pitft22.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: pitft28-capacitive.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: pitft28-resistive.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: pps-gpio.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: pwm-2chan.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: pwm.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: qca7000.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: raspidac3.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: rpi-backlight.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: rpi-dac.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: rpi-display.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: rpi-ft5406.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: rpi-proto.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: rpi-sense.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: sdhost.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: sdio-1bit.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: sdio.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: sdtweak.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: smi-dev.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: smi-nand.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: smi.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: spi-gpio35-39.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: spi1-1cs.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: spi1-2cs.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: spi1-3cs.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: spi2-1cs.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: spi2-2cs.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: spi2-3cs.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: tinylcd35.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: uart1.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: vc4-kms-v3d.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: vga666.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: w1-gpio-pullup.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: w1-gpio.dtbo
+Only in linux-modified/arch/arm/boot/dts/overlays: wittypi.dtbo
+Only in linux-modified/arch/arm/crypto: aesbs-core.S
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/arch/arm/kernel: .asm-offsets.s.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/arch/arm/kernel: asm-offsets.s
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath.h linux-modified/drivers/net/wireless/ath/ath.h
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath.h	2016-05-23 20:38:45.000000000 +0200
++++ linux-modified/drivers/net/wireless/ath/ath.h	2016-08-06 10:37:28.545705093 +0200
+@@ -151,7 +151,8 @@
+ 	int debug_mask;
+ 	enum ath_device_state state;
+ 	unsigned long op_flags;
+-
++	u32 chan_bw;
++	
+ 	struct ath_ani ani;
+ 
+ 	u16 cachelsz;
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/common-init.c linux-modified/drivers/net/wireless/ath/ath9k/common-init.c
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/common-init.c	2016-05-23 20:38:45.000000000 +0200
++++ linux-modified/drivers/net/wireless/ath/ath9k/common-init.c	2016-08-06 10:37:27.435727779 +0200
+@@ -22,7 +22,7 @@
+ 	.band = IEEE80211_BAND_2GHZ, \
+ 	.center_freq = (_freq), \
+ 	.hw_value = (_idx), \
+-	.max_power = 20, \
++	.max_power = 30, \
+ }
+ 
+ #define CHAN5G(_freq, _idx) { \
+@@ -37,6 +37,26 @@
+  * we have calibration data for all cards though to make
+  * this static */
+ static const struct ieee80211_channel ath9k_2ghz_chantable[] = {
++	CHAN2G(2312, 33), /* Channel -19 */
++	CHAN2G(2317, 32), /* Channel -18 */
++	CHAN2G(2322, 31), /* Channel -17 */
++	CHAN2G(2327, 30), /* Channel -16 */
++	CHAN2G(2332, 29), /* Channel -15 */
++	CHAN2G(2337, 28), /* Channel -14 */
++	CHAN2G(2342, 27), /* Channel -13 */
++	CHAN2G(2347, 26), /* Channel -12 */
++	CHAN2G(2352, 25), /* Channel -11 */
++	CHAN2G(2357, 24), /* Channel -10 */
++	CHAN2G(2362, 23), /* Channel -9 */
++	CHAN2G(2367, 22), /* Channel -8 */
++	CHAN2G(2372, 21), /* Channel -7 */
++	CHAN2G(2377, 20), /* Channel -6 */
++	CHAN2G(2382, 19), /* Channel -5 */
++	CHAN2G(2387, 18), /* Channel -4 */
++	CHAN2G(2392, 17), /* Channel -3 */
++	CHAN2G(2397, 16), /* Channel -2 */
++	CHAN2G(2402, 15), /* Channel -1 */
++	CHAN2G(2407, 14), /* Channel 0 */
+ 	CHAN2G(2412, 0), /* Channel 1 */
+ 	CHAN2G(2417, 1), /* Channel 2 */
+ 	CHAN2G(2422, 2), /* Channel 3 */
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/common.c linux-modified/drivers/net/wireless/ath/ath9k/common.c
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/common.c	2016-05-23 20:38:45.000000000 +0200
++++ linux-modified/drivers/net/wireless/ath/ath9k/common.c	2016-08-06 10:37:27.305730437 +0200
+@@ -296,19 +296,34 @@
+ /*
+  * Update internal channel flags.
+  */
+-static void ath9k_cmn_update_ichannel(struct ath9k_channel *ichan,
++static void ath9k_cmn_update_ichannel(struct ath_common *common,
++					struct ath9k_channel *ichan,
+ 				      struct cfg80211_chan_def *chandef)
+ {
+ 	struct ieee80211_channel *chan = chandef->chan;
+ 	u16 flags = 0;
+-
++	int width;
++	
+ 	ichan->channel = chan->center_freq;
+ 	ichan->chan = chan;
+ 
+ 	if (chan->band == IEEE80211_BAND_5GHZ)
+ 		flags |= CHANNEL_5GHZ;
+ 
+-	switch (chandef->width) {
++	switch (common->chan_bw) { 
++	case 5: 
++		width = NL80211_CHAN_WIDTH_5; 
++		break; 
++	case 10: 
++		width = NL80211_CHAN_WIDTH_10; 
++		break; 
++	default: 
++		width = chandef->width; 
++		break; 
++	} 
++ 		
++	
++	switch (width) {
+ 	case NL80211_CHAN_WIDTH_5:
+ 		flags |= CHANNEL_QUARTER;
+ 		break;
+@@ -341,10 +356,11 @@
+ 					    struct cfg80211_chan_def *chandef)
+ {
+ 	struct ieee80211_channel *curchan = chandef->chan;
++	struct ath_common *common = ath9k_hw_common(ah); 
+ 	struct ath9k_channel *channel;
+ 
+ 	channel = &ah->channels[curchan->hw_value];
+-	ath9k_cmn_update_ichannel(channel, chandef);
++	ath9k_cmn_update_ichannel(common, channel, chandef);
+ 
+ 	return channel;
+ }
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/debug.c linux-modified/drivers/net/wireless/ath/ath9k/debug.c
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/debug.c	2016-05-23 20:38:45.000000000 +0200
++++ linux-modified/drivers/net/wireless/ath/ath9k/debug.c	2016-08-06 10:37:27.465727166 +0200
+@@ -1301,6 +1301,50 @@
+ 	ath9k_cmn_spectral_deinit_debug(&sc->spec_priv);
+ }
+ 
++static ssize_t read_file_chan_bw(struct file *file, char __user *user_buf, 
++ 		                             size_t count, loff_t *ppos) 
++{ 
++	struct ath_softc *sc = file->private_data; 
++	struct ath_common *common = ath9k_hw_common(sc->sc_ah); 
++	char buf[32]; 
++	unsigned int len; 
++	
++	len = sprintf(buf, "0x%08x\n", common->chan_bw); 
++	return simple_read_from_buffer(user_buf, count, ppos, buf, len); 
++} 
++ 		 
++static ssize_t write_file_chan_bw(struct file *file, const char __user *user_buf, 
++ 		                             size_t count, loff_t *ppos) 
++{ 
++ 	struct ath_softc *sc = file->private_data; 
++ 	struct ath_common *common = ath9k_hw_common(sc->sc_ah); 
++ 	unsigned long chan_bw; 
++ 	char buf[32]; 
++ 	ssize_t len; 
++ 	
++ 	len = min(count, sizeof(buf) - 1); 
++ 	if (copy_from_user(buf, user_buf, len)) 
++ 		return -EFAULT; 
++ 	
++ 	buf[len] = '\0'; 
++ 	if (kstrtoul(buf, 0, &chan_bw)) 
++ 		return -EINVAL; 
++ 	
++ 	common->chan_bw = chan_bw; 
++ 	if (!test_bit(ATH_OP_INVALID, &common->op_flags)) 
++ 		ath9k_ops.config(sc->hw, IEEE80211_CONF_CHANGE_CHANNEL); 
++ 	
++ 	return count; 
++} 
++ 		 
++static const struct file_operations fops_chanbw = { 
++	.read = read_file_chan_bw, 
++	.write = write_file_chan_bw, 
++	.open = simple_open, 
++	.owner = THIS_MODULE, 
++	.llseek = default_llseek, 
++}; 
++
+ int ath9k_init_debug(struct ath_hw *ah)
+ {
+ 	struct ath_common *common = ath9k_hw_common(ah);
+@@ -1320,6 +1364,9 @@
+ 	ath9k_tx99_init_debug(sc);
+ 	ath9k_cmn_spectral_init_debug(&sc->spec_priv, sc->debug.debugfs_phy);
+ 
++	debugfs_create_file("chanbw", S_IRUSR | S_IWUSR, sc->debug.debugfs_phy, 
++				sc, &fops_chanbw); 
++	
+ 	debugfs_create_devm_seqfile(sc->dev, "dma", sc->debug.debugfs_phy,
+ 				    read_file_dma);
+ 	debugfs_create_devm_seqfile(sc->dev, "interrupt", sc->debug.debugfs_phy,
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/eeprom_4k.c linux-modified/drivers/net/wireless/ath/ath9k/eeprom_4k.c
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/eeprom_4k.c	2016-05-23 20:38:45.000000000 +0200
++++ linux-modified/drivers/net/wireless/ath/ath9k/eeprom_4k.c	2016-08-06 10:29:25.469997390 +0200
+@@ -677,13 +677,20 @@
+ 
+ 		if (ratesArray[i] > regulatory->max_power_level)
+ 			regulatory->max_power_level = ratesArray[i];
++//			printk("original ratesarray:\n");
++//			printk("ratesArray[%d]=%d\n", i, ratesArray[i]);
+ 	}
+ 
+ 	if (test)
+ 	    return;
+ 
+-	for (i = 0; i < Ar5416RateSize; i++)
+-		ratesArray[i] -= AR5416_PWR_TABLE_OFFSET_DB * 2;
++// CHANGES: simply set 60 for every data rate
++
++	for (i = 0; i < Ar5416RateSize; i++) {
++//		ratesArray[i] -= AR5416_PWR_TABLE_OFFSET_DB * 2;
++		ratesArray[i] = 60;
++//		printk("ratesArray[%d]=%d\n", i, ratesArray[i]);
++	}
+ 
+ 	ENABLE_REGWRITE_BUFFER(ah);
+ 
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/eeprom_9287.c linux-modified/drivers/net/wireless/ath/ath9k/eeprom_9287.c
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/eeprom_9287.c	2016-05-23 20:38:45.000000000 +0200
++++ linux-modified/drivers/net/wireless/ath/ath9k/eeprom_9287.c	2016-08-06 10:29:26.499947218 +0200
+@@ -799,7 +799,8 @@
+ 		return;
+ 
+ 	for (i = 0; i < Ar5416RateSize; i++)
+-		ratesArray[i] -= AR9287_PWR_TABLE_OFFSET_DB * 2;
++//		ratesArray[i] -= AR9287_PWR_TABLE_OFFSET_DB * 2;
++		ratesArray[i] = 60;
+ 
+ 	ENABLE_REGWRITE_BUFFER(ah);
+ 
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/hif_usb.c linux-modified/drivers/net/wireless/ath/ath9k/hif_usb.c
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/hif_usb.c	2016-05-23 20:38:45.000000000 +0200
++++ linux-modified/drivers/net/wireless/ath/ath9k/hif_usb.c	2016-08-06 13:26:06.495042574 +0200
+@@ -94,6 +94,10 @@
+ 	kfree(cmd);
+ }
+ 
++int htc_fw_bitrate = 0;
++module_param_named(fw_bitrate, htc_fw_bitrate, int, 0444);
++MODULE_PARM_DESC(fw_bitrate, "Set Firmware with bitrate to be loaded");
++
+ static int hif_usb_send_regout(struct hif_device_usb *hif_dev,
+ 			       struct sk_buff *skb)
+ {
+@@ -1086,9 +1090,9 @@
+ 	int ret;
+ 
+ 	if (first) {
+-		if (htc_use_dev_fw) {
++		if (htc_fw_bitrate) {
+ 			hif_dev->fw_minor_index = FIRMWARE_MINOR_IDX_MAX + 1;
+-			sprintf(index, "%s", "dev");
++			sprintf(index, "%d", htc_fw_bitrate);
+ 		} else {
+ 			hif_dev->fw_minor_index = FIRMWARE_MINOR_IDX_MAX;
+ 			sprintf(index, "%d", hif_dev->fw_minor_index);
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/htc_drv_init.c linux-modified/drivers/net/wireless/ath/ath9k/htc_drv_init.c
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/htc_drv_init.c	2016-05-23 20:38:45.000000000 +0200
++++ linux-modified/drivers/net/wireless/ath/ath9k/htc_drv_init.c	2016-08-06 13:26:46.484716293 +0200
+@@ -38,26 +38,29 @@
+ module_param_named(ps_enable, ath9k_ps_enable, int, 0444);
+ MODULE_PARM_DESC(ps_enable, "Enable WLAN PowerSave");
+ 
+-int htc_use_dev_fw = 0;
+-module_param_named(use_dev_fw, htc_use_dev_fw, int, 0444);
+-MODULE_PARM_DESC(use_dev_fw, "Use development FW version");
++//int htc_fw_bitrate = 0;
++//module_param_named(fw_bitrate, htc_fw_bitrate, int, 0444);
++//MODULE_PARM_DESC(fw_bitrate, "Set Firmware with bitrate to be loaded");
++
++// CHANGES
+ 
+ #ifdef CONFIG_MAC80211_LEDS
+ int ath9k_htc_led_blink = 1;
+ module_param_named(blink, ath9k_htc_led_blink, int, 0444);
+ MODULE_PARM_DESC(blink, "Enable LED blink on activity");
+ 
++// CHANGES
+ static const struct ieee80211_tpt_blink ath9k_htc_tpt_blink[] = {
+-	{ .throughput = 0 * 1024, .blink_time = 334 },
+-	{ .throughput = 1 * 1024, .blink_time = 260 },
+-	{ .throughput = 5 * 1024, .blink_time = 220 },
+-	{ .throughput = 10 * 1024, .blink_time = 190 },
+-	{ .throughput = 20 * 1024, .blink_time = 170 },
+-	{ .throughput = 50 * 1024, .blink_time = 150 },
+-	{ .throughput = 70 * 1024, .blink_time = 130 },
+-	{ .throughput = 100 * 1024, .blink_time = 110 },
+-	{ .throughput = 200 * 1024, .blink_time = 80 },
+-	{ .throughput = 300 * 1024, .blink_time = 50 },
++	{ .throughput = 0 * 32, .blink_time = 334 },
++	{ .throughput = 1 * 32, .blink_time = 260 },
++	{ .throughput = 5 * 32, .blink_time = 220 },
++	{ .throughput = 10 * 32, .blink_time = 190 },
++	{ .throughput = 20 * 32, .blink_time = 170 },
++	{ .throughput = 50 * 32, .blink_time = 150 },
++	{ .throughput = 70 * 32, .blink_time = 130 },
++	{ .throughput = 100 * 32, .blink_time = 110 },
++	{ .throughput = 200 * 32, .blink_time = 80 },
++	{ .throughput = 300 * 32, .blink_time = 50 },
+ };
+ #endif
+ 
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/hw.h linux-modified/drivers/net/wireless/ath/ath9k/hw.h
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/hw.h	2016-05-23 20:38:45.000000000 +0200
++++ linux-modified/drivers/net/wireless/ath/ath9k/hw.h	2016-08-06 12:22:46.689975390 +0200
+@@ -13,6 +13,7 @@
+  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+  */
++ // CHANGES: increase NUM_CHANNELS to 91 for additional channels
+ 
+ #ifndef HW_H
+ #define HW_H
+@@ -73,7 +74,7 @@
+ 
+ #define ATH9K_RSSI_BAD			-128
+ 
+-#define ATH9K_NUM_CHANNELS	38
++#define ATH9K_NUM_CHANNELS	58
+ 
+ /* Register read/write primitives */
+ #define REG_WRITE(_ah, _reg, _val) \
+Only in linux-modified/drivers/net/wireless/ath/ath9k: hw.h.orig
+Only in linux-modified/drivers/net/wireless/ath/ath9k: hw.h.rej
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/init.c linux-modified/drivers/net/wireless/ath/ath9k/init.c
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/init.c	2016-05-23 20:38:45.000000000 +0200
++++ linux-modified/drivers/net/wireless/ath/ath9k/init.c	2016-08-06 10:36:27.966978545 +0200
+@@ -73,16 +73,26 @@
+ 
+ #ifdef CONFIG_MAC80211_LEDS
+ static const struct ieee80211_tpt_blink ath9k_tpt_blink[] = {
+-	{ .throughput = 0 * 1024, .blink_time = 334 },
+-	{ .throughput = 1 * 1024, .blink_time = 260 },
+-	{ .throughput = 5 * 1024, .blink_time = 220 },
+-	{ .throughput = 10 * 1024, .blink_time = 190 },
+-	{ .throughput = 20 * 1024, .blink_time = 170 },
+-	{ .throughput = 50 * 1024, .blink_time = 150 },
+-	{ .throughput = 70 * 1024, .blink_time = 130 },
+-	{ .throughput = 100 * 1024, .blink_time = 110 },
+-	{ .throughput = 200 * 1024, .blink_time = 80 },
+-	{ .throughput = 300 * 1024, .blink_time = 50 },
++//	{ .throughput = 0 * 1024, .blink_time = 334 },
++//	{ .throughput = 1 * 1024, .blink_time = 260 },
++//	{ .throughput = 5 * 1024, .blink_time = 220 },
++//	{ .throughput = 10 * 1024, .blink_time = 190 },
++//	{ .throughput = 20 * 1024, .blink_time = 170 },
++//	{ .throughput = 50 * 1024, .blink_time = 150 },
++//	{ .throughput = 70 * 1024, .blink_time = 130 },
++//	{ .throughput = 100 * 1024, .blink_time = 110 },
++//	{ .throughput = 200 * 1024, .blink_time = 80 },
++//	{ .throughput = 300 * 1024, .blink_time = 50 },
++	{ .throughput = 0 * 32, .blink_time = 334 },
++	{ .throughput = 1 * 32, .blink_time = 260 },
++	{ .throughput = 5 * 32, .blink_time = 220 },
++	{ .throughput = 10 * 32, .blink_time = 190 },
++	{ .throughput = 20 * 32, .blink_time = 170 },
++	{ .throughput = 50 * 32, .blink_time = 150 },
++	{ .throughput = 70 * 32, .blink_time = 130 },
++	{ .throughput = 100 * 32, .blink_time = 110 },
++	{ .throughput = 200 * 32, .blink_time = 80 },
++	{ .throughput = 300 * 32, .blink_time = 50 },
+ };
+ #endif
+ 
+Only in linux-modified/drivers/net/wireless/ath/ath9k: init.c.orig
+Only in linux-modified/drivers/net/wireless/ath/ath9k: init.c.rej
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/mac.h linux-modified/drivers/net/wireless/ath/ath9k/mac.h
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/ath9k/mac.h	2016-05-23 20:38:45.000000000 +0200
++++ linux-modified/drivers/net/wireless/ath/ath9k/mac.h	2016-08-06 10:29:27.829882631 +0200
+@@ -56,18 +56,18 @@
+ #define OFDM_PLCP_BITS_QUARTER      22
+ #define OFDM_SYMBOL_TIME_QUARTER    16
+ 
+-#define INIT_AIFS       2
+-#define INIT_CWMIN      15
+-#define INIT_CWMIN_11B  31
+-#define INIT_CWMAX      1023
+-#define INIT_SH_RETRY   10
+-#define INIT_LG_RETRY   10
+-#define INIT_SSH_RETRY  32
+-#define INIT_SLG_RETRY  32
++#define INIT_AIFS       0
++#define INIT_CWMIN      0
++#define INIT_CWMIN_11B  0
++#define INIT_CWMAX      0
++#define INIT_SH_RETRY   1
++#define INIT_LG_RETRY   1
++#define INIT_SSH_RETRY  3
++#define INIT_SLG_RETRY  3
+ 
+-#define ATH9K_SLOT_TIME_6 6
+-#define ATH9K_SLOT_TIME_9 9
+-#define ATH9K_SLOT_TIME_20 20
++#define ATH9K_SLOT_TIME_6 1
++#define ATH9K_SLOT_TIME_9 1
++#define ATH9K_SLOT_TIME_20 1
+ 
+ #define ATH9K_TXERR_XRETRY         0x01
+ #define ATH9K_TXERR_FILT           0x02
+Only in linux-modified/drivers/net/wireless/ath/ath9k: mac.h.orig
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/regd.c linux-modified/drivers/net/wireless/ath/regd.c
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/ath/regd.c	2016-05-23 20:38:45.000000000 +0200
++++ linux-modified/drivers/net/wireless/ath/regd.c	2016-08-06 10:29:27.829882631 +0200
+@@ -14,6 +14,12 @@
+  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+  */
+ 
++// CHANGES: - changed frequency range to 2312-2462
++//          - allowed channel 12, 13 and 14 for all
++//          - removed 802.11b only restriction for channel 14
++//          - set NO_IR to suppress active scanning
++//          - increased txpower to 30 in ATH9K_2GHZ_ ... REGRULES
++
+ #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+ 
+ #include <linux/kernel.h>
+@@ -32,34 +38,25 @@
+  * the flags on our reg_notifier() on a case by case basis.
+  */
+ 
++
+ /* Only these channels all allow active scan on all world regulatory domains */
+-#define ATH9K_2GHZ_CH01_11	REG_RULE(2412-10, 2462+10, 40, 0, 20, 0)
++#define ATH9K_2GHZ_CH01_11	REG_RULE(2312-10, 2462+10, 40, 0, 30, 0)
+ 
+ /* We enable active scan on these a case by case basis by regulatory domain */
+-#define ATH9K_2GHZ_CH12_13	REG_RULE(2467-10, 2472+10, 40, 0, 20,\
+-					 NL80211_RRF_NO_IR)
+-#define ATH9K_2GHZ_CH14		REG_RULE(2484-10, 2484+10, 40, 0, 20,\
+-					 NL80211_RRF_NO_IR | \
+-					 NL80211_RRF_NO_OFDM)
++#define ATH9K_2GHZ_CH12_13	REG_RULE(2467-10, 2472+10, 40, 0, 30, 0)
++#define ATH9K_2GHZ_CH14		REG_RULE(2484-10, 2732+10, 40, 0, 30, 0)
+ 
+ /* We allow IBSS on these on a case by case basis by regulatory domain */
+-#define ATH9K_5GHZ_5150_5350	REG_RULE(5150-10, 5350+10, 80, 0, 30,\
+-					 NL80211_RRF_NO_IR)
+-#define ATH9K_5GHZ_5470_5850	REG_RULE(5470-10, 5850+10, 80, 0, 30,\
+-					 NL80211_RRF_NO_IR)
+-#define ATH9K_5GHZ_5725_5850	REG_RULE(5725-10, 5850+10, 80, 0, 30,\
+-					 NL80211_RRF_NO_IR)
+-
+-#define ATH9K_2GHZ_ALL		ATH9K_2GHZ_CH01_11, \
+-				ATH9K_2GHZ_CH12_13, \
+-				ATH9K_2GHZ_CH14
++#define ATH9K_5GHZ_5150_5350	REG_RULE(4920-10, 5350+10, 80, 0, 30, 0)
++#define ATH9K_5GHZ_5470_5850	REG_RULE(5470-10, 5850+10, 80, 0, 30, 0)
++#define ATH9K_5GHZ_5725_5850	REG_RULE(5725-10, 5850+10, 80, 0, 30, 0)
++
++#define ATH9K_2GHZ_ALL		ATH9K_2GHZ_CH01_11, ATH9K_2GHZ_CH12_13, ATH9K_2GHZ_CH14
+ 
+-#define ATH9K_5GHZ_ALL		ATH9K_5GHZ_5150_5350, \
+-				ATH9K_5GHZ_5470_5850
++#define ATH9K_5GHZ_ALL		ATH9K_5GHZ_5150_5350, ATH9K_5GHZ_5470_5850
+ 
+ /* This one skips what we call "mid band" */
+-#define ATH9K_5GHZ_NO_MIDBAND	ATH9K_5GHZ_5150_5350, \
+-				ATH9K_5GHZ_5725_5850
++#define ATH9K_5GHZ_NO_MIDBAND	ATH9K_5GHZ_5150_5350, ATH9K_5GHZ_5725_5850
+ 
+ /* Can be used for:
+  * 0x60, 0x61, 0x62 */
+@@ -77,9 +74,8 @@
+ 	.n_reg_rules = 4,
+ 	.alpha2 =  "99",
+ 	.reg_rules = {
+-		ATH9K_2GHZ_CH01_11,
+-		ATH9K_2GHZ_CH12_13,
+-		ATH9K_5GHZ_NO_MIDBAND,
++		ATH9K_2GHZ_ALL,
++		ATH9K_5GHZ_ALL,
+ 	}
+ };
+ 
+@@ -88,8 +84,8 @@
+ 	.n_reg_rules = 3,
+ 	.alpha2 =  "99",
+ 	.reg_rules = {
+-		ATH9K_2GHZ_CH01_11,
+-		ATH9K_5GHZ_NO_MIDBAND,
++		ATH9K_2GHZ_ALL,
++		ATH9K_5GHZ_ALL,
+ 	}
+ };
+ 
+@@ -98,7 +94,7 @@
+ 	.n_reg_rules = 3,
+ 	.alpha2 =  "99",
+ 	.reg_rules = {
+-		ATH9K_2GHZ_CH01_11,
++		ATH9K_2GHZ_ALL,
+ 		ATH9K_5GHZ_ALL,
+ 	}
+ };
+@@ -108,8 +104,7 @@
+ 	.n_reg_rules = 4,
+ 	.alpha2 =  "99",
+ 	.reg_rules = {
+-		ATH9K_2GHZ_CH01_11,
+-		ATH9K_2GHZ_CH12_13,
++		ATH9K_2GHZ_ALL,
+ 		ATH9K_5GHZ_ALL,
+ 	}
+ };
+@@ -256,7 +251,8 @@
+ /* Frequency is one where radar detection is required */
+ static bool ath_is_radar_freq(u16 center_freq)
+ {
+-	return (center_freq >= 5260 && center_freq <= 5700);
++//	return (center_freq >= 5260 && center_freq <= 5700);
++	return 0;
+ }
+ 
+ static void ath_force_clear_no_ir_chan(struct wiphy *wiphy,
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/rt2x00/rt2800lib.c linux-modified/drivers/net/wireless/rt2x00/rt2800lib.c
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/rt2x00/rt2800lib.c	2016-05-23 20:38:45.000000000 +0200
++++ linux-modified/drivers/net/wireless/rt2x00/rt2800lib.c	2016-08-06 10:29:27.869880691 +0200
+@@ -1485,12 +1485,13 @@
+ 	 * and broadcast frames will always be accepted since
+ 	 * there is no filter for it at this time.
+ 	 */
++
+ 	rt2800_register_read(rt2x00dev, RX_FILTER_CFG, &reg);
+ 	rt2x00_set_field32(&reg, RX_FILTER_CFG_DROP_CRC_ERROR,
+ 			   !(filter_flags & FIF_FCSFAIL));
+ 	rt2x00_set_field32(&reg, RX_FILTER_CFG_DROP_PHY_ERROR,
+ 			   !(filter_flags & FIF_PLCPFAIL));
+-	rt2x00_set_field32(&reg, RX_FILTER_CFG_DROP_NOT_TO_ME, 1);
++	rt2x00_set_field32(&reg, RX_FILTER_CFG_DROP_NOT_TO_ME, 0);
+ 	rt2x00_set_field32(&reg, RX_FILTER_CFG_DROP_NOT_MY_BSSD, 0);
+ 	rt2x00_set_field32(&reg, RX_FILTER_CFG_DROP_VER_ERROR, 1);
+ 	rt2x00_set_field32(&reg, RX_FILTER_CFG_DROP_MULTICAST,
+@@ -1538,14 +1539,14 @@
+ 			 */
+ 			rt2800_register_read(rt2x00dev, TBTT_SYNC_CFG, &reg);
+ 			rt2x00_set_field32(&reg, TBTT_SYNC_CFG_BCN_CWMIN, 0);
+-			rt2x00_set_field32(&reg, TBTT_SYNC_CFG_BCN_AIFSN, 1);
++			rt2x00_set_field32(&reg, TBTT_SYNC_CFG_BCN_AIFSN, 0);
+ 			rt2x00_set_field32(&reg, TBTT_SYNC_CFG_BCN_EXP_WIN, 32);
+ 			rt2x00_set_field32(&reg, TBTT_SYNC_CFG_TBTT_ADJUST, 0);
+ 			rt2800_register_write(rt2x00dev, TBTT_SYNC_CFG, reg);
+ 		} else {
+ 			rt2800_register_read(rt2x00dev, TBTT_SYNC_CFG, &reg);
+ 			rt2x00_set_field32(&reg, TBTT_SYNC_CFG_BCN_CWMIN, 4);
+-			rt2x00_set_field32(&reg, TBTT_SYNC_CFG_BCN_AIFSN, 2);
++			rt2x00_set_field32(&reg, TBTT_SYNC_CFG_BCN_AIFSN, 0);
+ 			rt2x00_set_field32(&reg, TBTT_SYNC_CFG_BCN_EXP_WIN, 32);
+ 			rt2x00_set_field32(&reg, TBTT_SYNC_CFG_TBTT_ADJUST, 16);
+ 			rt2800_register_write(rt2x00dev, TBTT_SYNC_CFG, reg);
+@@ -4118,6 +4119,13 @@
+ 	delta += rt2800_get_txpower_reg_delta(rt2x00dev, power_level,
+ 					      chan->max_power);
+ 
++
++//        printk("RT2800: txpower parameter:%d \n",rt2800_txpower(rt2x00dev));
++
++
++//	printk("RT2800: delta:%d ",delta);
++
++	
+ 	/*
+ 	 * BBP_R1 controls TX power for all rates, it allow to set the following
+ 	 * gains -12, -6, 0, +6 dBm by setting values 2, 1, 0, 3 respectively.
+@@ -4135,11 +4143,33 @@
+ 	} else {
+ 		power_ctrl = 0;
+ 	}
++
++//	printk("(%d)\n",delta);
++
+ 	rt2800_bbp_read(rt2x00dev, 1, &r1);
+ 	rt2x00_set_field8(&r1, BBP1_TX_POWER_CTRL, power_ctrl);
+ 	rt2800_bbp_write(rt2x00dev, 1, r1);
+ 
++/*
++	if (power_ctrl == 2) {
++		printk("RT2800: BBP1_R1 register (power_ctrl):-12(%d)\n",power_ctrl);
++	} else if (power_ctrl == 1) {
++		printk("RT2800: BBP1_R1 register (power_ctrl):-6(%d)\n",power_ctrl);
++	} else if (power_ctrl == 0) {
++		printk("RT2800: BBP1_R1 register (power_ctrl):0(%d)\n",power_ctrl);
++	} else {
++		printk("RT2800: BBP1_R1 register (power_ctrl):+6(%d)\n",power_ctrl);
++	}
++*/
++
++//	printk("RT2800: BBP1_R1 register:%d\n",power_ctrl);
++
++
++
+ 	offset = TX_PWR_CFG_0;
++	
++	
++//	printk("EEPROM_TXPOWER_BYRATE_SIZE:%d", EEPROM_TXPOWER_BYRATE_SIZE);
+ 
+ 	for (i = 0; i < EEPROM_TXPOWER_BYRATE_SIZE; i += 2) {
+ 		/* just to be safe */
+@@ -4153,6 +4183,9 @@
+ 					      i, &eeprom);
+ 
+ 		is_rate_b = i ? 0 : 1;
++
++//		printk("is_rate_b:%d", is_rate_b);
++
+ 		/*
+ 		 * TX_PWR_CFG_0: 1MBS, TX_PWR_CFG_1: 24MBS,
+ 		 * TX_PWR_CFG_2: MCS4, TX_PWR_CFG_3: MCS12,
+@@ -4162,7 +4195,10 @@
+ 					     EEPROM_TXPOWER_BYRATE_RATE0);
+ 		txpower = rt2800_compensate_txpower(rt2x00dev, is_rate_b, band,
+ 					     power_level, txpower, delta);
++		txpower += rt2800_txpower(rt2x00dev);
+ 		rt2x00_set_field32(&reg, TX_PWR_CFG_RATE0, txpower);
++//		printk("(%u), ",txpower);
++
+ 
+ 		/*
+ 		 * TX_PWR_CFG_0: 2MBS, TX_PWR_CFG_1: 36MBS,
+@@ -4173,7 +4209,10 @@
+ 					     EEPROM_TXPOWER_BYRATE_RATE1);
+ 		txpower = rt2800_compensate_txpower(rt2x00dev, is_rate_b, band,
+ 					     power_level, txpower, delta);
++//		txpower += 6;
++		txpower += rt2800_txpower(rt2x00dev);
+ 		rt2x00_set_field32(&reg, TX_PWR_CFG_RATE1, txpower);
++//		printk("(%u), ",txpower);
+ 
+ 		/*
+ 		 * TX_PWR_CFG_0: 5.5MBS, TX_PWR_CFG_1: 48MBS,
+@@ -4184,7 +4223,10 @@
+ 					     EEPROM_TXPOWER_BYRATE_RATE2);
+ 		txpower = rt2800_compensate_txpower(rt2x00dev, is_rate_b, band,
+ 					     power_level, txpower, delta);
++//		txpower += 6;
++		txpower += rt2800_txpower(rt2x00dev);
+ 		rt2x00_set_field32(&reg, TX_PWR_CFG_RATE2, txpower);
++//		printk("(%u), ",txpower);
+ 
+ 		/*
+ 		 * TX_PWR_CFG_0: 11MBS, TX_PWR_CFG_1: 54MBS,
+@@ -4195,7 +4237,10 @@
+ 					     EEPROM_TXPOWER_BYRATE_RATE3);
+ 		txpower = rt2800_compensate_txpower(rt2x00dev, is_rate_b, band,
+ 					     power_level, txpower, delta);
++//		txpower += 6;
++		txpower += rt2800_txpower(rt2x00dev);
+ 		rt2x00_set_field32(&reg, TX_PWR_CFG_RATE3, txpower);
++//		printk("(%u), ",txpower);
+ 
+ 		/* read the next four txpower values */
+ 		rt2800_eeprom_read_from_array(rt2x00dev, EEPROM_TXPOWER_BYRATE,
+@@ -4211,7 +4256,10 @@
+ 					     EEPROM_TXPOWER_BYRATE_RATE0);
+ 		txpower = rt2800_compensate_txpower(rt2x00dev, is_rate_b, band,
+ 					     power_level, txpower, delta);
++//		txpower += 6;
++		txpower += rt2800_txpower(rt2x00dev);
+ 		rt2x00_set_field32(&reg, TX_PWR_CFG_RATE4, txpower);
++//		printk("(%u), ",txpower);
+ 
+ 		/*
+ 		 * TX_PWR_CFG_0: 9MBS, TX_PWR_CFG_1: MCS1,
+@@ -4222,7 +4270,10 @@
+ 					     EEPROM_TXPOWER_BYRATE_RATE1);
+ 		txpower = rt2800_compensate_txpower(rt2x00dev, is_rate_b, band,
+ 					     power_level, txpower, delta);
++//		txpower += 6;
++		txpower += rt2800_txpower(rt2x00dev);
+ 		rt2x00_set_field32(&reg, TX_PWR_CFG_RATE5, txpower);
++//		printk("(%u), ",txpower);
+ 
+ 		/*
+ 		 * TX_PWR_CFG_0: 12MBS, TX_PWR_CFG_1: MCS2,
+@@ -4233,7 +4284,10 @@
+ 					     EEPROM_TXPOWER_BYRATE_RATE2);
+ 		txpower = rt2800_compensate_txpower(rt2x00dev, is_rate_b, band,
+ 					     power_level, txpower, delta);
++//		txpower += 6;
++		txpower += rt2800_txpower(rt2x00dev);
+ 		rt2x00_set_field32(&reg, TX_PWR_CFG_RATE6, txpower);
++//		printk("(%u), ",txpower);
+ 
+ 		/*
+ 		 * TX_PWR_CFG_0: 18MBS, TX_PWR_CFG_1: MCS3,
+@@ -4244,7 +4298,12 @@
+ 					     EEPROM_TXPOWER_BYRATE_RATE3);
+ 		txpower = rt2800_compensate_txpower(rt2x00dev, is_rate_b, band,
+ 					     power_level, txpower, delta);
++//		txpower += 6;
++		txpower += rt2800_txpower(rt2x00dev);
+ 		rt2x00_set_field32(&reg, TX_PWR_CFG_RATE7, txpower);
++//		printk("(%u)\n",txpower);
++
++
+ 
+ 		rt2800_register_write(rt2x00dev, offset, reg);
+ 
+@@ -4871,11 +4930,12 @@
+ 	 * connection problems with 11g + CTS protection. Hence, use the same
+ 	 * defaults as the Ralink driver: 16 for both, CCK and OFDM SIFS.
+ 	 */
++	// CHANGES TODO check if those are applied or not
+ 	rt2800_register_read(rt2x00dev, XIFS_TIME_CFG, &reg);
+-	rt2x00_set_field32(&reg, XIFS_TIME_CFG_CCKM_SIFS_TIME, 16);
+-	rt2x00_set_field32(&reg, XIFS_TIME_CFG_OFDM_SIFS_TIME, 16);
+-	rt2x00_set_field32(&reg, XIFS_TIME_CFG_OFDM_XIFS_TIME, 4);
+-	rt2x00_set_field32(&reg, XIFS_TIME_CFG_EIFS, 314);
++	rt2x00_set_field32(&reg, XIFS_TIME_CFG_CCKM_SIFS_TIME, 0);
++	rt2x00_set_field32(&reg, XIFS_TIME_CFG_OFDM_SIFS_TIME, 0);
++	rt2x00_set_field32(&reg, XIFS_TIME_CFG_OFDM_XIFS_TIME, 0);
++	rt2x00_set_field32(&reg, XIFS_TIME_CFG_EIFS, 0);
+ 	rt2x00_set_field32(&reg, XIFS_TIME_CFG_BB_RXEND_ENABLE, 1);
+ 	rt2800_register_write(rt2x00dev, XIFS_TIME_CFG, reg);
+ 
+@@ -7894,7 +7954,7 @@
+ 	field.bit_mask = 0xf << field.bit_offset;
+ 
+ 	rt2800_register_read(rt2x00dev, WMM_AIFSN_CFG, &reg);
+-	rt2x00_set_field32(&reg, field, queue->aifs);
++	rt2x00_set_field32(&reg, field, 0);
+ 	rt2800_register_write(rt2x00dev, WMM_AIFSN_CFG, reg);
+ 
+ 	rt2800_register_read(rt2x00dev, WMM_CWMIN_CFG, &reg);
+@@ -7910,7 +7970,7 @@
+ 
+ 	rt2800_register_read(rt2x00dev, offset, &reg);
+ 	rt2x00_set_field32(&reg, EDCA_AC0_CFG_TX_OP, queue->txop);
+-	rt2x00_set_field32(&reg, EDCA_AC0_CFG_AIFSN, queue->aifs);
++	rt2x00_set_field32(&reg, EDCA_AC0_CFG_AIFSN, 0);
+ 	rt2x00_set_field32(&reg, EDCA_AC0_CFG_CWMIN, queue->cw_min);
+ 	rt2x00_set_field32(&reg, EDCA_AC0_CFG_CWMAX, queue->cw_max);
+ 	rt2800_register_write(rt2x00dev, offset, reg);
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/rt2x00/rt2800lib.h linux-modified/drivers/net/wireless/rt2x00/rt2800lib.h
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/rt2x00/rt2800lib.h	2016-05-23 20:38:45.000000000 +0200
++++ linux-modified/drivers/net/wireless/rt2x00/rt2800lib.h	2016-08-06 10:29:28.039872447 +0200
+@@ -43,6 +43,7 @@
+ 
+ 	int (*read_eeprom)(struct rt2x00_dev *rt2x00dev);
+ 	bool (*hwcrypt_disabled)(struct rt2x00_dev *rt2x00dev);
++	int (*txpower)(struct rt2x00_dev *rt2x00dev);
+ 
+ 	int (*drv_write_firmware)(struct rt2x00_dev *rt2x00dev,
+ 				  const u8 *data, const size_t len);
+@@ -129,6 +130,13 @@
+ 	return rt2800ops->hwcrypt_disabled(rt2x00dev);
+ }
+ 
++static inline int rt2800_txpower(struct rt2x00_dev *rt2x00dev)
++{
++	const struct rt2800_ops *rt2800ops = rt2x00dev->ops->drv;
++
++	return rt2800ops->txpower(rt2x00dev);
++}
++
+ static inline int rt2800_drv_write_firmware(struct rt2x00_dev *rt2x00dev,
+ 					    const u8 *data, const size_t len)
+ {
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/rt2x00/rt2800usb.c linux-modified/drivers/net/wireless/rt2x00/rt2800usb.c
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/drivers/net/wireless/rt2x00/rt2800usb.c	2016-05-23 20:38:45.000000000 +0200
++++ linux-modified/drivers/net/wireless/rt2x00/rt2800usb.c	2016-08-06 10:29:28.049871963 +0200
+@@ -51,6 +51,16 @@
+ 	return modparam_nohwcrypt;
+ }
+ 
++
++static int modparam_txpower;
++module_param_named(txpower, modparam_txpower, int, S_IRUGO);
++MODULE_PARM_DESC(txpower, "Change TXPower.");
++
++static int rt2800usb_txpower(struct rt2x00_dev *rt2x00dev)
++{
++	return modparam_txpower;
++}
++
+ /*
+  * Queue handlers.
+  */
+@@ -860,6 +870,7 @@
+ 	.regbusy_read		= rt2x00usb_regbusy_read,
+ 	.read_eeprom		= rt2800usb_read_eeprom,
+ 	.hwcrypt_disabled	= rt2800usb_hwcrypt_disabled,
++	.txpower		= rt2800usb_txpower,
+ 	.drv_write_firmware	= rt2800usb_write_firmware,
+ 	.drv_init_registers	= rt2800usb_init_registers,
+ 	.drv_get_txwi		= rt2800usb_get_txwi,
+Only in linux-modified/include/config/ath: debug.h
+Only in linux-modified/include/config: ath10k
+Only in linux-modified/include/config: ath10k.h
+Only in linux-modified/include/config/ath9k: debugfs.h
+Only in linux-modified/include/config/ath9k: htc
+Only in linux-modified/include/config/cfg80211: internal
+Only in linux-modified/include/config/cfg80211: reg
+Only in linux-modified/include/config/cpu/freq/default/gov: performance.h
+Only in linux-modified/include/config/mac80211: debugfs.h
+Only in linux-modified/include/config/rt2x00/lib: debugfs.h
+Only in linux-modified/include/config: rtl8xxxu
+Only in linux-modified/include/config: rtl8xxxu.h
+Only in linux-modified/include/config/video: v4l2
+Only in linux-modified/include/config: wcn36xx
+Only in linux-modified/include/config: wcn36xx.h
+Only in linux-modified/include/generated: compile.h
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/include/net/mac80211.h linux-modified/include/net/mac80211.h
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/include/net/mac80211.h	2016-05-23 20:38:45.000000000 +0200
++++ linux-modified/include/net/mac80211.h	2016-08-06 10:29:04.371056557 +0200
+@@ -867,7 +867,16 @@
+ 					/* 2 bytes free */
+ 				};
+ 				/* only needed before rate control */
+-				unsigned long jiffies;
++				struct {
++					/* same position as rates[0] */
++					struct ieee80211_tx_rate prerate;
++					u8 use_preset_rate:1;
++					u8 use_legacy_rate:1;
++					/* only used for legacy bitrates */
++					u16 bitrate;
++					/* 2 bytes free */
++					unsigned long jiffies;
++				};
+ 			};
+ 			/* NB: vif can be NULL for injected frames */
+ 			struct ieee80211_vif *vif;
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/kernel: .bounds.s.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/kernel: bounds.s
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/net/mac80211/tx.c linux-modified/net/mac80211/tx.c
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/net/mac80211/tx.c	2016-05-23 20:38:45.000000000 +0200
++++ linux-modified/net/mac80211/tx.c	2016-08-06 10:29:04.371056557 +0200
+@@ -786,6 +786,52 @@
+ }
+ 
+ static ieee80211_tx_result debug_noinline
++ieee80211_tx_h_rate_preset(struct ieee80211_tx_data *tx)
++{
++	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(tx->skb);
++	struct ieee80211_supported_band *sband;
++	u16 bitrate;
++	u8 use_legacy_rate;
++	s8 idx;
++	int i;
++
++	sband = tx->local->hw.wiphy->bands[info->band];
++
++	bitrate = info->control.bitrate;
++	use_legacy_rate = info->control.use_legacy_rate;
++
++	/*
++	 * WARNING: This overwrites some data that may be needed in the
++	 * following procedure. So everything that is needed and shares memory
++	 * with info->control.rates[] needs to be copied beforehand.
++	 */
++	for (i = 1; i < IEEE80211_TX_MAX_RATES; i++)
++		info->control.rates[i].idx = -1;
++
++	if (!use_legacy_rate) {
++		if (info->control.rates[0].idx < 0)
++			return TX_DROP;
++		return TX_CONTINUE;
++	}
++
++	idx = -1;
++	for (i = 0; i < sband->n_bitrates; i++) {
++		if (sband->bitrates[i].bitrate > bitrate)
++			continue;
++		if (idx >= 0 &&
++		    sband->bitrates[i].bitrate < sband->bitrates[idx].bitrate)
++			continue;
++		idx = i;
++	}
++	if (unlikely(idx < 0))
++		return TX_DROP;
++
++	info->control.rates[0].idx = idx;
++
++	return TX_CONTINUE;
++}
++
++static ieee80211_tx_result debug_noinline
+ ieee80211_tx_h_sequence(struct ieee80211_tx_data *tx)
+ {
+ 	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(tx->skb);
+@@ -1476,8 +1522,12 @@
+ 	CALL_TXH(ieee80211_tx_h_ps_buf);
+ 	CALL_TXH(ieee80211_tx_h_check_control_port_protocol);
+ 	CALL_TXH(ieee80211_tx_h_select_key);
+-	if (!ieee80211_hw_check(&tx->local->hw, HAS_RATE_CONTROL))
+-		CALL_TXH(ieee80211_tx_h_rate_ctrl);
++	if (!ieee80211_hw_check(&tx->local->hw, HAS_RATE_CONTROL)) {
++		if (unlikely(info->control.use_preset_rate))
++			CALL_TXH(ieee80211_tx_h_rate_preset);
++		else
++			CALL_TXH(ieee80211_tx_h_rate_ctrl);
++	}
+ 
+ 	if (unlikely(info->flags & IEEE80211_TX_INTFL_RETRANSMISSION)) {
+ 		__skb_queue_tail(&tx->skbs, tx->skb);
+@@ -1674,9 +1724,14 @@
+ 	int ret = ieee80211_radiotap_iterator_init(&iterator, rthdr, skb->len,
+ 						   NULL);
+ 	u16 txflags;
++	u8 known, flags, mcs;
+ 
+ 	info->flags |= IEEE80211_TX_INTFL_DONT_ENCRYPT |
+ 		       IEEE80211_TX_CTL_DONTFRAG;
++	info->control.prerate.count = 1;
++	info->control.prerate.flags = 0;
++	info->control.use_preset_rate = 0;
++	info->control.use_legacy_rate = 0;
+ 
+ 	/*
+ 	 * for every radiotap entry that is present
+@@ -1722,6 +1777,46 @@
+ 			txflags = get_unaligned_le16(iterator.this_arg);
+ 			if (txflags & IEEE80211_RADIOTAP_F_TX_NOACK)
+ 				info->flags |= IEEE80211_TX_CTL_NO_ACK;
++			if (txflags & IEEE80211_RADIOTAP_F_TX_CTS)
++				info->control.prerate.flags |=
++					IEEE80211_TX_RC_USE_CTS_PROTECT;
++			if (txflags & IEEE80211_RADIOTAP_F_TX_RTS)
++				info->control.prerate.flags |=
++					IEEE80211_TX_RC_USE_RTS_CTS;
++			break;
++
++		case IEEE80211_RADIOTAP_RATE:
++			info->control.bitrate = *iterator.this_arg * 5;
++			info->control.use_legacy_rate = 1;
++			info->control.use_preset_rate = 1;
++			break;
++
++		case IEEE80211_RADIOTAP_MCS:
++			known = *iterator.this_arg;
++			flags = *(iterator.this_arg + 1);
++			mcs = *(iterator.this_arg + 2);
++			if (known & IEEE80211_RADIOTAP_MCS_HAVE_MCS) {
++				info->control.prerate.idx = mcs;
++				info->control.prerate.flags |=
++						IEEE80211_TX_RC_MCS;
++				info->control.use_preset_rate = 1;
++			}
++			if (known & IEEE80211_RADIOTAP_MCS_HAVE_BW) {
++				if ((flags & IEEE80211_RADIOTAP_MCS_BW_MASK)
++				    == IEEE80211_RADIOTAP_MCS_BW_40)
++					info->control.prerate.flags |=
++						IEEE80211_TX_RC_40_MHZ_WIDTH;
++			}
++			if (known & IEEE80211_RADIOTAP_MCS_HAVE_GI) {
++				if (flags & IEEE80211_RADIOTAP_MCS_SGI)
++					info->control.prerate.flags |=
++						IEEE80211_TX_RC_SHORT_GI;
++			}
++			if (known & IEEE80211_RADIOTAP_MCS_HAVE_FMT) {
++				if (flags & IEEE80211_RADIOTAP_MCS_FMT_GF)
++					info->control.prerate.flags |=
++						IEEE80211_TX_RC_GREEN_FIELD;
++			}
+ 			break;
+ 
+ 		/*
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/net/wireless/db.txt linux-modified/net/wireless/db.txt
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/net/wireless/db.txt	2016-05-23 20:38:45.000000000 +0200
++++ linux-modified/net/wireless/db.txt	2016-08-06 10:29:28.049871963 +0200
+@@ -1,17 +1,43 @@
+-#
+-# This file is a placeholder to prevent accidental build breakage if someone
+-# enables CONFIG_CFG80211_INTERNAL_REGDB.  Almost no one actually needs to
+-# enable that build option.
+-#
+-# You should be using CRDA instead.  It is even better if you use the CRDA
+-# package provided by your distribution, since they will probably keep it
+-# up-to-date on your behalf.
+-#
+-# If you _really_ intend to use CONFIG_CFG80211_INTERNAL_REGDB then you will
+-# need to replace this file with one containing appropriately formatted
+-# regulatory rules that cover the regulatory domains you will be using.  Your
+-# best option is to extract the db.txt file from the wireless-regdb git
+-# repository:
+-#
+-#   git://git.kernel.org/pub/scm/linux/kernel/git/linville/wireless-regdb.git
+-#
++country 00:
++	(2302 - 2742 @ 40), (30)
++	(4910 - 5835 @ 160), (30)
++
++country DE:
++	(2302 - 2742 @ 40), (30)
++	(4910 - 5835 @ 160), (30)
++
++country AT:
++	(2302 - 2742 @ 40), (30)
++	(4910 - 5835 @ 160), (30)
++
++country CH:
++	(2302 - 2742 @ 40), (30)
++	(4910 - 5835 @ 160), (30)
++
++country TW:
++	(2302 - 2742 @ 40), (30)
++	(4910 - 5835 @ 160), (30)
++
++country AU:
++	(2302 - 2742 @ 40), (30)
++	(4910 - 5835 @ 160), (30)
++
++country CA:
++	(2302 - 2742 @ 40), (30)
++	(4910 - 5835 @ 160), (30)
++
++country US:
++	(2302 - 2742 @ 40), (30)
++	(4910 - 5835 @ 160), (30)
++
++country BO:
++	(2302 - 2742 @ 40), (30)
++	(4910 - 5835 @ 160), (30)
++
++country GB:
++	(2302 - 2742 @ 40), (30)
++	(4910 - 5835 @ 160), (30)
++
++country CN:
++	(2302 - 2742 @ 40), (30)
++	(4910 - 5835 @ 160), (30)
+diff -ur linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/net/wireless/reg.c linux-modified/net/wireless/reg.c
+--- linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/net/wireless/reg.c	2016-05-23 20:38:45.000000000 +0200
++++ linux-modified/net/wireless/reg.c	2016-08-06 10:29:28.059871480 +0200
+@@ -229,32 +229,23 @@
+ 	.alpha2 =  "00",
+ 	.reg_rules = {
+ 		/* IEEE 802.11b/g, channels 1..11 */
+-		REG_RULE(2412-10, 2462+10, 40, 6, 20, 0),
++		REG_RULE(2312-10, 2462+10, 40, 6, 30, 0),
+ 		/* IEEE 802.11b/g, channels 12..13. */
+-		REG_RULE(2467-10, 2472+10, 40, 6, 20,
+-			NL80211_RRF_NO_IR),
++		REG_RULE(2467-10, 2472+10, 40, 6, 30, 0),
+ 		/* IEEE 802.11 channel 14 - Only JP enables
+ 		 * this and for 802.11b only */
+-		REG_RULE(2484-10, 2484+10, 20, 6, 20,
+-			NL80211_RRF_NO_IR |
+-			NL80211_RRF_NO_OFDM),
++		REG_RULE(2484-10, 2732+10, 40, 6, 30, 0),
+ 		/* IEEE 802.11a, channel 36..48 */
+-		REG_RULE(5180-10, 5240+10, 160, 6, 20,
+-                        NL80211_RRF_NO_IR),
++		REG_RULE(4920-10, 5240+10, 160, 6, 30, 0),
+ 
+ 		/* IEEE 802.11a, channel 52..64 - DFS required */
+-		REG_RULE(5260-10, 5320+10, 160, 6, 20,
+-			NL80211_RRF_NO_IR |
+-			NL80211_RRF_DFS),
++		REG_RULE(5260-10, 5320+10, 160, 6, 30, 0),
+ 
+ 		/* IEEE 802.11a, channel 100..144 - DFS required */
+-		REG_RULE(5500-10, 5720+10, 160, 6, 20,
+-			NL80211_RRF_NO_IR |
+-			NL80211_RRF_DFS),
++		REG_RULE(5500-10, 5720+10, 160, 6, 30, 0),
+ 
+ 		/* IEEE 802.11a, channel 149..165 */
+-		REG_RULE(5745-10, 5825+10, 80, 6, 20,
+-			NL80211_RRF_NO_IR),
++		REG_RULE(5745-10, 6100+10, 160, 6, 30, 0),
+ 
+ 		/* IEEE 802.11ad (60GHz), channels 1..3 */
+ 		REG_RULE(56160+2160*1-1080, 56160+2160*3+1080, 2160, 0, 0, 0),
+@@ -3173,7 +3164,7 @@
+ int cfg80211_get_unii(int freq)
+ {
+ 	/* UNII-1 */
+-	if (freq >= 5150 && freq <= 5250)
++	if (freq >= 4920 && freq <= 5250)
+ 		return 0;
+ 
+ 	/* UNII-2A */
+@@ -3189,7 +3180,7 @@
+ 		return 3;
+ 
+ 	/* UNII-3 */
+-	if (freq > 5725 && freq <= 5825)
++	if (freq > 5725 && freq <= 6100)
+ 		return 4;
+ 
+ 	return -EINVAL;
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts: .conmakehash.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts: .kallsyms.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts: .pnmtologo.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts: .recordmcount.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts: .sortextable.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/basic: .bin2c.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/basic: .fixdep.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: .checks.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: .data.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: .dtc-lexer.lex.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: .dtc-parser.tab.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: .dtc.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: .dtc.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: .flattree.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: .fstree.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: .livetree.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: .srcpos.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: .treesource.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: .util.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: checks.o
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: data.o
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: dtc-lexer.lex.o
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: dtc-parser.tab.o
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: dtc.o
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: flattree.o
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: fstree.o
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: livetree.o
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: srcpos.o
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: treesource.o
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/dtc: util.o
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/genksyms: .genksyms.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/genksyms: .genksyms.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/genksyms: .lex.lex.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/genksyms: .parse.tab.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/genksyms: genksyms.o
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/genksyms: lex.lex.o
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/genksyms: parse.tab.o
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/kconfig: .conf.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/kconfig: .conf.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/kconfig: .zconf.tab.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/kconfig: conf.o
+Only in linux-modified/scripts/kconfig: mconf
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/kconfig: zconf.tab.o
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/mod: .devicetable-offsets.h.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/mod: .devicetable-offsets.s.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/mod: .elfconfig.h.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/mod: .empty.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/mod: .file2alias.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/mod: .mk_elfconfig.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/mod: .modpost.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/mod: .modpost.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/mod: .sumversion.o.cmd
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/mod: devicetable-offsets.s
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/mod: empty.o
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/mod: file2alias.o
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/mod: modpost.o
+Only in linux-233755da0e7903fccb41f0b8c14e1da5244b69ec/scripts/mod: sumversion.o
