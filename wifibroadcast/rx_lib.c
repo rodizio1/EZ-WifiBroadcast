@@ -1,3 +1,22 @@
+// (c)2015 befinitiv
+
+/*
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; version 2.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License along
+ *   with this program; if not, write to the Free Software Foundation, Inc.,
+ *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ *
+ contributor : Philippe Crochat - Anemos Technologies (pcrochat@anemos-technologies.com)
+ */
+
 #include "rx_lib.h"
 
 int max_block_num = -1;
@@ -46,7 +65,7 @@ wifibroadcast_rx_status_t *status_memory_open(int param_port) {
 
 }
 
-void open_and_configure_interface(const char *name, int port, monitor_interface_t *interface) {
+void open_and_configure_interface(const char *name, monitor_interface_t *interface) {
 	struct bpf_program bpfprogram;
 	char szProgram[512];
 	char szErrbuf[PCAP_ERRBUF_SIZE];
@@ -72,13 +91,13 @@ void open_and_configure_interface(const char *name, int port, monitor_interface_
 		case DLT_PRISM_HEADER:
 			fprintf(stderr, "DLT_PRISM_HEADER Encap\n");
 			interface->n80211HeaderLength = 0x20; // ieee80211 comes after this
-			sprintf(szProgram, "radio[0x4a:4]==0x13223344 && radio[0x4e:2] == 0x55%.2x", port);
+			sprintf(szProgram, "radio[0x4a:4]==0x13223345");
 			break;
 
 		case DLT_IEEE802_11_RADIO:
 			fprintf(stderr, "DLT_IEEE802_11_RADIO Encap\n");
 			interface->n80211HeaderLength = 0x18; // ieee80211 comes after this
-			sprintf(szProgram, "ether[0x0a:4]==0x13223344 && ether[0x0e:2] == 0x55%.2x", port);
+			sprintf(szProgram, "ether[0x0a:4]==0x13223345");
 			break;
 
 		default:
@@ -86,6 +105,8 @@ void open_and_configure_interface(const char *name, int port, monitor_interface_
 			exit(1);
 
 	}
+	
+	
 
 	if (pcap_compile(interface->ppcap, &bpfprogram, szProgram, 1, 0) == -1) {
 		puts(szProgram);
@@ -124,12 +145,15 @@ void block_buffer_list_reset(block_buffer_t *block_buffer_list, size_t block_buf
     }
 }
 
-void process_payload(uint8_t *data, size_t data_len, int crc_correct, block_buffer_t *block_buffer_list, int adapter_no, int param_data_packets_per_block, int param_fec_packets_per_block, int param_block_buffers, wifibroadcast_rx_status_t *rx_status, int param_packet_length, int receive_rc_command, int fd_serial)
+// extract the payload and returns its length
+int process_payload(uint8_t *data, size_t data_len, int crc_correct, block_buffer_t *block_buffer_list, int adapter_no, int param_data_packets_per_block, int param_fec_packets_per_block, int param_block_buffers, wifibroadcast_rx_status_t *rx_status, int param_packet_length, void (*treatment)(uint8_t *, int))
 {
     wifi_packet_header_t *wph;
     int block_num;
     int packet_num;
-    int i,j;
+    int i;
+    int payload_length=0;
+    int result_buffer_index=0;
     
     wph = (wifi_packet_header_t*)data;
     data += sizeof(wifi_packet_header_t);
@@ -138,7 +162,7 @@ void process_payload(uint8_t *data, size_t data_len, int crc_correct, block_buff
     block_num = wph->sequence_number / (param_data_packets_per_block+param_fec_packets_per_block);//if aram_data_packets_per_block+param_fec_packets_per_block would be limited to powers of two, this could be replaced by a logical AND operation
 
     //debug_print("adap %d rec %x blk %x crc %d len %d\n", adapter_no, wph->sequence_number, block_num, crc_correct, data_len);
-    //printf("block number : %d\n", block_num);
+   // fprintf(stderr, "block number : %d\n", block_num);
 
     //we have received a block number that exceeds the currently seen ones -> we need to make room for this new block
     //or we have received a block_num that is several times smaller than the current window of buffers -> this indicated that either the window is too small or that the transmitter has been restarted
@@ -317,32 +341,10 @@ void process_payload(uint8_t *data, size_t data_len, int crc_correct, block_buff
                     //if reconstruction did fail, the data_length value is undefined. better limit it to some sensible value
                     if(ph->data_length > param_packet_length)
                         ph->data_length = param_packet_length;
-                    	
-                    	if(receive_rc_command==0)
-                    	{
-                    		write(STDOUT_FILENO, data_blocks[i] + sizeof(payload_header_t), ph->data_length);
-                    		fflush(stdout);
-                    	}
-                    	else
-                    	{
-                    		printf("receive_rc_command %d\n", receive_rc_command);
-                    		printf("\n");
-                    		
-                    		for(j=0;j<5;j++)
-                    		{
-                    			printf("%c", *(data_blocks[i] + sizeof(payload_header_t)+j));
-                    		}
-                    		
-                    		for(j=0;j<8;j++)
-                    		{
-                    			printf("%d : %d, ", j, ((*(data_blocks[i] + sizeof(payload_header_t)+5+j*2+1))<<8)+*(data_blocks[i] + sizeof(payload_header_t)+5+j*2));
-                    		}
-                    		
-                    		write(fd_serial, data_blocks[i] + sizeof(payload_header_t), param_packet_length);
-                    		
-                    		//wait for serialport to send
-                    		tcdrain(fd_serial);
-                    	}
+                    
+                    treatment(data_blocks[i] + sizeof(payload_header_t), ph->data_length);
+                    payload_length=ph->data_length;
+                    result_buffer_index+=payload_length;
                 }
             }
 
@@ -384,10 +386,12 @@ void process_payload(uint8_t *data, size_t data_len, int crc_correct, block_buff
         }
     }
 
+    return result_buffer_index;
 }
 
 
-void process_packet(monitor_interface_t *interface, block_buffer_t *block_buffer_list, int adapter_no, int param_data_packets_per_block, int param_fec_packets_per_block, int param_packet_length, wifibroadcast_rx_status_t *rx_status, int param_block_buffers, int receive_rc_command, int fd_serial) {
+// process packet and return payload length
+int process_packet(monitor_interface_t *interface, block_buffer_t *block_buffer_list, int adapter_no, int param_data_packets_per_block, int param_fec_packets_per_block, int param_packet_length, wifibroadcast_rx_status_t *rx_status, int param_block_buffers, void (*treatment)(uint8_t *, int)) {
 		struct pcap_pkthdr * ppcapPacketHeader = NULL;
 		struct ieee80211_radiotap_iterator rti;
 		PENUMBRA_RADIOTAP_DATA prd;
@@ -399,8 +403,6 @@ void process_packet(monitor_interface_t *interface, block_buffer_t *block_buffer
 		int u16HeaderLen;
 
 		// receive
-
-
 		retval = pcap_next_ex(interface->ppcap, &ppcapPacketHeader,
 		    (const u_char**)&pu8Payload);
 
@@ -414,7 +416,7 @@ void process_packet(monitor_interface_t *interface, block_buffer_t *block_buffer
 		//	fprintf(stderr, "retval = 0\n");
 
 		if (retval != 1)
-			return;
+			return 0;
 
 
 		u16HeaderLen = (pu8Payload[2] + (pu8Payload[3] << 8));
@@ -422,18 +424,18 @@ void process_packet(monitor_interface_t *interface, block_buffer_t *block_buffer
 		
 		if (ppcapPacketHeader->len <
 		    (u16HeaderLen + interface->n80211HeaderLength))
-			return;
+			return 0;
 
 		bytes = ppcapPacketHeader->len -
 			(u16HeaderLen + interface->n80211HeaderLength);
 			
 		if (bytes < 0)
-			return;
+			return 0;
 
 		if (ieee80211_radiotap_iterator_init(&rti,
 		    (struct ieee80211_radiotap_header *)pu8Payload,
 		    ppcapPacketHeader->len) < 0)
-			return;
+			return 0;
 
 		while ((n = ieee80211_radiotap_iterator_next(&rti)) == 0) {
 
@@ -464,6 +466,7 @@ void process_packet(monitor_interface_t *interface, block_buffer_t *block_buffer
 			}
 		}
 		
+		
 		pu8Payload += u16HeaderLen + interface->n80211HeaderLength;
 
 		if (prd.m_nRadiotapFlags & IEEE80211_RADIOTAP_F_FCS)
@@ -478,10 +481,11 @@ void process_packet(monitor_interface_t *interface, block_buffer_t *block_buffer
 		rx_status->adapter[adapter_no].received_packet_cnt++;
 		
 		if(rx_status->adapter[adapter_no].received_packet_cnt % 1024 == 0) {
-//			fprintf(stderr, "Signal (card %d): %ddBm\n", adapter_no, rx_status->adapter[adapter_no].current_signal_dbm);
+			fprintf(stderr, "Signal (card %d): %ddBm\n", adapter_no, rx_status->adapter[adapter_no].current_signal_dbm);
 		}
 
 		rx_status->last_update = time(NULL);
 
-        process_payload(pu8Payload, bytes, checksum_correct, block_buffer_list, adapter_no, param_data_packets_per_block, param_fec_packets_per_block, param_block_buffers, rx_status, param_packet_length, receive_rc_command, fd_serial);
+		
+        return process_payload(pu8Payload, bytes, checksum_correct, block_buffer_list, adapter_no, param_data_packets_per_block, param_fec_packets_per_block, param_block_buffers, rx_status, param_packet_length, treatment);
 }
