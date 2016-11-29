@@ -1,3 +1,21 @@
+// (c)2015 befinitiv
+
+/*
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; version 2.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License along
+ *   with this program; if not, write to the Free Software Foundation, Inc.,
+ *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ *
+ contributor : Philippe Crochat - Anemos Technologies (pcrochat@anemos-technologies.com)
+ */
 #pragma once
 
 #include "fec.h"
@@ -39,10 +57,10 @@ typedef struct {
 } block_buffer_t;
 
 
-void open_and_configure_interface(const char *name, int port, monitor_interface_t *interface);
+void open_and_configure_interface(const char *name, monitor_interface_t *interface);
 void block_buffer_list_reset(block_buffer_t *block_buffer_list, size_t block_buffer_list_len, int block_buffer_len, int param_data_packets_per_block, int param_fec_packets_per_block);
-void process_payload(uint8_t *data, size_t data_len, int crc_correct, block_buffer_t *block_buffer_list, int adapter_no, int param_data_packets_per_block, int param_fec_packets_per_block, int param_block_buffers, wifibroadcast_rx_status_t *rx_status, int param_packet_length, int receive_rc_command, int fd_serial);
-void process_packet(monitor_interface_t *interface, block_buffer_t *block_buffer_list, int adapter_no, int param_data_packets_per_block, int param_fec_packets_per_block, int param_packet_length, wifibroadcast_rx_status_t *rx_status, int param_block_buffers, int receive_rc_command, int fd_serial);
+int process_payload(uint8_t *data, size_t data_len, int crc_correct, block_buffer_t *block_buffer_list, int adapter_no, int param_data_packets_per_block, int param_fec_packets_per_block, int param_block_buffers, wifibroadcast_rx_status_t *rx_status, int param_packet_length, void (*treatment)(uint8_t *, int));
+int process_packet(monitor_interface_t *interface, block_buffer_t *block_buffer_list, int adapter_no, int param_data_packets_per_block, int param_fec_packets_per_block, int param_packet_length, wifibroadcast_rx_status_t *rx_status, int param_block_buffers, void (*treatment)(uint8_t *, int));
 wifibroadcast_rx_status_t *status_memory_open(int param_port);
 void status_memory_init(wifibroadcast_rx_status_t *s);
 
