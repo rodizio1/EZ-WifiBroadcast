@@ -238,7 +238,7 @@ int main(int argc, char *argv[])
 	int version = 0x000800;
 	char name_of_joystick[JOY_NAME_LENGTH] = "Unknown";
     block_buffer_t *block_buffer_list;
-    float rssi;
+    uint8_t rssi;
     struct timeval joystick_last_sent;
     struct timeval now;
     struct timeval timer_result;
@@ -553,21 +553,11 @@ int main(int argc, char *argv[])
 		}
 		
 		//send rssi value
-		rssi=-rx_status->adapter[0].current_signal_dbm/100.0;
-		rssi=9.50;
+		rssi=-rx_status->adapter[0].current_signal_dbm;
 				
-		float retVal;
-		char *floatToConvert = ( char* ) & rssi;
-		char *returnFloat = ( char* ) & retVal;
-		
-		// swap the bytes into a temporary buffer
-		returnFloat[0] = floatToConvert[3];
-		returnFloat[1] = floatToConvert[2];
-		returnFloat[2] = floatToConvert[1];
-		returnFloat[3] = floatToConvert[0];
 		
 		//fprintf(stderr, "rssi %d\n", rx_status->adapter[0].current_signal_dbm);
-		if (sendto(s_rssi, returnFloat, sizeof(float), 0, (struct sockaddr*)&si_other_rssi, slen_rssi)==-1)
+		if (sendto(s_rssi, &rssi, 1, 0, (struct sockaddr*)&si_other_rssi, slen_rssi)==-1)
 			diep("sendto()");
 		
 		
