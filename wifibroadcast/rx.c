@@ -1,5 +1,5 @@
 // (c)2015 befinitiv
-
+// (c)2017 modified by Philippe Crochat (anemos technologies) to send rssi values to FPV_VR app
 /*
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -67,6 +67,7 @@ struct sockaddr_in si_other_rssi;
 int s_rssi;
 uint8_t rssi;
 int slen_rssi=sizeof(si_other_rssi);
+int ip_address_present=0;
 
 void
 usage(void)
@@ -610,6 +611,7 @@ main(int argc, char *argv[])
 
 		case 'a': //ip address
 			param_ip_address=optarg;
+			ip_address_present=1;
 			//fprintf("ip %s", param_ip_address);
 			break;
 		
@@ -645,7 +647,7 @@ main(int argc, char *argv[])
 		return (1);
 	}
 
-	if(strnlen(param_ip_address, 5)>0)
+	if(ip_address_present==1)
 	{
 		if ((s_rssi=socket(PF_INET, SOCK_DGRAM, 0))==-1)
 			diep("socket");
@@ -703,7 +705,7 @@ main(int argc, char *argv[])
 		//send rssi value
 		rssi=-rx_status->adapter[0].current_signal_dbm;
 				
-		if(strnlen(param_ip_address, 5)>0)
+		if(ip_address_present==1)
 		{
 			//fprintf(stderr, "rssi %d\n", rx_status->adapter[0].current_signal_dbm);
 			if (sendto(s_rssi, &rssi, 1, 0, (struct sockaddr*)&si_other_rssi, slen_rssi)==-1)
