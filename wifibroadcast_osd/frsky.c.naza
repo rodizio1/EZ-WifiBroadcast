@@ -1,0 +1,174 @@
+#include "frsky.h"
+
+#ifdef FRSKY
+
+#include <stdint.h>
+#include "telemetry.h"
+#include "math.h"
+
+	uint8_t ialt=0, ilon=0, ilat=0, ispeed=0, icourse=0;
+        float alt_interm, long_interm, lat_interm, course_interm, speed_interm;
+
+int frsky_parse_buffer(frsky_state_t *state, telemetry_data_t *td, uint8_t *buf, int buflen) {
+	int new_data = 0;
+	int i;
+	for(i=0; i<buflen; ++i) {
+		uint8_t ch = buf[i];
+		switch(state->sm_state) {
+			case 0:
+				if(ch == 0x5e)
+					state->sm_state = 1;
+				break;
+			case 1:
+				if(ch == 0x5e)
+					state->sm_state = 2;
+				else
+					state->sm_state = 0;
+				break;
+			case 2:
+				if(ch == 0x5e) {
+					state->pkg_pos = 0;
+					new_data = new_data | frsky_interpret_packet(state, td);
+				}
+				else {
+					if(state->pkg_pos >= sizeof(state->pkg)) {
+						state->pkg_pos = 0;
+						state->sm_state = 0;
+					} else {
+						state->pkg[state->pkg_pos] = ch;
+						state->pkg_pos++;
+					}
+				}
+				break;
+			default:
+				state->sm_state = 0;
+			break;
+		}
+	}
+	return new_data;
+}
+
+int frsky_interpret_packet(frsky_state_t *state, telemetry_data_t *td) {
+	uint16_t data;
+	int new_data = 1;
+
+	data = (uint16_t)(state->pkg[1]);
+	switch(state->pkg[0]) {
+		case ID_VOLTAGE_BP:
+		{
+			td->voltage = data / 10.0f;
+			//debug_print("Battery voltage: %f\n", td->voltage);
+		}
+		break;
+
+		case ID_GPS_ALTITUDE_BP:
+			alt_interm =data;
+			ialt++;
+//			debug_print("ialt: %d\n", ialt);
+			break;
+		case ID_GPS_ALTITUDE_AP:
+			alt_interm += data/100.;
+			ialt++;
+			if (ialt == 2) {
+			  td->altitude = alt_interm*100.;
+			 // debug_print("Altitude: %f\n", td->altitude);
+//			  debug_print("ialt: %d\n", ialt);  
+			}
+			ialt=0;
+			break;
+		case ID_LONGITUDE_BP1:
+		        long_interm = data * pow(2,24);
+			ilon++;
+//			debug_print("ilon: %d\n", ilon);
+
+			break;
+		case ID_LONGITUDE_BP2:
+			long_interm +=  data * pow(2,16);
+			ilon++;
+//			debug_print("ilon: %d\n", ilon);
+
+			break;
+		case ID_LONGITUDE_AP1:
+			long_interm +=  data * pow(2,8);
+			ilon++;
+//			debug_print("ilon: %d\n", ilon);
+			break;
+		case ID_LONGITUDE_AP2:
+			long_interm +=  data;
+			ilon++;
+			if (ilon==4) {
+			  td->longitude = long_interm/10000000;
+			 // debug_print("Longitude: %f\n", td->longitude);
+//			  debug_print("ilon: %d\n", ilon);
+			  
+			}
+			ilon=0;
+			break;
+		case ID_LATITUDE_BP1:
+		        lat_interm = data * pow(2,24);
+			ilat++;		  
+//			debug_print("ilat: %d\n", ilat);
+
+			break;
+		case ID_LATITUDE_BP2:
+			lat_interm +=  data * pow(2,16);
+			ilat++;
+//			debug_print("ilat: %d\n", ilat);
+			break;
+		case ID_LATITUDE_AP1:
+			lat_interm +=  data * pow(2,8);
+			ilat++;
+//			debug_print("ilat: %d\n", ilat);
+			break;
+
+		case ID_LATITUDE_AP2:
+			lat_interm +=  data;
+			ilat++;
+			if (ilat==4) {
+			  td->latitude = lat_interm/10000000;
+//			  debug_print("ilat: %d\n", ilat);
+			 // debug_print("Latitude: %f\n", td->latitude);
+			}
+			ilat=0;
+			break;
+                case ID_COURSE_BP:
+                        course_interm =data;
+		        icourse++;
+                        break;
+                case ID_COURSE_AP:
+                        course_interm += data/100.0f;
+			icourse++;
+			if (icourse==2) {
+                           td->heading = course_interm * 10.;
+                        //   debug_print("Heading: %f\n", td->heading);
+			}
+			icourse=0;
+                        break;
+		case ID_GPS_SPEED_BP:
+			speed_interm = 1.0 * data ;
+			ispeed++;
+			break;
+		case ID_GPS_SPEED_AP:
+			speed_interm += 1.0 * data / 100.; //now we are in cm/s
+			ispeed++;
+			if (ispeed==2) {
+			td->speed = speed_interm;
+			//debug_print("Speed: %f\n", td->speed);
+			}
+			ispeed=0;
+			break;
+		case ID_STATUS_GPS:
+                        if (data%10>=2) {
+                         td->ew = 'E';
+                         td->ns = 'N';
+			} 
+			break;
+		default:
+			new_data = 0;
+			//printf("%x\n", pkg[0]);
+		break;
+	}
+
+	return new_data;
+}
+#endif
