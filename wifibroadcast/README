@@ -1,2 +1,0 @@
-you will find here the wifibroadcast sources modified to lower joystick commands latency and lower serial data latencies in general
-Those sources could then be modified to regroups several tx interfaces together more reliably.
