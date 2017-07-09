@@ -1,0 +1,139 @@
+diff -Naur linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367/drivers/net/wireless/ralink/rt2x00/rt2800usb.c linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367.rt2800usb-misc/drivers/net/wireless/ralink/rt2x00/rt2800usb.c
+--- linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367/drivers/net/wireless/ralink/rt2x00/rt2800usb.c	2017-05-15 17:23:14.000000000 +0200
++++ linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367.rt2800usb-misc/drivers/net/wireless/ralink/rt2x00/rt2800usb.c	2017-07-09 12:35:31.921785875 +0200
+@@ -441,6 +441,7 @@
+ /*
+  * Watchdog handlers
+  */
++/*
+ static void rt2800usb_watchdog(struct rt2x00_dev *rt2x00dev)
+ {
+ 	unsigned int i;
+@@ -478,6 +479,7 @@
+ 
+ 	rt2x00usb_watchdog(rt2x00dev);
+ }
++*/
+ 
+ /*
+  * TX descriptor initialization
+@@ -880,7 +882,7 @@
+ 	.link_tuner		= rt2800_link_tuner,
+ 	.gain_calibration	= rt2800_gain_calibration,
+ 	.vco_calibration	= rt2800_vco_calibration,
+-	.watchdog		= rt2800usb_watchdog,
++//	.watchdog		= rt2800usb_watchdog,
+ 	.start_queue		= rt2800usb_start_queue,
+ 	.kick_queue		= rt2x00usb_kick_queue,
+ 	.stop_queue		= rt2800usb_stop_queue,
+diff -Naur linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367/drivers/net/wireless/ralink/rt2x00/rt2x00dev.c linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367.rt2800usb-misc/drivers/net/wireless/ralink/rt2x00/rt2x00dev.c
+--- linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367/drivers/net/wireless/ralink/rt2x00/rt2x00dev.c	2017-05-15 17:23:14.000000000 +0200
++++ linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367.rt2800usb-misc/drivers/net/wireless/ralink/rt2x00/rt2x00dev.c	2017-07-09 12:43:32.509793086 +0200
+@@ -92,7 +92,7 @@
+ 	/*
+ 	 * Start watchdog monitoring.
+ 	 */
+-	rt2x00link_start_watchdog(rt2x00dev);
++//	rt2x00link_start_watchdog(rt2x00dev);
+ 
+ 	return 0;
+ }
+@@ -105,7 +105,7 @@
+ 	/*
+ 	 * Stop watchdog monitoring.
+ 	 */
+-	rt2x00link_stop_watchdog(rt2x00dev);
++//	rt2x00link_stop_watchdog(rt2x00dev);
+ 
+ 	/*
+ 	 * Stop all queues
+diff -Naur linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367/drivers/net/wireless/ralink/rt2x00/rt2x00lib.h linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367.rt2800usb-misc/drivers/net/wireless/ralink/rt2x00/rt2x00lib.h
+--- linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367/drivers/net/wireless/ralink/rt2x00/rt2x00lib.h	2017-05-15 17:23:14.000000000 +0200
++++ linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367.rt2800usb-misc/drivers/net/wireless/ralink/rt2x00/rt2x00lib.h	2017-07-09 12:46:36.153795842 +0200
+@@ -28,10 +28,10 @@
+ /*
+  * Interval defines
+  */
+-#define WATCHDOG_INTERVAL	round_jiffies_relative(HZ)
+-#define LINK_TUNE_INTERVAL	round_jiffies_relative(HZ)
++#define WATCHDOG_INTERVAL	round_jiffies_relative(180 * HZ)
++#define LINK_TUNE_INTERVAL	round_jiffies_relative(2* HZ)
+ #define AGC_INTERVAL		round_jiffies_relative(4 * HZ)
+-#define VCO_INTERVAL		round_jiffies_relative(10 * HZ) /* 10 sec */
++#define VCO_INTERVAL		round_jiffies_relative(180 * HZ) /* 180 sec */
+ 
+ /*
+  * rt2x00_rate: Per rate device information
+diff -Naur linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367/drivers/net/wireless/ralink/rt2x00/rt2x00link.c linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367.rt2800usb-misc/drivers/net/wireless/ralink/rt2x00/rt2x00link.c
+--- linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367/drivers/net/wireless/ralink/rt2x00/rt2x00link.c	2017-05-15 17:23:14.000000000 +0200
++++ linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367.rt2800usb-misc/drivers/net/wireless/ralink/rt2x00/rt2x00link.c	2017-07-09 12:57:59.025806088 +0200
+@@ -375,6 +375,8 @@
+ {
+ 	struct link *link = &rt2x00dev->link;
+ 
++	return;
++
+ 	if (test_bit(DEVICE_STATE_PRESENT, &rt2x00dev->flags) &&
+ 	    rt2x00dev->ops->lib->watchdog)
+ 		ieee80211_queue_delayed_work(rt2x00dev->hw,
+@@ -384,29 +386,34 @@
+ 
+ void rt2x00link_stop_watchdog(struct rt2x00_dev *rt2x00dev)
+ {
++
++	return;
++
+ 	cancel_delayed_work_sync(&rt2x00dev->link.watchdog_work);
+ }
+ 
+-static void rt2x00link_watchdog(struct work_struct *work)
+-{
+-	struct rt2x00_dev *rt2x00dev =
+-	    container_of(work, struct rt2x00_dev, link.watchdog_work.work);
+-	struct link *link = &rt2x00dev->link;
+-
+-	/*
+-	 * When the radio is shutting down we should
+-	 * immediately cease the watchdog monitoring.
+-	 */
+-	if (!test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
+-		return;
+ 
+-	rt2x00dev->ops->lib->watchdog(rt2x00dev);
++//static void rt2x00link_watchdog(struct work_struct *work)
++//{
++//	struct rt2x00_dev *rt2x00dev =
++//	    container_of(work, struct rt2x00_dev, link.watchdog_work.work);
++//	struct link *link = &rt2x00dev->link;
++//
++//	/*
++//	 * When the radio is shutting down we should
++//	 * immediately cease the watchdog monitoring.
++//	 */
++//	if (!test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
++//		return;
++//
++//	rt2x00dev->ops->lib->watchdog(rt2x00dev);
++//
++//	if (test_bit(DEVICE_STATE_PRESENT, &rt2x00dev->flags))
++//		ieee80211_queue_delayed_work(rt2x00dev->hw,
++//					     &link->watchdog_work,
++//					     WATCHDOG_INTERVAL);
++//}
+ 
+-	if (test_bit(DEVICE_STATE_PRESENT, &rt2x00dev->flags))
+-		ieee80211_queue_delayed_work(rt2x00dev->hw,
+-					     &link->watchdog_work,
+-					     WATCHDOG_INTERVAL);
+-}
+ 
+ void rt2x00link_start_agc(struct rt2x00_dev *rt2x00dev)
+ {
+@@ -487,6 +494,6 @@
+ 	INIT_DELAYED_WORK(&rt2x00dev->link.agc_work, rt2x00link_agc);
+ 	if (rt2x00_has_cap_vco_recalibration(rt2x00dev))
+ 		INIT_DELAYED_WORK(&rt2x00dev->link.vco_work, rt2x00link_vcocal);
+-	INIT_DELAYED_WORK(&rt2x00dev->link.watchdog_work, rt2x00link_watchdog);
++//	INIT_DELAYED_WORK(&rt2x00dev->link.watchdog_work, rt2x00link_watchdog);
+ 	INIT_DELAYED_WORK(&rt2x00dev->link.work, rt2x00link_tuner);
+ }

@@ -1,0 +1,12 @@
+diff -Naur linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367/drivers/net/wireless/broadcom/brcm80211/brcmfmac/core.c linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367.brcmfmac-intwifi/drivers/net/wireless/broadcom/brcm80211/brcmfmac/core.c
+--- linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367/drivers/net/wireless/broadcom/brcm80211/brcmfmac/core.c	2017-05-15 17:23:14.000000000 +0200
++++ linux-1423ac8bfbfb2a9d092b604c676e7a58a5fa3367.brcmfmac-intwifi/drivers/net/wireless/broadcom/brcm80211/brcmfmac/core.c	2017-07-09 13:29:21.093834329 +0200
+@@ -964,7 +964,7 @@
+ 	brcmf_dbg(TRACE, "\n");
+ 
+ 	/* add primary networking interface */
+-	ifp = brcmf_add_if(drvr, 0, 0, false, "wlan%d", NULL);
++	ifp = brcmf_add_if(drvr, 0, 0, false, "intwifi%d", NULL);
+ 	if (IS_ERR(ifp))
+ 		return PTR_ERR(ifp);
+ 
