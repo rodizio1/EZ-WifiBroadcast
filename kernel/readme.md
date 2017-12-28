@@ -21,4 +21,4 @@ Quick "Howto" on compiling your own kernel:
 Put these options (in exactly that order!) at the end of cmdline text:
 dwc_otg.fiq_fsm_enable=0 dwc_otg.fiq_enable=0 dwc_otg.nak_holdoff=0 dwc_otg.int_ep_interval_min=0
 
-Building the kernel on a Raspberry Pi1 or Pi0 is not recommended as it takes several hours to complete. On a Pi3 though, with good cooling and CPU overclocked to 1300MHz and GPU to 500Mhz, compilation takes only about 20-30 minutes.
+Building the kernel on a Raspberry Pi1 or Pi0 is not recommended as it takes several hours to complete. On a Pi3 though, with good cooling and GPU overclocked to 500Mhz, compilation takes only about 20-30 minutes.
