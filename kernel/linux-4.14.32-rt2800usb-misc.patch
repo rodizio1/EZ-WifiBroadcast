@@ -1,0 +1,16 @@
+diff -Naur v7-kernel/drivers/net/wireless/ralink/rt2x00/rt2x00lib.h v7-kernel.rt2800usb-misc/drivers/net/wireless/ralink/rt2x00/rt2x00lib.h
+--- v7-kernel/drivers/net/wireless/ralink/rt2x00/rt2x00lib.h	2018-04-05 16:35:15.000000000 +0200
++++ v7-kernel.rt2800usb-misc/drivers/net/wireless/ralink/rt2x00/rt2x00lib.h	2018-04-09 12:25:45.755664202 +0200
+@@ -29,10 +29,10 @@
+  * Interval defines
+  */
+ #define WATCHDOG_INTERVAL	round_jiffies_relative(HZ)
+-#define LINK_TUNE_SECONDS	1
++#define LINK_TUNE_SECONDS	2
+ #define LINK_TUNE_INTERVAL	round_jiffies_relative(LINK_TUNE_SECONDS * HZ)
+ #define AGC_SECONDS		4
+-#define VCO_SECONDS		10
++#define VCO_SECONDS		180
+ 
+ /*
+  * rt2x00_rate: Per rate device information
