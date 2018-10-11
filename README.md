@@ -10,6 +10,6 @@ _**IMPORTANT: Read and follow the [wiring instructions](https://github.com/borte
 
 # For code contributors
 
-Please use develop branch for making any changes. When code is tested and is ready to be pushed to master branch create a Pull Request and assign or invite other users to review and apprive your changes. When the change is approved it can be merged to the master branch.
+Please use develop branch for making any changes. When code is tested and is ready to be pushed to master branch create a Pull Request and assign or invite other users to review and approve your changes. When the change is approved it can be merged to the master branch.
 
-Afterwards a new release can be created and tagged. 
+Afterwards a new release can be created and taged. 
