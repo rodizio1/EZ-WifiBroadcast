@@ -6,3 +6,8 @@ The goal of this project is to make the usage of Befinitiv's Wifibroadcast (http
 Head to the Wiki page for instructions, features and Download links: https://github.com/bortek/EZ-WifiBroadcast/wiki
 
 _**IMPORTANT: Read and follow the [wiring instructions](https://github.com/bortek/EZ-WifiBroadcast/wiki/Wiring)**_
+
+
+# For code contrinutors
+
+Please use develop branch for making any changes. Then 
