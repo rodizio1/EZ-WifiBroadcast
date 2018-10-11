@@ -8,7 +8,7 @@ Head to the Wiki page for instructions, features and Download links: https://git
 _**IMPORTANT: Read and follow the [wiring instructions](https://github.com/bortek/EZ-WifiBroadcast/wiki/Wiring)**_
 
 
-# For code contrinutors
+# For code contributors
 
 Please use develop branch for making any changes. When code is tested and is ready to be pushed to master branch create a Pull Request and assign or invite other users to review and apprive your changes. When the change is approved it can be merged to the master branch.
 
