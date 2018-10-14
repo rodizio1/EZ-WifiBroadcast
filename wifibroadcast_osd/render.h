@@ -51,6 +51,7 @@ float course_to (float lat1, float long1, float lat2, float long2);
 void draw_bat_remaining(int remaining, int pos_x, int pos_y, float scale);
 void draw_compass(int heading, int pos_x, int pos_y, bool ladder_enabled, float scale);
 void draw_bat_status(float voltage, float current, int pos_x, int pos_y, float scale);
+void draw_batt_mah(float voltage, float current, float pos_x, float pos_y, float scale);
 void draw_position(float lat, float lon, bool fix, int sats, int fixtype, int pos_x, int pos_y, float scale);
 void draw_home_distance(int distance, int pos_x, int pos_y, float scale);
 //autopilot mode, mavlink specific, could be used if mode is in telemetry data of other protocols as well
