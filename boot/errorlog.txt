@@ -1,0 +1,1451 @@
+ 22:37:54 up 0 min,  0 users,  load average: 0.59, 0.13, 0.04
+
+Camera: supported=1 detected=0
+
+
+eth0      Link encap:Ethernet  HWaddr b8:27:eb:f2:73:d4  
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+
+global
+country DE: DFS-UNSET
+	(2302 - 2742 @ 40), (N/A, 30), (N/A)
+	(4910 - 5835 @ 160), (N/A, 30), (N/A)
+
+global
+country DE: DFS-UNSET
+	(2302 - 2742 @ 40), (N/A, 30), (N/A)
+	(4910 - 5835 @ 160), (N/A, 30), (N/A)
+
+
+Wiphy phy0
+	max # scan SSIDs: 10
+	max scan IEs length: 2048 bytes
+	max # sched scan SSIDs: 16
+	max # match sets: 16
+	Retry short limit: 7
+	Retry long limit: 4
+	Coverage class: 0 (up to 0m)
+	Device supports T-DLS.
+	Supported Ciphers:
+		* WEP40 (00-0f-ac:1)
+		* WEP104 (00-0f-ac:5)
+		* TKIP (00-0f-ac:2)
+		* CCMP (00-0f-ac:4)
+	Available Antennas: TX 0 RX 0
+	Supported interface modes:
+		 * IBSS
+		 * managed
+		 * AP
+		 * P2P-client
+		 * P2P-GO
+		 * P2P-device
+	Band 1:
+		Capabilities: 0x1020
+			HT20
+			Static SM Power Save
+			RX HT20 SGI
+			No RX STBC
+			Max AMSDU length: 3839 bytes
+			DSSS/CCK HT40
+		Maximum RX AMPDU length 65535 bytes (exponent: 0x003)
+		Minimum RX AMPDU time spacing: 16 usec (0x07)
+		HT TX/RX MCS rate indexes supported: 0-7
+		Bitrates (non-HT):
+			* 1.0 Mbps
+			* 2.0 Mbps (short preamble supported)
+			* 5.5 Mbps (short preamble supported)
+			* 11.0 Mbps (short preamble supported)
+			* 6.0 Mbps
+			* 9.0 Mbps
+			* 12.0 Mbps
+			* 18.0 Mbps
+			* 24.0 Mbps
+			* 36.0 Mbps
+			* 48.0 Mbps
+			* 54.0 Mbps
+		Frequencies:
+			* 2412 MHz [21] (20.0 dBm)
+			* 2417 MHz [22] (20.0 dBm)
+			* 2422 MHz [23] (20.0 dBm)
+			* 2427 MHz [24] (20.0 dBm)
+			* 2432 MHz [25] (20.0 dBm)
+			* 2437 MHz [26] (20.0 dBm)
+			* 2442 MHz [27] (20.0 dBm)
+			* 2447 MHz [28] (20.0 dBm)
+			* 2452 MHz [29] (20.0 dBm)
+			* 2457 MHz [30] (20.0 dBm)
+			* 2462 MHz [31] (20.0 dBm)
+			* 2467 MHz [32] (20.0 dBm)
+			* 2472 MHz [33] (20.0 dBm)
+			* 2484 MHz [35] (disabled)
+	Supported commands:
+		 * new_interface
+		 * set_interface
+		 * new_key
+		 * start_ap
+		 * join_ibss
+		 * set_pmksa
+		 * del_pmksa
+		 * flush_pmksa
+		 * remain_on_channel
+		 * frame
+		 * set_channel
+		 * tdls_oper
+		 * start_sched_scan
+		 * start_p2p_device
+		 * crit_protocol_start
+		 * crit_protocol_stop
+		 * connect
+		 * disconnect
+	Supported TX frame types:
+		 * managed: 0x00 0x10 0x20 0x30 0x40 0x50 0x60 0x70 0x80 0x90 0xa0 0xb0 0xc0 0xd0 0xe0 0xf0
+		 * P2P-client: 0x00 0x10 0x20 0x30 0x40 0x50 0x60 0x70 0x80 0x90 0xa0 0xb0 0xc0 0xd0 0xe0 0xf0
+		 * P2P-GO: 0x00 0x10 0x20 0x30 0x40 0x50 0x60 0x70 0x80 0x90 0xa0 0xb0 0xc0 0xd0 0xe0 0xf0
+		 * P2P-device: 0x00 0x10 0x20 0x30 0x40 0x50 0x60 0x70 0x80 0x90 0xa0 0xb0 0xc0 0xd0 0xe0 0xf0
+	Supported RX frame types:
+		 * managed: 0x40 0xd0
+		 * P2P-client: 0x40 0xd0
+		 * P2P-GO: 0x00 0x20 0x40 0xa0 0xb0 0xc0 0xd0
+		 * P2P-device: 0x40 0xd0
+	software interface modes (can always be added):
+	valid interface combinations:
+		 * #{ managed } <= 1, #{ P2P-device } <= 1, #{ P2P-client, P2P-GO } <= 1,
+		   total <= 3, #channels <= 1
+		 * #{ managed } <= 1, #{ AP } <= 1, #{ P2P-client } <= 1, #{ P2P-device } <= 1,
+		   total <= 4, #channels <= 1
+	Device supports scan flush.
+
+  PID TTY      STAT   TIME COMMAND
+    1 ?        Ss     0:01 /sbin/init nofsck noswap
+    2 ?        S      0:00 [kthreadd]
+    3 ?        S      0:00 [ksoftirqd/0]
+    4 ?        S      0:00 [kworker/0:0]
+    5 ?        S<     0:00 [kworker/0:0H]
+    6 ?        S      0:00 [kworker/u8:0]
+    7 ?        S      0:00 [rcu_sched]
+    8 ?        S      0:00 [rcu_bh]
+    9 ?        S      0:00 [migration/0]
+   10 ?        S<     0:00 [lru-add-drain]
+   11 ?        S      0:00 [cpuhp/0]
+   12 ?        S      0:00 [cpuhp/1]
+   13 ?        S      0:00 [migration/1]
+   14 ?        S      0:00 [ksoftirqd/1]
+   15 ?        S      0:00 [kworker/1:0]
+   16 ?        S<     0:00 [kworker/1:0H]
+   17 ?        S      0:00 [cpuhp/2]
+   18 ?        S      0:00 [migration/2]
+   19 ?        S      0:00 [ksoftirqd/2]
+   20 ?        S      0:00 [kworker/2:0]
+   21 ?        S<     0:00 [kworker/2:0H]
+   22 ?        S      0:00 [cpuhp/3]
+   23 ?        S      0:00 [migration/3]
+   24 ?        S      0:00 [ksoftirqd/3]
+   25 ?        S      0:00 [kworker/3:0]
+   26 ?        S<     0:00 [kworker/3:0H]
+   27 ?        S      0:00 [kdevtmpfs]
+   28 ?        S      0:00 [oom_reaper]
+   29 ?        S<     0:00 [writeback]
+   30 ?        S      0:00 [kcompactd0]
+   31 ?        S<     0:00 [crypto]
+   32 ?        S<     0:00 [bioset]
+   33 ?        S<     0:00 [kblockd]
+   34 ?        S<     0:00 [watchdogd]
+   35 ?        S      0:00 [kworker/0:1]
+   36 ?        S      0:00 [kswapd0]
+   37 ?        S<     0:00 [vmstat]
+   47 ?        S<     0:00 [bioset]
+   48 ?        S<     0:00 [bioset]
+   49 ?        S<     0:00 [bioset]
+   50 ?        S<     0:00 [bioset]
+   51 ?        S<     0:00 [bioset]
+   52 ?        S<     0:00 [bioset]
+   53 ?        S<     0:00 [bioset]
+   54 ?        S<     0:00 [bioset]
+   55 ?        S<     0:00 [bioset]
+   56 ?        S<     0:00 [bioset]
+   57 ?        S<     0:00 [bioset]
+   58 ?        S<     0:00 [bioset]
+   59 ?        S<     0:00 [bioset]
+   60 ?        S<     0:00 [bioset]
+   61 ?        S<     0:00 [bioset]
+   62 ?        S<     0:00 [bioset]
+   63 ?        S<     0:00 [dwc_otg]
+   64 ?        S      0:00 [kworker/3:1]
+   65 ?        S<     0:00 [DWC Notificatio]
+   66 ?        S<     0:00 [VCHIQ-0]
+   67 ?        S<     0:00 [VCHIQr-0]
+   68 ?        S<     0:00 [VCHIQs-0]
+   69 ?        S      0:00 [VCHIQka-0]
+   70 ?        S<     0:00 [SMIO]
+   71 ?        S      0:00 [kworker/3:2]
+   72 ?        S      0:00 [irq/92-mmc1]
+   73 ?        S      0:00 [kworker/3:3]
+   74 ?        S<     0:00 [bioset]
+   75 ?        S      0:00 [mmcqd/0]
+   76 ?        S      0:00 [jbd2/mmcblk0p2-]
+   77 ?        S<     0:00 [ext4-rsv-conver]
+   92 ?        S      0:00 [kworker/2:1]
+   93 ?        S      0:00 [kworker/u8:1]
+  102 ?        S      0:00 [kworker/u8:2]
+  106 ?        S      0:00 [kworker/1:1]
+  121 ?        S      0:00 [kworker/2:2]
+  123 ?        S      0:00 [kworker/0:2]
+  127 ?        S      0:00 [kworker/1:2]
+  133 ?        Ss     0:00 /lib/systemd/systemd-udevd
+  238 ?        S<     0:00 [cfg80211]
+  243 ?        S<     0:00 [brcmf_wq/mmc1:0]
+  245 ?        S      0:00 [brcmf_wdog/mmc1]
+  254 ?        Ss     0:00 /usr/sbin/sshd -D
+  262 tty8     Ss     0:00 /bin/login -f     
+  263 tty3     Ss     0:00 /bin/login -f     
+  265 tty10    Ss     0:00 /bin/login -f     
+  268 tty12    Ss     0:00 /bin/login -f     
+  269 tty6     Ss     0:00 /bin/login -f     
+  270 tty2     Ss     0:00 /bin/login -f     
+  271 tty5     Ss     0:00 /bin/login -f     
+  272 tty11    Ss     0:00 /bin/login -f     
+  273 tty7     Ss     0:00 /bin/login -f     
+  274 tty4     Ss     0:00 /bin/login -f     
+  275 tty1     Ss     0:00 /bin/login -f     
+  276 tty9     Ss     0:00 /bin/login -f     
+  277 ?        S      0:00 [kworker/0:3]
+  289 ?        S<     0:00 [kworker/1:1H]
+  306 ?        S      0:00 [kworker/u8:3]
+  308 ?        S      0:00 [kworker/u8:4]
+  310 ?        S      0:00 [kworker/u8:5]
+  312 ?        S      0:00 [kworker/u8:6]
+  314 ?        S      0:00 [kworker/u8:7]
+  316 ?        S      0:00 [kworker/u8:8]
+  318 ?        S      0:00 [kworker/u8:9]
+  341 tty12    S+     0:00 -bash
+  352 tty1     S+     0:00 -bash
+  356 tty2     S+     0:00 -bash
+  358 tty4     S+     0:00 -bash
+  362 tty9     S+     0:00 -bash
+  368 tty11    S+     0:00 -bash
+  384 tty5     S+     0:00 -bash
+  385 tty6     S+     0:00 -bash
+  387 tty7     S+     0:00 -bash
+  393 tty3     S+     0:00 -bash
+  398 tty8     S+     0:00 -bash
+  423 ?        S<     0:00 [kworker/3:1H]
+  463 tty10    S+     0:00 -bash
+  549 ?        S<     0:00 [kworker/0:1H]
+  573 tty9     S+     0:00 sleep 15
+  589 tty1     SN+    0:00 socat -lf /wbc_tmp/socat1.log -d -d pty,raw,echo=0 pty,raw,echo=0
+  653 tty5     S+     0:00 sleep 365d
+  721 tty10    S+     0:00 sleep 7
+  788 tty8     S+     0:00 sleep 365d
+  802 tty6     S+     0:00 sleep 30
+  805 tty1     SN+    0:00 socat -lf /wbc_tmp/socat2.log -d -d pty,raw,echo=0 pty,raw,echo=0
+  896 tty11    S+     0:00 sleep 2
+  914 tty3     S+     0:00 sleep 0.5
+  936 tty4     S+     0:00 sleep 0.5
+  937 tty7     S+     0:00 sleep 1
+  941 tty2     S+     0:00 sleep 0.5
+  951 tty1     RN+    0:00 ps ax
+
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root       4.0G  1.4G  2.4G  37% /
+devtmpfs        434M     0  434M   0% /dev
+tmpfs           434M   20K  434M   1% /dev/shm
+tmpfs           434M  324K  433M   1% /run
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs           434M     0  434M   0% /sys/fs/cgroup
+tmpfs           630M  8.0K  630M   1% /wbc_tmp
+tmpfs            10M     0   10M   0% /var/tmp
+tmpfs            10M   20K   10M   1% /var/log
+tmpfs           100M  204K  100M   1% /tmp
+/dev/mmcblk0p1   32M   23M  9.2M  72% /boot
+
+/dev/mmcblk0p2 on / type ext4 (ro,noatime,data=ordered)
+devtmpfs on /dev type devtmpfs (rw,relatime,size=443512k,nr_inodes=110878,mode=755)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
+proc on /proc type proc (rw,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,mode=755)
+tmpfs on /run/lock type tmpfs (rw,nosuid,nodev,noexec,relatime,size=5120k)
+tmpfs on /sys/fs/cgroup type tmpfs (ro,nosuid,nodev,noexec,mode=755)
+cgroup on /sys/fs/cgroup/systemd type cgroup (rw,nosuid,nodev,noexec,relatime,xattr,release_agent=/lib/systemd/systemd-cgroups-agent,name=systemd)
+mqueue on /dev/mqueue type mqueue (rw,relatime)
+debugfs on /sys/kernel/debug type debugfs (rw,relatime)
+configfs on /sys/kernel/config type configfs (rw,relatime)
+tmpfs on /wbc_tmp type tmpfs (rw,nosuid,nodev,noatime,size=645120k)
+tmpfs on /var/tmp type tmpfs (rw,nosuid,nodev,noatime,size=10240k)
+tmpfs on /var/log type tmpfs (rw,nosuid,nodev,noatime,size=10240k)
+tmpfs on /tmp type tmpfs (rw,nosuid,nodev,noatime,size=102400k)
+/dev/mmcblk0p1 on /boot type vfat (rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,errors=remount-ro)
+
+
+Disk /dev/mmcblk0: 29 GiB, 31104958464 bytes, 60751872 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x91e81a39
+
+Device         Boot Start     End Sectors Size Id Type
+/dev/mmcblk0p1       8192   73727   65536  32M  6 FAT16
+/dev/mmcblk0p2      81920 8470527 8388608   4G 83 Linux
+
+
+Module                  Size  Used by
+nls_ascii               3454  1 
+nls_cp437               5128  1 
+brcmfmac              196066  0 
+brcmutil                7128  1 brcmfmac
+cfg80211              247512  1 brcmfmac
+bcm2835_gpiomem         3487  0 
+smsc95xx               19555  0 
+
+Bus 001 Device 005: ID 060b:3190 Solid Year 
+Bus 001 Device 004: ID 0483:5710 STMicroelectronics Joystick in FS Mode
+Bus 001 Device 003: ID 0424:ec00 Standard Microsystems Corp. SMSC9512/9514 Fast Ethernet Adapter
+Bus 001 Device 002: ID 0424:9514 Standard Microsystems Corp. 
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+Bus 001 Device 005: ID 060b:3190 Solid Year 
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass            0 (Defined at Interface level)
+  bDeviceSubClass         0 
+  bDeviceProtocol         0 
+  bMaxPacketSize0         8
+  idVendor           0x060b Solid Year
+  idProduct          0x3190 
+  bcdDevice            1.40
+  iManufacturer           0 
+  iProduct                2 USB keyboard
+  iSerial                 0 
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength           59
+    bNumInterfaces          2
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xa0
+      (Bus Powered)
+      Remote Wakeup
+    MaxPower              100mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         3 Human Interface Device
+      bInterfaceSubClass      1 Boot Interface Subclass
+      bInterfaceProtocol      1 Keyboard
+      iInterface              0 
+        HID Device Descriptor:
+          bLength                 9
+          bDescriptorType        33
+          bcdHID               1.11
+          bCountryCode            0 Not supported
+          bNumDescriptors         1
+          bDescriptorType        34 Report
+          wDescriptorLength      54
+         Report Descriptors: 
+           ** UNAVAILABLE **
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0008  1x 8 bytes
+        bInterval              10
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         3 Human Interface Device
+      bInterfaceSubClass      0 No Subclass
+      bInterfaceProtocol      0 None
+      iInterface              0 
+        HID Device Descriptor:
+          bLength                 9
+          bDescriptorType        33
+          bcdHID               1.11
+          bCountryCode            0 Not supported
+          bNumDescriptors         1
+          bDescriptorType        34 Report
+          wDescriptorLength      52
+         Report Descriptors: 
+           ** UNAVAILABLE **
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x82  EP 2 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0003  1x 3 bytes
+        bInterval              10
+Device Status:     0x0000
+  (Bus Powered)
+
+Bus 001 Device 004: ID 0483:5710 STMicroelectronics Joystick in FS Mode
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass            0 (Defined at Interface level)
+  bDeviceSubClass         0 
+  bDeviceProtocol         0 
+  bMaxPacketSize0        64
+  idVendor           0x0483 STMicroelectronics
+  idProduct          0x5710 Joystick in FS Mode
+  bcdDevice            2.00
+  iManufacturer           1 FrSky
+  iProduct                2 FrSky Taranis Joystick
+  iSerial                 3 00000000001B
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength           34
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xe0
+      Self Powered
+      Remote Wakeup
+    MaxPower              100mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         3 Human Interface Device
+      bInterfaceSubClass      0 No Subclass
+      bInterfaceProtocol      0 None
+      iInterface              0 
+        HID Device Descriptor:
+          bLength                 9
+          bDescriptorType        33
+          bcdHID               1.11
+          bCountryCode            0 Not supported
+          bNumDescriptors         1
+          bDescriptorType        34 Report
+          wDescriptorLength      54
+         Report Descriptors: 
+           ** UNAVAILABLE **
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x000b  1x 11 bytes
+        bInterval              10
+Device Status:     0x0001
+  Self Powered
+
+Bus 001 Device 003: ID 0424:ec00 Standard Microsystems Corp. SMSC9512/9514 Fast Ethernet Adapter
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass          255 Vendor Specific Class
+  bDeviceSubClass         0 
+  bDeviceProtocol         1 
+  bMaxPacketSize0        64
+  idVendor           0x0424 Standard Microsystems Corp.
+  idProduct          0xec00 SMSC9512/9514 Fast Ethernet Adapter
+  bcdDevice            2.00
+  iManufacturer           0 
+  iProduct                0 
+  iSerial                 0 
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength           39
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xe0
+      Self Powered
+      Remote Wakeup
+    MaxPower                2mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           3
+      bInterfaceClass       255 Vendor Specific Class
+      bInterfaceSubClass      0 
+      bInterfaceProtocol    255 
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0200  1x 512 bytes
+        bInterval               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x02  EP 2 OUT
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0200  1x 512 bytes
+        bInterval               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0010  1x 16 bytes
+        bInterval               4
+Device Qualifier (for other device speed):
+  bLength                10
+  bDescriptorType         6
+  bcdUSB               2.00
+  bDeviceClass          255 Vendor Specific Class
+  bDeviceSubClass         0 
+  bDeviceProtocol         1 
+  bMaxPacketSize0        64
+  bNumConfigurations      1
+Device Status:     0x0001
+  Self Powered
+
+Bus 001 Device 002: ID 0424:9514 Standard Microsystems Corp. 
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass            9 Hub
+  bDeviceSubClass         0 Unused
+  bDeviceProtocol         2 TT per port
+  bMaxPacketSize0        64
+  idVendor           0x0424 Standard Microsystems Corp.
+  idProduct          0x9514 
+  bcdDevice            2.00
+  iManufacturer           0 
+  iProduct                0 
+  iSerial                 0 
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength           41
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xe0
+      Self Powered
+      Remote Wakeup
+    MaxPower                2mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         9 Hub
+      bInterfaceSubClass      0 Unused
+      bInterfaceProtocol      1 Single TT
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0001  1x 1 bytes
+        bInterval              12
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       1
+      bNumEndpoints           1
+      bInterfaceClass         9 Hub
+      bInterfaceSubClass      0 Unused
+      bInterfaceProtocol      2 TT per port
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0001  1x 1 bytes
+        bInterval              12
+Hub Descriptor:
+  bLength               9
+  bDescriptorType      41
+  nNbrPorts             5
+  wHubCharacteristic 0x000d
+    Per-port power switching
+    Compound device
+    Per-port overcurrent protection
+    TT think time 8 FS bits
+  bPwrOn2PwrGood       50 * 2 milli seconds
+  bHubContrCurrent      1 milli Ampere
+  DeviceRemovable    0x02
+  PortPwrCtrlMask    0xff
+ Hub Port Status:
+   Port 1: 0000.0503 highspeed power enable connect
+   Port 2: 0000.0103 power enable connect
+   Port 3: 0000.0100 power
+   Port 4: 0000.0303 lowspeed power enable connect
+   Port 5: 0000.0100 power
+Device Qualifier (for other device speed):
+  bLength                10
+  bDescriptorType         6
+  bcdUSB               2.00
+  bDeviceClass            9 Hub
+  bDeviceSubClass         0 Unused
+  bDeviceProtocol         0 Full speed (or root) hub
+  bMaxPacketSize0        64
+  bNumConfigurations      1
+Device Status:     0x0001
+  Self Powered
+
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass            9 Hub
+  bDeviceSubClass         0 Unused
+  bDeviceProtocol         1 Single TT
+  bMaxPacketSize0        64
+  idVendor           0x1d6b Linux Foundation
+  idProduct          0x0002 2.0 root hub
+  bcdDevice            4.09
+  iManufacturer           3 Linux 4.9.35-v7 dwc_otg_hcd
+  iProduct                2 DWC OTG Controller
+  iSerial                 1 3f980000.usb
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength           25
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xe0
+      Self Powered
+      Remote Wakeup
+    MaxPower                0mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         9 Hub
+      bInterfaceSubClass      0 Unused
+      bInterfaceProtocol      0 Full speed (or root) hub
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0004  1x 4 bytes
+        bInterval              12
+Hub Descriptor:
+  bLength               9
+  bDescriptorType      41
+  nNbrPorts             1
+  wHubCharacteristic 0x0008
+    Ganged power switching
+    Per-port overcurrent protection
+    TT think time 8 FS bits
+  bPwrOn2PwrGood        1 * 2 milli seconds
+  bHubContrCurrent      0 milli Ampere
+  DeviceRemovable    0x00
+  PortPwrCtrlMask    0xff
+ Hub Port Status:
+   Port 1: 0000.0503 highspeed power enable connect
+Device Status:     0x0001
+  Self Powered
+
+total 4
+drwxr-xr-x 12 root root        3220 Mar 20 22:37 .
+drwxr-xr-x 23 root root        4096 Apr  2  2018 ..
+drwxr-xr-x  2 root root         420 Mar 20 22:37 block
+drwxr-xr-x  3 root root          60 Jan  1  1970 bus
+crw-------  1 root root     10,  63 Mar 20 22:37 cachefiles
+drwxr-xr-x  2 root root        2720 Mar 20 22:37 char
+crw-------  1 root root      5,   1 Mar 20 22:37 console
+crw-------  1 root root     10,  62 Mar 20 22:37 cpu_dma_latency
+drwxr-xr-x  6 root root         120 Mar 20 22:37 disk
+crw-rw----  1 root video    29,   0 Mar 20 22:37 fb0
+lrwxrwxrwx  1 root root          13 Jan  1  1970 fd -> /proc/self/fd
+crw-rw-rw-  1 root root      1,   7 Mar 20 22:37 full
+crw-------  1 root root    254,   0 Mar 20 22:37 gpiochip0
+crw-------  1 root root    254,   1 Mar 20 22:37 gpiochip1
+crw-------  1 root root    254,   2 Mar 20 22:37 gpiochip2
+crw-rw----  1 root gpio    246,   0 Mar 20 22:37 gpiomem
+crw-------  1 root root    249,   0 Mar 20 22:37 hidraw0
+crw-------  1 root root    249,   1 Mar 20 22:37 hidraw1
+crw-------  1 root root    249,   2 Mar 20 22:37 hidraw2
+crw-------  1 root root     10, 183 Mar 20 22:37 hwrng
+lrwxrwxrwx  1 root root          25 Jan  1  1970 initctl -> /run/systemd/initctl/fifo
+drwxr-xr-x  4 root root         180 Mar 20 22:37 input
+crw-r--r--  1 root root      1,  11 Mar 20 22:37 kmsg
+crw-r-----  1 root kmem      1,   1 Mar 20 22:37 mem
+crw-------  1 root root     10,  59 Mar 20 22:37 memory_bandwidth
+brw-rw----  1 root disk    179,   0 Mar 20 22:37 mmcblk0
+brw-rw----  1 root disk    179,   1 Mar 20 22:37 mmcblk0p1
+brw-rw----  1 root disk    179,   2 Mar 20 22:37 mmcblk0p2
+drwxrwxrwt  2 root root          40 Jan  1  1970 mqueue
+crw-------  1 root root     10,  61 Mar 20 22:37 network_latency
+crw-------  1 root root     10,  60 Mar 20 22:37 network_throughput
+crw-rw-rw-  1 root root      1,   3 Mar 20 22:37 null
+crw-rw-rw-  1 root tty       5,   2 Mar 20 22:37 ptmx
+drwxr-xr-x  2 root root           0 Jan  1  1970 pts
+brw-rw----  1 root disk      1,   0 Mar 20 22:37 ram0
+brw-rw----  1 root disk      1,   1 Mar 20 22:37 ram1
+brw-rw----  1 root disk      1,  10 Mar 20 22:37 ram10
+brw-rw----  1 root disk      1,  11 Mar 20 22:37 ram11
+brw-rw----  1 root disk      1,  12 Mar 20 22:37 ram12
+brw-rw----  1 root disk      1,  13 Mar 20 22:37 ram13
+brw-rw----  1 root disk      1,  14 Mar 20 22:37 ram14
+brw-rw----  1 root disk      1,  15 Mar 20 22:37 ram15
+brw-rw----  1 root disk      1,   2 Mar 20 22:37 ram2
+brw-rw----  1 root disk      1,   3 Mar 20 22:37 ram3
+brw-rw----  1 root disk      1,   4 Mar 20 22:37 ram4
+brw-rw----  1 root disk      1,   5 Mar 20 22:37 ram5
+brw-rw----  1 root disk      1,   6 Mar 20 22:37 ram6
+brw-rw----  1 root disk      1,   7 Mar 20 22:37 ram7
+brw-rw----  1 root disk      1,   8 Mar 20 22:37 ram8
+brw-rw----  1 root disk      1,   9 Mar 20 22:37 ram9
+crw-rw-rw-  1 root root      1,   8 Mar 20 22:37 random
+drwxr-xr-x  2 root root          60 Jan  1  1970 raw
+lrwxrwxrwx  1 root root           7 Mar 20 22:37 serial0 -> ttyAMA0
+lrwxrwxrwx  1 root root           5 Mar 20 22:37 serial1 -> ttyS0
+drwxrwxrwt  2 root root         140 Mar 20 22:37 shm
+drwxr-xr-x  2 root root          60 Mar 20 22:37 snd
+lrwxrwxrwx  1 root root          15 Jan  1  1970 stderr -> /proc/self/fd/2
+lrwxrwxrwx  1 root root          15 Jan  1  1970 stdin -> /proc/self/fd/0
+lrwxrwxrwx  1 root root          15 Jan  1  1970 stdout -> /proc/self/fd/1
+crw-rw-rw-  1 root tty       5,   0 Mar 20 22:37 tty
+crw--w----  1 root tty       4,   0 Mar 20 22:37 tty0
+crw-------  1 root tty       4,   1 Mar 20 22:37 tty1
+crw-------  1 root tty       4,  10 Mar 20 22:37 tty10
+crw-------  1 root tty       4,  11 Mar 20 22:37 tty11
+crw-------  1 root tty       4,  12 Mar 20 22:37 tty12
+crw--w----  1 root tty       4,  13 Mar 20 22:37 tty13
+crw--w----  1 root tty       4,  14 Mar 20 22:37 tty14
+crw--w----  1 root tty       4,  15 Mar 20 22:37 tty15
+crw--w----  1 root tty       4,  16 Mar 20 22:37 tty16
+crw--w----  1 root tty       4,  17 Mar 20 22:37 tty17
+crw--w----  1 root tty       4,  18 Mar 20 22:37 tty18
+crw--w----  1 root tty       4,  19 Mar 20 22:37 tty19
+crw-------  1 root tty       4,   2 Mar 20 22:37 tty2
+crw--w----  1 root tty       4,  20 Mar 20 22:37 tty20
+crw--w----  1 root tty       4,  21 Mar 20 22:37 tty21
+crw--w----  1 root tty       4,  22 Mar 20 22:37 tty22
+crw--w----  1 root tty       4,  23 Mar 20 22:37 tty23
+crw--w----  1 root tty       4,  24 Mar 20 22:37 tty24
+crw--w----  1 root tty       4,  25 Mar 20 22:37 tty25
+crw--w----  1 root tty       4,  26 Mar 20 22:37 tty26
+crw--w----  1 root tty       4,  27 Mar 20 22:37 tty27
+crw--w----  1 root tty       4,  28 Mar 20 22:37 tty28
+crw--w----  1 root tty       4,  29 Mar 20 22:37 tty29
+crw-------  1 root tty       4,   3 Mar 20 22:37 tty3
+crw--w----  1 root tty       4,  30 Mar 20 22:37 tty30
+crw--w----  1 root tty       4,  31 Mar 20 22:37 tty31
+crw--w----  1 root tty       4,  32 Mar 20 22:37 tty32
+crw--w----  1 root tty       4,  33 Mar 20 22:37 tty33
+crw--w----  1 root tty       4,  34 Mar 20 22:37 tty34
+crw--w----  1 root tty       4,  35 Mar 20 22:37 tty35
+crw--w----  1 root tty       4,  36 Mar 20 22:37 tty36
+crw--w----  1 root tty       4,  37 Mar 20 22:37 tty37
+crw--w----  1 root tty       4,  38 Mar 20 22:37 tty38
+crw--w----  1 root tty       4,  39 Mar 20 22:37 tty39
+crw-------  1 root tty       4,   4 Mar 20 22:37 tty4
+crw--w----  1 root tty       4,  40 Mar 20 22:37 tty40
+crw--w----  1 root tty       4,  41 Mar 20 22:37 tty41
+crw--w----  1 root tty       4,  42 Mar 20 22:37 tty42
+crw--w----  1 root tty       4,  43 Mar 20 22:37 tty43
+crw--w----  1 root tty       4,  44 Mar 20 22:37 tty44
+crw--w----  1 root tty       4,  45 Mar 20 22:37 tty45
+crw--w----  1 root tty       4,  46 Mar 20 22:37 tty46
+crw--w----  1 root tty       4,  47 Mar 20 22:37 tty47
+crw--w----  1 root tty       4,  48 Mar 20 22:37 tty48
+crw--w----  1 root tty       4,  49 Mar 20 22:37 tty49
+crw-------  1 root tty       4,   5 Mar 20 22:37 tty5
+crw--w----  1 root tty       4,  50 Mar 20 22:37 tty50
+crw--w----  1 root tty       4,  51 Mar 20 22:37 tty51
+crw--w----  1 root tty       4,  52 Mar 20 22:37 tty52
+crw--w----  1 root tty       4,  53 Mar 20 22:37 tty53
+crw--w----  1 root tty       4,  54 Mar 20 22:37 tty54
+crw--w----  1 root tty       4,  55 Mar 20 22:37 tty55
+crw--w----  1 root tty       4,  56 Mar 20 22:37 tty56
+crw--w----  1 root tty       4,  57 Mar 20 22:37 tty57
+crw--w----  1 root tty       4,  58 Mar 20 22:37 tty58
+crw--w----  1 root tty       4,  59 Mar 20 22:37 tty59
+crw-------  1 root tty       4,   6 Mar 20 22:37 tty6
+crw--w----  1 root tty       4,  60 Mar 20 22:37 tty60
+crw--w----  1 root tty       4,  61 Mar 20 22:37 tty61
+crw--w----  1 root tty       4,  62 Mar 20 22:37 tty62
+crw--w----  1 root tty       4,  63 Mar 20 22:37 tty63
+crw-------  1 root tty       4,   7 Mar 20 22:37 tty7
+crw-------  1 root tty       4,   8 Mar 20 22:37 tty8
+crw-------  1 root tty       4,   9 Mar 20 22:37 tty9
+crw-rw----  1 root dialout 204,  64 Mar 20 22:37 ttyAMA0
+crw-------  1 root root      5,   3 Mar 20 22:37 ttyprintk
+crw-rw----  1 root dialout   4,  64 Mar 20 22:37 ttyS0
+crw-rw-rw-  1 root root      1,   9 Mar 20 22:37 urandom
+crw-rw----  1 root video   248,   0 Mar 20 22:37 vchiq
+crw-rw----  1 root video   250,   0 Mar 20 22:37 vcio
+crw-------  1 root root    251,   0 Mar 20 22:37 vc-mem
+crw-rw----  1 root tty       7,   0 Mar 20 22:37 vcs
+crw-rw----  1 root tty       7,   1 Mar 20 22:37 vcs1
+crw-rw----  1 root tty       7,  10 Mar 20 22:37 vcs10
+crw-rw----  1 root tty       7,  11 Mar 20 22:37 vcs11
+crw-rw----  1 root tty       7,  12 Mar 20 22:37 vcs12
+crw-rw----  1 root tty       7,   2 Mar 20 22:37 vcs2
+crw-rw----  1 root tty       7,   3 Mar 20 22:37 vcs3
+crw-rw----  1 root tty       7,   4 Mar 20 22:37 vcs4
+crw-rw----  1 root tty       7,   5 Mar 20 22:37 vcs5
+crw-rw----  1 root tty       7,   6 Mar 20 22:37 vcs6
+crw-rw----  1 root tty       7,   7 Mar 20 22:37 vcs7
+crw-rw----  1 root tty       7,   8 Mar 20 22:37 vcs8
+crw-rw----  1 root tty       7,   9 Mar 20 22:37 vcs9
+crw-rw----  1 root tty       7, 128 Mar 20 22:37 vcsa
+crw-rw----  1 root tty       7, 129 Mar 20 22:37 vcsa1
+crw-rw----  1 root tty       7, 138 Mar 20 22:37 vcsa10
+crw-rw----  1 root tty       7, 139 Mar 20 22:37 vcsa11
+crw-rw----  1 root tty       7, 140 Mar 20 22:37 vcsa12
+crw-rw----  1 root tty       7, 130 Mar 20 22:37 vcsa2
+crw-rw----  1 root tty       7, 131 Mar 20 22:37 vcsa3
+crw-rw----  1 root tty       7, 132 Mar 20 22:37 vcsa4
+crw-rw----  1 root tty       7, 133 Mar 20 22:37 vcsa5
+crw-rw----  1 root tty       7, 134 Mar 20 22:37 vcsa6
+crw-rw----  1 root tty       7, 135 Mar 20 22:37 vcsa7
+crw-rw----  1 root tty       7, 136 Mar 20 22:37 vcsa8
+crw-rw----  1 root tty       7, 137 Mar 20 22:37 vcsa9
+crw-rw----  1 root video   247,   0 Mar 20 22:37 vcsm
+crw-------  1 root root     10, 130 Mar 20 22:37 watchdog
+crw-------  1 root root    253,   0 Mar 20 22:37 watchdog0
+crw-rw-rw-  1 root root      1,   5 Mar 20 22:37 zero
+total 0
+drwxr-xr-x  4 root root     180 Mar 20 22:37 .
+drwxr-xr-x 12 root root    3220 Mar 20 22:37 ..
+drwxr-xr-x  2 root root     120 Mar 20 22:37 by-id
+drwxr-xr-x  2 root root     120 Mar 20 22:37 by-path
+crw-rw----  1 root input 13, 64 Mar 20 22:37 event0
+crw-rw----  1 root input 13, 65 Mar 20 22:37 event1
+crw-rw----  1 root input 13, 66 Mar 20 22:37 event2
+crw-rw----  1 root input 13,  0 Mar 20 22:37 js0
+crw-rw----  1 root input 13, 63 Mar 20 22:37 mice
+
+volt=1.3750V
+temp=65.5'C
+throttled=0x0
+
+arm_freq=900
+audio_pwm_mode=1
+config_hdmi_boost=5
+desired_osc_freq=0x36ee80
+disable_commandline_tags=2
+disable_l2cache=1
+disable_splash=1
+enable_uart=1
+force_eeprom_read=1
+force_pwm_open=1
+force_turbo=1
+framebuffer_ignore_alpha=1
+framebuffer_swap=1
+gpu_freq=400
+hdmi_force_cec_address=65535
+init_uart_clock=0x2dc6c00
+lcd_framerate=60
+over_voltage=3
+over_voltage_avs=0x186a0
+over_voltage_avs_boost=0x19f0a
+overscan_bottom=48
+overscan_left=48
+overscan_right=48
+overscan_top=48
+pause_burst_frames=1
+program_serial_random=1
+sdram_freq=433
+temp_limit=85
+usb_mdio=28672
+
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 4.9.35-v7 (root@wifibroadcast) (gcc version 4.9.2 (Raspbian 4.9.2-10) ) #18 SMP Thu Jan 18 00:41:50 CET 2018
+[    0.000000] CPU: ARMv7 Processor [410fd034] revision 4 (ARMv7), cr=10c5383d
+[    0.000000] CPU: div instructions available: patching division code
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] OF: fdt:Machine model: Raspberry Pi 3 Model B Rev 1.2
+[    0.000000] Memory policy: Data cache writealloc
+[    0.000000] On node 0 totalpages: 225280
+[    0.000000] free_area_init_node: node 0, pgdat 8057a400, node_mem_map b691b000
+[    0.000000]   Normal zone: 1760 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 225280 pages, LIFO batch:31
+[    0.000000] percpu: Embedded 13 pages/cpu @b68d9000 s20736 r8192 d24320 u53248
+[    0.000000] pcpu-alloc: s20736 r8192 d24320 u53248 alloc=13*4096
+[    0.000000] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 223520
+[    0.000000] Kernel command line: 8250.nr_uarts=1 bcm2708_fb.fbwidth=1824 bcm2708_fb.fbheight=984 bcm2708_fb.fbswap=1 vc_mem.mem_base=0x3dc00000 vc_mem.mem_size=0x3f000000  dwc_otg.lpm_enable=0 console=tty12 root=/dev/mmcblk0p2 rootfstype=ext4 nofsck elevator=deadline fsck.mode=skip noswap ro rootwait consoleblank=0 loglevel=3 vt.global_cursor_default=0 fbcon=map:10 dwc_otg.fiq_fsm_enable=0 dwc_otg.fiq_enable=0 dwc_otg.nak_holdoff=0 dwc_otg.int_ep_interval_min=0
+[    0.000000] PID hash table entries: 4096 (order: 2, 16384 bytes)
+[    0.000000] Dentry cache hash table entries: 131072 (order: 7, 524288 bytes)
+[    0.000000] Inode-cache hash table entries: 65536 (order: 6, 262144 bytes)
+[    0.000000] Memory: 887024K/901120K available (4016K kernel code, 131K rwdata, 1232K rodata, 192K init, 361K bss, 14096K reserved, 0K cma-reserved)
+[    0.000000] Virtual kernel memory layout:
+    vector  : 0xffff0000 - 0xffff1000   (   4 kB)
+    fixmap  : 0xffc00000 - 0xfff00000   (3072 kB)
+    vmalloc : 0xb7800000 - 0xff800000   (1152 MB)
+    lowmem  : 0x80000000 - 0xb7000000   ( 880 MB)
+    modules : 0x7f000000 - 0x80000000   (  16 MB)
+      .text : 0x80008000 - 0x803f4260   (4017 kB)
+      .init : 0x8052a000 - 0x8055a000   ( 192 kB)
+      .data : 0x8055a000 - 0x8057ac30   ( 132 kB)
+       .bss : 0x8057c000 - 0x805d6564   ( 362 kB)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] Hierarchical RCU implementation.
+[    0.000000] 	Build-time adjustment of leaf fanout to 32.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] arm_arch_timer: Architected cp15 timer(s) running at 19.20MHz (phys).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x46d987e47, max_idle_ns: 440795202767 ns
+[    0.000005] sched_clock: 56 bits at 19MHz, resolution 52ns, wraps every 4398046511078ns
+[    0.000013] Switching to timer-based delay loop, resolution 52ns
+[    0.000158] Console: colour dummy device 80x30
+[    0.000170] console [tty12] enabled
+[    0.000182] Calibrating delay loop (skipped), value calculated using timer frequency.. 38.40 BogoMIPS (lpj=19200)
+[    0.000192] pid_max: default: 32768 minimum: 301
+[    0.000268] Mount-cache hash table entries: 2048 (order: 1, 8192 bytes)
+[    0.000272] Mountpoint-cache hash table entries: 2048 (order: 1, 8192 bytes)
+[    0.000827] Disabling cpu control group subsystem
+[    0.000837] CPU: Testing write buffer coherency: ok
+[    0.001215] CPU0: update cpu_capacity 1024
+[    0.001220] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+[    0.001255] Setting up static identity map for 0x8200 - 0x8234
+[    0.002398] CPU1: update cpu_capacity 1024
+[    0.002403] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001
+[    0.002782] CPU2: update cpu_capacity 1024
+[    0.002786] CPU2: thread -1, cpu 2, socket 0, mpidr 80000002
+[    0.003155] CPU3: update cpu_capacity 1024
+[    0.003159] CPU3: thread -1, cpu 3, socket 0, mpidr 80000003
+[    0.003207] Brought up 4 CPUs
+[    0.003214] SMP: Total of 4 processors activated (153.60 BogoMIPS).
+[    0.003216] CPU: All CPU(s) started in HYP mode.
+[    0.003218] CPU: Virtualization extensions available.
+[    0.003604] devtmpfs: initialized
+[    0.010306] VFP support v0.3: implementor 41 architecture 3 part 40 variant 3 rev 4
+[    0.010475] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275000 ns
+[    0.010486] futex hash table entries: 1024 (order: 4, 65536 bytes)
+[    0.010612] pinctrl core: initialized pinctrl subsystem
+[    0.010893] NET: Registered protocol family 16
+[    0.012008] DMA: preallocated 1024 KiB pool for atomic coherent allocations
+[    0.017497] Serial: AMBA PL011 UART driver
+[    0.018606] bcm2835-mbox 3f00b880.mailbox: mailbox enabled
+[    0.018912] uart-pl011 3f201000.serial: could not find pctldev for node /soc/gpio@7e200000/uart0_pins, deferring probe
+[    0.045358] bcm2835-dma 3f007000.dma: DMA legacy API manager at b7911000, dmachans=0x1
+[    0.046559] SCSI subsystem initialized
+[    0.046648] usbcore: registered new interface driver usbfs
+[    0.046693] usbcore: registered new interface driver hub
+[    0.046745] usbcore: registered new device driver usb
+[    0.047333] raspberrypi-firmware soc:firmware: Attached to firmware from 2017-07-03 14:20
+[    0.048182] clocksource: Switched to clocksource arch_sys_counter
+[    0.048360] FS-Cache: Loaded
+[    0.048484] CacheFiles: Loaded
+[    0.055680] NET: Registered protocol family 2
+[    0.056144] TCP established hash table entries: 8192 (order: 3, 32768 bytes)
+[    0.056231] TCP bind hash table entries: 8192 (order: 4, 65536 bytes)
+[    0.056354] TCP: Hash tables configured (established 8192 bind 8192)
+[    0.056417] UDP hash table entries: 512 (order: 2, 16384 bytes)
+[    0.056444] UDP-Lite hash table entries: 512 (order: 2, 16384 bytes)
+[    0.056563] NET: Registered protocol family 1
+[    0.057748] workingset: timestamp_bits=30 max_order=18 bucket_order=0
+[    0.064313] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 252)
+[    0.064319] io scheduler noop registered
+[    0.064323] io scheduler deadline registered (default)
+[    0.067767] BCM2708FB: allocated DMA memory f6790000
+[    0.067781] BCM2708FB: allocated DMA channel 0 @ b7911000
+[    0.103406] Console: switching to colour frame buffer device 228x61
+[    0.124742] Serial: 8250/16550 driver, 1 ports, IRQ sharing enabled
+[    0.125650] bcm2835-rng 3f104000.rng: hwrng registered
+[    0.125716] vc-mem: phys_addr:0x00000000 mem_base=0x3dc00000 mem_size:0x3f000000(1008 MiB)
+[    0.134201] brd: module loaded
+[    0.134306] dwc_otg: version 3.00a 10-AUG-2012 (platform bus)
+[    0.362153] Core Release: 2.80a
+[    0.362158] Setting default values for core params
+[    0.362192] Finished setting default values for core params
+[    0.562429] Using Buffer DMA mode
+[    0.562432] Periodic Transfer Interrupt Enhancement - disabled
+[    0.562435] Multiprocessor Interrupt Enhancement - disabled
+[    0.562439] OTG VER PARAM: 0, OTG VER FLAG: 0
+[    0.562448] Dedicated Tx FIFOs mode
+[    0.562555] dwc_otg: Microframe scheduler enabled
+[    0.562583] dwc_otg 3f980000.usb: DWC OTG Controller
+[    0.562611] dwc_otg 3f980000.usb: new USB bus registered, assigned bus number 1
+[    0.562632] dwc_otg 3f980000.usb: irq 39, io mem 0x00000000
+[    0.562671] Init: Port Power? op_state=1
+[    0.562674] Init: Power Port (0)
+[    0.562800] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002
+[    0.562806] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    0.562812] usb usb1: Product: DWC OTG Controller
+[    0.562817] usb usb1: Manufacturer: Linux 4.9.35-v7 dwc_otg_hcd
+[    0.562822] usb usb1: SerialNumber: 3f980000.usb
+[    0.563307] hub 1-0:1.0: USB hub found
+[    0.563330] hub 1-0:1.0: 1 port detected
+[    0.563739] dwc_otg: FIQ disabled
+[    0.563741] dwc_otg: NAK holdoff disabled
+[    0.563744] dwc_otg: FIQ split-transaction FSM disabled
+[    0.563753] Module dwc_common_port init
+[    0.563890] usbcore: registered new interface driver usb-storage
+[    0.564031] mousedev: PS/2 mouse device common for all mice
+[    0.564645] bcm2835-wdt 3f100000.watchdog: Broadcom BCM2835 watchdog timer
+[    0.564820] bcm2835-cpufreq: min=900000 max=900000
+[    0.565257] sdhost-bcm2835 3f202000.sdhost: could not get clk, deferring probe
+[    0.567295] mmc-bcm2835 3f300000.mmc: could not get clk, deferring probe
+[    0.567426] ledtrig-cpu: registered to indicate activity on CPUs
+[    0.567489] hidraw: raw HID events driver (C) Jiri Kosina
+[    0.567594] usbcore: registered new interface driver usbhid
+[    0.567596] usbhid: USB HID core driver
+[    0.568056] vchiq: vchiq_init_state: slot_zero = 0xb9591000, is_master = 0
+[    0.569326] NET: Registered protocol family 17
+[    0.569647] Registering SWP/SWPB emulation handler
+[    0.570265] vc-sm: Videocore shared memory driver
+[    0.570270] [vc_sm_connected_init]: start
+[    0.576717] [vc_sm_connected_init]: end - returning 0
+[    0.579897] 3f201000.serial: ttyAMA0 at MMIO 0x3f201000 (irq = 87, base_baud = 0) is a PL011 rev2
+[    0.580899] sdhost: log_buf @ b9575000 (f5d72000)
+[    0.624200] mmc0: sdhost-bcm2835 loaded - DMA enabled (>1)
+[    0.626255] mmc-bcm2835 3f300000.mmc: mmc_debug:0 mmc_debug2:0
+[    0.626260] mmc-bcm2835 3f300000.mmc: DMA channel allocated
+[    0.670263] of_cfs_init
+[    0.670316] of_cfs_init: OK
+[    0.670830] Waiting for root device /dev/mmcblk0p2...
+[    0.690220] mmc0: host does not support reading read-only switch, assuming write-enable
+[    0.692148] mmc0: new high speed SDHC card at address 0007
+[    0.692541] mmcblk0: mmc0:0007 SD32G 29.0 GiB
+[    0.693651]  mmcblk0: p1 p2
+[    0.695707] mmc1: queuing unknown CIS tuple 0x80 (2 bytes)
+[    0.697211] mmc1: queuing unknown CIS tuple 0x80 (3 bytes)
+[    0.698715] mmc1: queuing unknown CIS tuple 0x80 (3 bytes)
+[    0.701435] mmc1: queuing unknown CIS tuple 0x80 (7 bytes)
+[    0.750905] random: fast init done
+[    0.768251] Indeed it is in host mode hprt0 = 00021501
+[    0.840851] EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Opts: (null)
+[    0.840887] VFS: Mounted root (ext4 filesystem) readonly on device 179:2.
+[    0.849134] mmc1: new high speed SDIO card at address 0001
+[    0.850629] devtmpfs: mounted
+[    0.850837] Freeing unused kernel memory: 192K (8052a000 - 8055a000)
+[    0.850840] This architecture does not have kernel memory protection.
+[    0.932212] usb 1-1: new high-speed USB device number 2 using dwc_otg
+[    0.932304] Indeed it is in host mode hprt0 = 00001101
+[    1.108377] usb 1-1: New USB device found, idVendor=0424, idProduct=9514
+[    1.108385] usb 1-1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+[    1.108887] hub 1-1:1.0: USB hub found
+[    1.108938] hub 1-1:1.0: 5 ports detected
+[    1.134683] systemd[1]: Failed to insert module 'autofs4'
+[    1.134784] systemd[1]: Failed to insert module 'ipv6'
+[    1.396228] usb 1-1.1: new high-speed USB device number 3 using dwc_otg
+[    1.427892] systemd[1]: Cannot add dependency job for unit dbus.socket, ignoring: Unit dbus.socket failed to load: No such file or directory.
+[    1.431741] systemd[1]: Socket service systemd-journald.service not loaded, refusing.
+[    1.431970] systemd[1]: Failed to listen on Journal Socket (/dev/log).
+[    1.432549] systemd[1]: Socket service systemd-journald.service not loaded, refusing.
+[    1.432757] systemd[1]: Failed to listen on Journal Socket.
+[    1.484591] usb 1-1.1: New USB device found, idVendor=0424, idProduct=ec00
+[    1.484601] usb 1-1.1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+[    1.495113] systemd-modules-load[91]: Failed to find module 'v4l2loopback'
+[    1.503902] systemd[1]: Failed to start Load Kernel Modules.
+[    1.563218] usb 1-1.2: new full-speed USB device number 4 using dwc_otg
+[    1.615225] EXT4-fs (mmcblk0p2): re-mounted. Opts: (null)
+[    1.653917] usb 1-1.2: New USB device found, idVendor=0483, idProduct=5710
+[    1.653927] usb 1-1.2: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[    1.653932] usb 1-1.2: Product: FrSky Taranis Joystick
+[    1.653938] usb 1-1.2: Manufacturer: FrSky
+[    1.653943] usb 1-1.2: SerialNumber: 00000000001B
+[    1.656818] input: FrSky FrSky Taranis Joystick as /devices/platform/soc/3f980000.usb/usb1/1-1/1-1.2/1-1.2:1.0/0003:0483:5710.0001/input/input0
+[    1.657370] hid-generic 0003:0483:5710.0001: input,hidraw0: USB HID v1.11 Gamepad [FrSky FrSky Taranis Joystick] on usb-3f980000.usb-1.2/input0
+[    1.720832] systemd-udevd[133]: starting version 215
+[    1.733212] usb 1-1.4: new low-speed USB device number 5 using dwc_otg
+[    1.828862] usb 1-1.4: New USB device found, idVendor=060b, idProduct=3190
+[    1.828873] usb 1-1.4: New USB device strings: Mfr=0, Product=2, SerialNumber=0
+[    1.828877] usb 1-1.4: Product: USB keyboard
+[    1.835429] input: USB keyboard as /devices/platform/soc/3f980000.usb/usb1/1-1/1-1.4/1-1.4:1.0/0003:060B:3190.0002/input/input1
+[    1.888098] hid-generic 0003:060B:3190.0002: input,hidraw1: USB HID v1.11 Keyboard [USB keyboard] on usb-3f980000.usb-1.4/input0
+[    1.894836] input: USB keyboard as /devices/platform/soc/3f980000.usb/usb1/1-1/1-1.4/1-1.4:1.1/0003:060B:3190.0003/input/input2
+[    1.946801] hid-generic 0003:060B:3190.0003: input,hidraw2: USB HID v1.11 Device [USB keyboard] on usb-3f980000.usb-1.4/input1
+[    1.990709] smsc95xx v1.0.5
+[    2.036461] smsc95xx 1-1.1:1.0 eth0: register 'smsc95xx' at usb-3f980000.usb-1.1, smsc95xx USB 2.0 Ethernet, b8:27:eb:f2:73:d4
+[    2.036602] usbcore: registered new interface driver smsc95xx
+[    2.091609] gpiomem-bcm2835 3f200000.gpiomem: Initialised: Registers at 0x3f200000
+[    2.406117] random: crng init done
+[    2.452741] systemd-tmpfiles[248]: chmod(/var) failed: Read-only file system
+[    2.453118] systemd-tmpfiles[248]: chmod(/var/cache) failed: Read-only file system
+[    2.454108] systemd-tmpfiles[248]: chmod(/var/cache/man) failed: Read-only file system
+[    2.454611] systemd-tmpfiles[248]: chmod(/var/lib) failed: Read-only file system
+[    2.454667] systemd-tmpfiles[248]: chmod(/var/lib/systemd) failed: Read-only file system
+[    2.455475] systemd-tmpfiles[248]: chmod(/var/lib/systemd/coredump) failed: Read-only file system
+[    2.455642] systemd-tmpfiles[248]: chmod(/var/lib/container) failed: Read-only file system
+[    2.506972] systemd[1]: Failed to start Daily Cleanup of Temporary Directories.
+[    2.696572] brcmfmac: Firmware version = wl0: May 27 2016 00:13:38 version 7.45.41.26 (r640327) FWID 01-df77e4a7
+[   10.691851] smsc95xx 1-1.1:1.0 eth0: hardware isn't capable of remote wakeup
+[   10.870785] FAT-fs (mmcblk0p1): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+[   14.560227] usb 1-1.3: new high-speed USB device number 6 using dwc_otg
+[   14.669099] usb 1-1.3: New USB device found, idVendor=0cf3, idProduct=9271
+[   14.669106] usb 1-1.3: New USB device strings: Mfr=16, Product=32, SerialNumber=48
+[   14.669111] usb 1-1.3: Product: USB2.0 WLAN
+[   14.669116] usb 1-1.3: Manufacturer: ATHEROS
+[   14.669121] usb 1-1.3: SerialNumber: 12345
+[   14.743501] usb 1-1.3: ath9k_htc: Firmware ath9k_htc/htc_9271-1.4.0.fw requested
+[   14.743823] usbcore: registered new interface driver ath9k_htc
+[   15.025904] usb 1-1.3: ath9k_htc: Transferred FW: ath9k_htc/htc_9271-1.4.0.fw, size: 51008
+
+
+options rt2800usb txpower=0
+options ath9k_htc blink=0 ps_enable=0 debug=0x00000000
+options ath9k_hw txpower=58 aifs=2 cwmin=0 cwmax=3 cck_sifs=10 ofdm_sifs=16 slottime=9 thresh62=26
+
+
+FREQ=2472
+FREQSCAN=N
+TXMODE=single
+MAC_RX[0]=00c0ca91ee30
+FREQ_RX[0]=2484
+MAC_RX[1]=24050f953384
+FREQ_RX[1]=2484
+MAC_RX[2]=24050f953378
+FREQ_RX[2]=2484
+MAC_RX[3]=24050f953373
+FREQ_RX[3]=2484
+MAC_TX[0]=24050f953378
+FREQ_TX[0]=5745
+MAC_TX[1]=ec086b1c7834
+FREQ_TX[1]=2472
+DATARATE=4
+FPS=48
+VIDEO_BLOCKS=8
+VIDEO_FECS=4
+VIDEO_BLOCKLENGTH=1024
+TELEMETRY_TRANSMISSION=wbc
+TELEMETRY_UPLINK=mavlink
+RC=mavlink
+VIDEO_BITRATE=auto
+BITRATE_PERCENT=65
+CTS_PROTECTION=auto
+WIDTH=1280
+HEIGHT=720
+KEYFRAMERATE=5
+EXTRAPARAMS="-cd H264 -n -fl -ih -pf high -if both -ex sports -mm average -awb horizon"
+FC_RC_SERIALPORT=/dev/serial0
+FC_RC_BAUDRATE=57600
+FC_TELEMETRY_SERIALPORT=/dev/serial0
+FC_TELEMETRY_BAUDRATE=57600
+FC_MSP_SERIALPORT=/dev/ttyUSB0
+FC_MSP_BAUDRATE=115200
+AIRODUMP=N
+AIRODUMP_SECONDS=25
+WIFI_HOTSPOT=N
+WIFI_HOTSPOT_NIC=internal
+ETHERNET_HOTSPOT=N
+ENABLE_SCREENSHOTS=N
+VIDEO_TMP=memory
+RELAY=N
+RELAY_NIC=112233445566
+RELAY_FREQ=5220
+QUIET=N
+EXTERNAL_TELEMETRY_SERIALPORT_GROUND=/dev/serial0
+EXTERNAL_TELEMETRY_SERIALPORT_GROUND_BAUDRATE=57600
+ENABLE_SERIAL_TELEMETRY_OUTPUT=N
+TELEMETRY_OUTPUT_SERIALPORT_GROUND=/dev/serial0
+TELEMETRY_OUTPUT_SERIALPORT_GROUND_BAUDRATE=57600
+FORWARD_STREAM=rtp
+VIDEO_UDP_PORT=5600
+MAVLINK_FORWARDER=mavlink-routerd
+DEBUG=N
+
+
+/* TELEMETRY PROTOCOL */
+/* ------------------------------------------------------------*/
+/* MAVLINK -> Mavlink protocol (APM/Pixhawk)
+/* LTM -> Light Telemetry (iNav/Cleanflight/Betaflight)
+/* FRSKY -> Older Frsky protocol (Frsky D-series receivers)
+/* SMARTPORT -> Newer Frsky protocol (Frsky X-series receivers)
+/* ------------------------------------------------------------*/
+#define MAVLINK
+
+
+/* MISC SETTINGS */
+/* --------------*/
+#define IMPERIAL false // set to true for imperial units, false for metric
+#define COPTER true // set to true for copter, false for plane
+
+
+/* DISPLAY */
+/* --------*/
+#define COLOR 255,255,255,0.3 // Fill color. First three numbers RGB color, last number opacity. 1.0 = fully visible, 0.0 = fully opaque
+#define OUTLINECOLOR 0,0,0,0.7 // Outline color. First three numbers RGB color, last number opacity. 1.0 = fully visible, 0.0 = fully opaque
+#define OUTLINEWIDTH 1 // Outline width, default is 1, useable range from 1-3. Set to 0 to disable outline
+#define FONT "Archivo-Bold.ttf" // Font to use, case-sensitive!
+#define GLOBAL_SCALE 1.2 // Global scale factor, 1.2 is default, useable range is from about 0.5 to 2
+
+
+/* OSD elements positions, sizes and options */
+/* ------------------------------------------*/
+/* POS_X - from left to right (0-100)
+/* POS_Y - from bottom to top (0-100)
+/* SCALE - scale factor
+/* ------------------------------------------*/
+#define DOWNLINK_RSSI
+#define DOWNLINK_RSSI_POS_X 13
+#define DOWNLINK_RSSI_POS_Y 89
+#define DOWNLINK_RSSI_SCALE 1.2
+#define DOWNLINK_RSSI_FEC_BAR true // set to true to draw FEC bar display
+
+#define DOWNLINK_RSSI_DETAILED
+#define DOWNLINK_RSSI_DETAILED_POS_X 9
+#define DOWNLINK_RSSI_DETAILED_POS_Y 78
+#define DOWNLINK_RSSI_DETAILED_SCALE 0.75
+
+#define UPLINK_RSSI
+#define UPLINK_RSSI_POS_X 92
+#define UPLINK_RSSI_POS_Y 89
+#define UPLINK_RSSI_SCALE 1.1
+
+#define RSSI_POS_X 32
+#define RSSI_POS_Y 89
+#define RSSI_SCALE 1
+
+#define KBITRATE
+#define KBITRATE_POS_X 73
+#define KBITRATE_POS_Y 91
+#define KBITRATE_SCALE 0.8
+
+#define SYS
+#define SYS_POS_X 91
+#define SYS_POS_Y 78
+#define SYS_SCALE 0.7
+
+#define HOME_ARROW
+#define HOME_ARROW_POS_X 50
+#define HOME_ARROW_POS_Y 78
+#define HOME_ARROW_SCALE 1
+#define HOME_ARROW_USECOG false // use course over ground (from gps) instead of magnetometer
+#define HOME_ARROW_INVERT false // set to true if arrow points in the opposite direction
+
+#define BATT_STATUS
+#define BATT_STATUS_POS_X 19
+#define BATT_STATUS_POS_Y 6
+#define BATT_STATUS_SCALE 1
+#define BATT_STATUS_CURRENT true // set to true to draw current (ampere) (mavlink only)
+
+#define BATT_GAUGE
+#define BATT_GAUGE_POS_X 3
+#define BATT_GAUGE_POS_Y 6
+#define BATT_GAUGE_SCALE 1
+#define CELLS 3 // set to number of cells used
+#define CELL_MAX 4.20 // maximum cell voltage
+#define CELL_MIN 3.20 // minimum cell voltage
+#define CELL_WARNING1 3.50 // warning level 1 -> orange, low
+#define CELL_WARNING2 3.40 // warning level 2 -> red, critical
+
+#define COMPASS
+#define COMPASS_POS_Y 87
+#define COMPASS_SCALE 1
+#define COMPASS_USECOG false // set to true to use course over ground (from gps) instead of magnetometer
+
+#define ALTLADDER
+#define ALTLADDER_POS_X 73
+#define ALTLADDER_SCALE 1.2
+#define ALTLADDER_USEBAROALT false // set to true to use barometer altitude instead of gps altitude
+
+#define SPEEDLADDER
+#define SPEEDLADDER_POS_X 27
+#define SPEEDLADDER_SCALE 1.2
+#define SPEEDLADDER_USEAIRSPEED false // set to true to use GPS speed instead of airspeed
+
+#define AHI
+#define AHI_SCALE 1.2
+#define AHI_LADDER false // set to true to draw ladders above and below the center horizon line
+#define AHI_INVERT_ROLL -1 // default -1, set to 1 if roll moves in the wrong direction
+#define AHI_INVERT_PITCH 1 // default -1, set to 1 if pitch moves in the wrong direction
+#define AHI_SWAP_ROLL_AND_PITCH true // set to true to swap roll and pitch (Frsky and Smartport only)
+
+#define POSITION
+#define POSITION_POS_X 76
+#define POSITION_POS_Y 6
+#define POSITION_SCALE 0.8
+
+#define SAT
+#define SAT_POS_X 6
+#define SAT_POS_Y 12
+#define SAT_SCALE 0.8
+
+#define DISTANCE
+#define DISTANCE_POS_X 95
+#define DISTANCE_POS_Y 6
+#define DISTANCE_SCALE 1
+
+#define FLIGHTMODE
+#define FLIGHTMODE_POS_X 42
+#define FLIGHTMODE_POS_Y 6
+#define FLIGHTMODE_SCALE 1
+
+#define CLIMB
+#define CLIMB_POS_X 93
+#define CLIMB_POS_Y 26
+#define CLIMB_SCALE 0.8
+
+#define AIRSPEED_POS_X 93
+#define AIRSPEED_POS_Y 21
+#define AIRSPEED_SCALE 0.8
+
+#define BAROALT
+#define BAROALT_POS_X 93
+#define BAROALT_POS_Y 16
+#define BAROALT_SCALE 0.8
+
+#define COURSE_OVER_GROUND_POS_X 92
+#define COURSE_OVER_GROUND_POS_Y 65
+#define COURSE_OVER_GROUND_SCALE 0.8
+
+#define GPSSPEED
+#define GPSSPEED_POS_X 93
+#define GPSSPEED_POS_Y 60
+#define GPSSPEED_SCALE 0.8
+
+#define GPSALT_POS_X 92
+#define GPSALT_POS_Y 55
+#define GPSALT_SCALE 0.8
+
+#define WARNING_POS_X 50
+#define WARNING_POS_Y 25
+
+
+
+
+#define JSSWITCHES	16	/// 8 for 8 axis + 8 switches = 16 channels / 16 for 8 + 16 = 24 channels to send
+
+#define ROLL_AXIS      0
+#define PITCH_AXIS     1
+#define YAW_AXIS       3
+#define THROTTLE_AXIS  2
+#define AUX1_AXIS      4
+#define AUX2_AXIS      5
+#define AUX3_AXIS      6
+#define AUX4_AXIS      7
+
+
+#define AXIS0_INITIAL 1500
+#define AXIS1_INITIAL 1500
+#define AXIS2_INITIAL 1020
+#define AXIS3_INITIAL 1500
+#define AXIS4_INITIAL 1000
+#define AXIS5_INITIAL 1000
+#define AXIS6_INITIAL 1000
+#define AXIS7_INITIAL 1000
+
+#define UPDATE_NTH_TIME 8 // 3 = 6ms (167Hz), 4 = 8ms (125Hz), 5 = 10ms (100Hz), 6 = 12ms (83Hz), 7 = 14ms (71Hz), 8 = 16ms (63Hz), 9 = 18ms (56Hz), 10 = 20ms (50Hz) 
+#define TRANSMISSIONS 2
+
+
+
+hw_mode=g
+channel=1
+ssid=EZ-WifiBroadcast
+wpa_passphrase=wifibroadcast
+wpa=2
+wpa_key_mgmt=WPA-PSK
+rsn_pairwise=CCMP
+interface=wifihotspot0
+driver=nl80211
+macaddr_acl=0
+auth_algs=1
+ignore_broadcast_ssid=0
+ieee80211n=1          # 802.11n support
+wmm_enabled=1         # QoS support
+
+supported_rates=240 360
+basic_rates=240 360
+
+disassoc_low_ack=0
+ap_max_inactivity=3600
+
+tx_queue_data3_aifs=1
+tx_queue_data3_cwmin=3
+tx_queue_data3_cwmax=7
+tx_queue_data3_burst=0
+tx_queue_data2_aifs=1
+tx_queue_data2_cwmin=3
+tx_queue_data2_cwmax=7
+tx_queue_data2_burst=0
+tx_queue_data1_aifs=1
+tx_queue_data1_cwmin=3
+tx_queue_data1_cwmax=7
+tx_queue_data1_burst=0
+tx_queue_data0_aifs=1
+tx_queue_data0_cwmin=3
+tx_queue_data0_cwmax=7
+tx_queue_data0_burst=0
+
+
+wmm_ac_bk_cwmin=2
+wmm_ac_bk_cwmax=2
+wmm_ac_bk_aifs=3
+wmm_ac_bk_txop_limit=47
+wmm_ac_bk_acm=0
+wmm_ac_be_aifs=2
+wmm_ac_be_cwmin=2
+wmm_ac_be_cwmax=3
+wmm_ac_be_txop_limit=47
+wmm_ac_be_acm=0
+wmm_ac_vi_aifs=2
+wmm_ac_vi_cwmin=2
+wmm_ac_vi_cwmax=3
+wmm_ac_vi_txop_limit=47
+wmm_ac_vi_acm=0
+wmm_ac_vo_aifs=2
+wmm_ac_vo_cwmin=2
+wmm_ac_vo_cwmax=3
+wmm_ac_vo_txop_limit=47
+wmm_ac_vo_acm=0

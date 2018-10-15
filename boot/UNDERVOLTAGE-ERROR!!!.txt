@@ -1,0 +1,422 @@
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  ---------------------------------------------------------------------------------------------------
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  ---------------------------------------------------------------------------------------------------
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |
+  ---------------------------------------------------------------------------------------------------
+  | ERROR: Under-Voltage detected on the TX Pi. Your Pi is not supplied with stable 5 Volts.        |
+  | Either your power-supply or wiring is not sufficent, check the wiring instructions in the Wiki. |
+  | Video Bitrate will be reduced to 1000kbit to reduce current consumption!                        |
+  | When you have fixed wiring/power-supply, delete this file and make sure it doesn't re-appear!   |

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+gst-launch-1.0 \
+v4l2src device=/dev/video2 \
+!  videoconvert \
+!  videoscale \
+!  video/x-raw,format=mjpg, width=640, height=480, framerate=8/1 \
+!  autovideosink
