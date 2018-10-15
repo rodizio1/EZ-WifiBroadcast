@@ -1,0 +1,16 @@
+// display of TOTALS
+#define TOTAL_AMPS true // set to false if you dont want to see this
+#define TOTAL_AMPS_POS_X 19
+#define TOTAL_AMPS_POS_Y 15
+#define TOTAL_AMPS_SCALE 1
+
+#define TOTAL_DIST true // set to false if you dont want to see this
+#define TOTAL_DIST_POS_X 6
+#define TOTAL_DIST_POS_Y 19
+#define TOTAL_DIST_SCALE 0.8
+
+#define TOTAL_TIME true // set to false if you dont want to see this
+#define TOTAL_TIME_POS_X 19
+#define TOTAL_TIME_POS_Y 19
+#define TOTAL_TIME_SCALE 0.8
+//---end of TOTALS
