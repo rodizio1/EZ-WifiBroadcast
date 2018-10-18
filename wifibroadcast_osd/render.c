@@ -15,6 +15,16 @@ float home_lat;
 float home_lon;
 int home_counter;
 char buffer[50];
+float mAhDrawRaw, mAhDrawn;
+bool first = true;
+long long lastT, timeDiff;
+
+long long current_ts() {
+    struct timeval te;
+    gettimeofday(&te, NULL); // get current time
+    long long milliseconds = te.tv_sec*1000LL + te.tv_usec/1000; // calculate milliseconds
+    return milliseconds;
+}
 
 int getWidth(float pos_x_percent) {
 	return (width * 0.01f * pos_x_percent);
@@ -99,6 +109,10 @@ void render(telemetry_data_t *td) {
 	draw_bat_status(td->voltage, td->ampere, getWidth(20), getHeight(5), scale_factor * 3);
 #endif
 
+#ifdef BATT_MAH
+    draw_batt_mah(td->voltage, td->ampere, BATT_MAH_POS_X, BATT_MAH_POS_Y, BATT_MAH_SCALE * GLOBAL_SCALE);
+#endif
+	
 #ifdef BATT_REMAINING
 	draw_bat_remaining(((td->voltage/CELLS)-CELL_MIN)/(CELL_MAX-CELL_MIN)*100, getWidth(5), getHeight(5), 3);
 #endif
@@ -590,6 +604,24 @@ void draw_bat_status(float voltage, float current, int pos_x, int pos_y, float s
 	sprintf(buffer, "%.2fA", current);
 	TextEnd(pos_x, pos_y + 40, buffer, SansTypeface, scale);
 #endif
+}
+
+void draw_batt_mah(float voltage, float current, float pos_x, float pos_y, float scale){
+    float text_scale = getWidth(2) * scale;
+
+    VGfloat height_text = TextHeight(myfont, text_scale)+getHeight(0.3)*scale;
+    if(first){ //little trick needed to be done to take the initial time
+        lastT = current_ts();
+        first = false;
+    }
+    timeDiff = current_ts() - lastT; //get the time difference between last time and new time
+    mAhDrawRaw = current * timeDiff / 3600; //calculate the mAh
+    mAhDrawn += mAhDrawRaw; //add the calculated mAh the total used
+
+    lastT = current_ts(); //set lastT back to current time
+    sprintf(buffer, "%.f", mAhDrawn);
+    TextEnd(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
+    Text(getWidth(pos_x), getHeight(pos_y), " mAh", myfont, text_scale*0.6);
 }
 
 
