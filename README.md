@@ -6,18 +6,18 @@ The goal of this project is to make the usage of [Befinitiv's Wifibroadcast](htt
 |Head to the [Wiki page](https://github.com/bortek/EZ-WifiBroadcast/wiki) for instructions, features and Download links|
 |:-----:|
 
+### Downloads ###
+
+Release candidate(recommended): v1.6RC6  
+* [EZ-Wifibroadcast-1.6RC6.zip on Google Drive](https://drive.google.com/open?id=1OgKU4dQoQWsV4T4tVOjq_XM0VrXMXaxs) or [from mirror on Freehoster (beware of ads)](https://www.file-upload.net/en/download-13063079/EZ-Wifibroadcast-1.6RC6.zip.html)
+
+
+* Stable version: v1.5  
+[EZ-Wifibroadcast-1.5.zip on Gdrive](https://drive.google.com/uc?id=0B8ke2EKPqvORdDNkSTdwNDZQZnc&export=download)
+
 _**IMPORTANT: Read and follow the [wiring instructions](https://github.com/bortek/EZ-WifiBroadcast/wiki/Wiring)**_
 
 
-### Downloads ###
-
-
-Release candidate(recommended): v1.6RC6  
-[EZ-Wifibroadcast-1.6RC6.zip on Google Drive](https://drive.google.com/open?id=1OgKU4dQoQWsV4T4tVOjq_XM0VrXMXaxs) or [from mirror on Freehoster (beware of ads)](https://www.file-upload.net/en/download-13063079/EZ-Wifibroadcast-1.6RC6.zip.html)
-
-
-Stable version: v1.5  
-[EZ-Wifibroadcast-1.5.zip on Gdrive](https://drive.google.com/uc?id=0B8ke2EKPqvORdDNkSTdwNDZQZnc&export=download)
 
 ### For Developers ### 
 
