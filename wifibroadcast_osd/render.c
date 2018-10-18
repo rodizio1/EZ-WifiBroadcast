@@ -1,941 +1,1284 @@
+// characters osdicons.ttf
+// round  triangle   
+// satellite    
+// cpu  
+// bars ▁▂▃▄▅▆▇█
+// arrows ↥ ↦ ↤    
+// warning              
+// down/up stream  
+// RSSI     
+// cam  
+// double caret    
+// please wait  
+// wind      
+// thermometer  
+// time   
+// pressure  
+// speed  
+// windhose    
+// cog    
 #include <stdint.h>
 #include "render.h"
 #include "telemetry.h"
 #include "osdconfig.h"
 
-int width, height;
 #define TO_FEET 3.28084
 #define TO_MPH 0.621371
 #define CELL_WARNING_PCT1 (CELL_WARNING1-CELL_MIN)/(CELL_MAX-CELL_MIN)*100
 #define CELL_WARNING_PCT2 (CELL_WARNING2-CELL_MIN)/(CELL_MAX-CELL_MIN)*100
 
+int width, height;
+float scale_factor_font;
 bool setting_home;
 bool home_set;
 float home_lat;
 float home_lon;
 int home_counter;
-char buffer[50];
+char buffer[40];
+Fontinfo myfont,osdicons;
 
+int packetslost_last[6];
+
+int fecs_skipped_last;
+int injection_failed_last;
+int tx_restart_count_last;
+
+bool no_signal = false;
+
+long long amps_ts; long long dist_ts; long long time_ts;
+float total_amps; float total_dist; float total_time;
+
+long long current_ts() {
+    struct timeval te;
+    gettimeofday(&te, NULL); // get current time
+    long long milliseconds = te.tv_sec*1000LL + te.tv_usec/1000; // calculate milliseconds
+    return milliseconds;
+}
 int getWidth(float pos_x_percent) {
-	return (width * 0.01f * pos_x_percent);
+    return (width * 0.01f * pos_x_percent);
 }
-
 int getHeight(float pos_y_percent) {
-	return (height * 0.01f * pos_y_percent);
+    return (height * 0.01f * pos_y_percent);
 }
-
-int scale_factor;
-
+float getOpacity(int r, int g, int b, float o) {
+    if (o<0.5) o = o*2;
+    return o;
+}
+void setfillstroke() {
+    Fill(COLOR);
+    Stroke(OUTLINECOLOR);
+    StrokeWidth(OUTLINEWIDTH);
+}
 void render_init() {
-        init(&width, &height);
-	scale_factor = width/170 * FONTSIZE;
+    char filename[100] = "/boot/osdfonts/";
+    InitShapes(&width, &height);
+
+    strcat(filename, FONT);
+    myfont = LoadTTFFile(filename);
+    if (!myfont) {
+        fputs("ERROR: Failed to load font!", stderr);
+        exit(1);
+    }
+
+    osdicons = LoadTTFFile("/boot/osdfonts/osdicons.ttf");
+    if (!osdicons) {
+        fputs("ERROR: Failed to load osdicons.ttf font!", stderr);
+        exit(1);
+    }
+
+    home_counter = 0;
+//  vgSeti(VG_MATRIX_MODE, VG_MATRIX_GLYPH_USER_TO_SURFACE);
+
+
+	amps_ts = dist_ts = time_ts = current_ts(); //wowi
+}
+void render(telemetry_data_t *td, uint8_t cpuload_gnd, uint8_t temp_gnd, uint8_t undervolt, int osdfps) {
+    Start(width,height); // render start
+    setfillstroke();
+
+    if (td->rx_status_sysair->undervolt == 1) draw_message(0,"Undervoltage on TX","Check wiring/power-supply","Bitrate limited to 1 Mbit",WARNING_POS_X, WARNING_POS_Y, GLOBAL_SCALE);
+    if (undervolt == 1) draw_message(0,"Undervoltage on RX","Check wiring/power-supply"," ",WARNING_POS_X, WARNING_POS_Y, GLOBAL_SCALE);
+
+    #if defined(FRSKY)
+    //we assume that we have a fix if we get the NS and EW values from frsky protocol
+    if (((td->ew == 'E' || td->ew == 'W') && (td->ns == 'N' || td->ns == 'S')) && !home_set){
+	setting_home = true;
+    } else { //no fix
+	setting_home = false;
 	home_counter = 0;
-//        vgSeti(VG_MATRIX_MODE, VG_MATRIX_GLYPH_USER_TO_SURFACE);
-}
+    }
+    if (setting_home && !home_set){
+	//if 20 packages after each other have a fix set home
+	if (++home_counter == 20){
+	    home_set = true;
+	    home_lat = (td->ns == 'N'? 1:-1) * td->latitude;
+	    home_lon = (td->ew == 'E'? 1:-1) * td->longitude;
+	}
+    }
+    #endif
+    #if defined(MAVLINK) || defined(SMARTPORT)
+    // if atleast 2D satfix is reported by flightcontrol
+    if (td->fix > 2 && !home_set){
+	setting_home = true;
+    } else { //no fix
+	setting_home = false;
+	home_counter = 0;
+    }
 
-
-
-void render(telemetry_data_t *td) {
-
-#ifdef ALT
-//	if (home_set){
-		#ifdef IMPERIAL
-
-		#if USEBAROALT == true
-		draw_altitude((int)(td->baro_altitude * TO_FEET), getWidth(60), getHeight(50), DRAW_ALT_LADDER, 2);
-		#else
-		draw_altitude((int)(td->altitude * TO_FEET), getWidth(60), getHeight(50), DRAW_ALT_LADDER, 2);
-		#endif
-
-		#else
-
-		#if USEBAROALT == true
-		draw_altitude((int)td->baro_altitude, getWidth(60), getHeight(50), DRAW_ALT_LADDER, 2);
-		#else
-		draw_altitude((int)td->altitude, getWidth(60), getHeight(50), DRAW_ALT_LADDER, 2);
-		#endif
-
-		#endif
-//	}
+    if (setting_home && !home_set){
+	//if 20 packages after each other have a fix set home
+	if (++home_counter == 20){
+	    home_set = true;
+	    home_lat = td->latitude;
+	    home_lon = td->longitude;
+	}
+    }
+    #endif
+    #if defined(LTM)
+    //LTM makes it easy: If LTM O-frame reports home fix,
+    //set home position and use home lat/long from LTM O-frame
+    if (td->home_fix == 1){
+	home_set = true;
+	home_lat = td->ltm_home_latitude;
+	home_lon = td->ltm_home_longitude;
+    }
+    #endif
+//    draw_osdinfos(osdfps, 20, 20, 1);
+#ifdef UPLINK_RSSI
+    draw_uplink_signal(td->rx_status_uplink->adapter[0].current_signal_dbm, td->rx_status_uplink->lost_packet_cnt, td->rx_status_rc->adapter[0].current_signal_dbm, td->rx_status_rc->lost_packet_cnt, UPLINK_RSSI_POS_X, UPLINK_RSSI_POS_Y, UPLINK_RSSI_SCALE * GLOBAL_SCALE);
 #endif
-
-#ifdef SPEED
-//	if (home_set){
-		#ifdef IMPERIAL
-
-		#if USEAIRSPEED == true
-		draw_speed((int)td->airspeed*TO_MPH, getWidth(40), getHeight(50), DRAW_SPEED_LADDER, 2);
-		#else
-		draw_speed((int)td->speed*TO_MPH, getWidth(40), getHeight(50), DRAW_SPEED_LADDER, 2);
-		#endif
-
-		#else
-
-		#if USEAIRSPEED == true
-		draw_speed((int)td->airspeed, getWidth(40), getHeight(50), DRAW_SPEED_LADDER, 2);
-		#else
-		draw_speed((int)td->speed, getWidth(40), getHeight(50), DRAW_SPEED_LADDER, 2);
-		#endif
-
-		#endif
-//	}
+#ifdef KBITRATE
+    draw_kbitrate(td->rx_status_sysair->cts, td->rx_status->kbitrate, td->rx_status_sysair->bitrate_measured_kbit, td->rx_status_sysair->bitrate_kbit, td->rx_status_sysair->skipped_fec_cnt, td->rx_status_sysair->injection_fail_cnt,td->rx_status_sysair->injection_time_block,KBITRATE_POS_X, KBITRATE_POS_Y, KBITRATE_SCALE * GLOBAL_SCALE);
 #endif
-
+#ifdef SYS
+    draw_sys(td->rx_status_sysair->cpuload, td->rx_status_sysair->temp, cpuload_gnd, temp_gnd, SYS_POS_X, SYS_POS_Y, SYS_SCALE * GLOBAL_SCALE);
+#endif
+#ifdef FLIGHTMODE
+    #ifdef MAVLINK
+    draw_mode(td->mav_flightmode, td->armed, FLIGHTMODE_POS_X, FLIGHTMODE_POS_Y, FLIGHTMODE_SCALE * GLOBAL_SCALE);
+    #endif
+#endif
+#if defined(RSSI)
+    draw_rssi(td->rssi, RSSI_POS_X, RSSI_POS_Y, RSSI_SCALE * GLOBAL_SCALE);
+#endif
+#if defined(CLIMB) && defined(MAVLINK)
+    draw_climb(td->mav_climb, CLIMB_POS_X, CLIMB_POS_Y, CLIMB_SCALE * GLOBAL_SCALE);
+#endif
+#ifdef AIRSPEED
+    draw_airspeed((int)td->airspeed, AIRSPEED_POS_X, AIRSPEED_POS_Y, AIRSPEED_SCALE * GLOBAL_SCALE);
+#endif
+#ifdef GPSSPEED
+    draw_gpsspeed((int)td->speed, GPSSPEED_POS_X, GPSSPEED_POS_Y, GPSSPEED_SCALE * GLOBAL_SCALE);
+#endif
+#ifdef BAROALT
+    draw_baroalt(td->baro_altitude, BAROALT_POS_X, BAROALT_POS_Y, BAROALT_SCALE * GLOBAL_SCALE);
+#endif
+#ifdef GPSALT
+    draw_gpsalt(td->altitude, GPSALT_POS_X, GPSALT_POS_Y, GPSALT_SCALE * GLOBAL_SCALE);
+#endif
+#ifdef COURSE_OVER_GROUND
+    draw_cog((int)td->cog, COURSE_OVER_GROUND_POS_X, COURSE_OVER_GROUND_POS_Y, COURSE_OVER_GROUND_SCALE * GLOBAL_SCALE);
+#endif
+#ifdef ALTLADDER
+    #if IMPERIAL == true
+	#if ALTLADDER_USEBAROALT == true
+	draw_alt_ladder((int)(td->baro_altitude * TO_FEET), ALTLADDER_POS_X, 50, ALTLADDER_SCALE * GLOBAL_SCALE);
+	#else
+	draw_alt_ladder((int)(td->altitude * TO_FEET), ALTLADDER_POS_X, 50, ALTLADDER_SCALE * GLOBAL_SCALE);
+    #endif
+    #else
+	#if ALTLADDER_USEBAROALT == true
+	draw_alt_ladder((int)td->baro_altitude, ALTLADDER_POS_X, 50, ALTLADDER_SCALE * GLOBAL_SCALE);
+	#else
+	draw_alt_ladder((int)td->altitude, ALTLADDER_POS_X, 50, ALTLADDER_SCALE * GLOBAL_SCALE);
+	#endif
+    #endif
+#endif
+#ifdef SPEEDLADDER
+    #if IMPERIAL == true
+	#if SPEEDLADDER_USEAIRSPEED == true
+	draw_speed_ladder((int)td->airspeed*TO_MPH, SPEEDLADDER_POS_X, 50, SPEEDLADDER_SCALE * GLOBAL_SCALE);
+	#else
+	draw_speed_ladder((int)td->speed*TO_MPH, SPEEDLADDER_POS_X, 50, SPEEDLADDER_SCALE * GLOBAL_SCALE);
+    #endif
+    #else
+	#if SPEEDLADDER_USEAIRSPEED == true
+	draw_speed_ladder((int)td->airspeed, SPEEDLADDER_POS_X, 50, SPEEDLADDER_SCALE * GLOBAL_SCALE);
+	#else
+	draw_speed_ladder((int)td->speed, SPEEDLADDER_POS_X, 50, SPEEDLADDER_SCALE * GLOBAL_SCALE);
+	#endif
+    #endif
+#endif
 #ifdef HOME_ARROW
-	if (home_set)
-		#ifdef FRSKY
-		paintArrow((int)course_to((td->ns == 'N'? 1:-1) *td->latitude, (td->ns == 'E'? 1:-1) *td->longitude, home_lat, home_lon), getWidth(50), getHeight(80));
-		#else
-		paintArrow((int)course_to(home_lat, home_lon, td->latitude, td->longitude), getWidth(50), getHeight(80));
-		#endif
+    #ifdef FRSKY
+//  draw_home_arrow((int)course_to((td->ns == 'N'? 1:-1) *td->latitude, (td->ns == 'E'? 1:-1) *td->longitude, home_lat, home_lon), HOME_ARROW_POS_X, HOME_ARROW_POS_Y, HOME_ARROW_SCALE * GLOBAL_SCALE);
+    #else
+    #if HOME_ARROW_USECOG == true
+    draw_home_arrow(course_to(home_lat, home_lon, td->latitude, td->longitude), td->cog, HOME_ARROW_POS_X, HOME_ARROW_POS_Y, HOME_ARROW_SCALE * GLOBAL_SCALE);
+    #else
+    draw_home_arrow(course_to(home_lat, home_lon, td->latitude, td->longitude), td->heading, HOME_ARROW_POS_X, HOME_ARROW_POS_Y, HOME_ARROW_SCALE * GLOBAL_SCALE);
+    #endif
+    if(td->heading>=360) td->heading=td->heading-360; // ?
+    #endif
 #endif
-
-#ifdef HEADING
-	draw_compass(td->heading, getWidth(50), getHeight(86), DRAW_COURSE_LADDER, 1.5);
+#ifdef COMPASS
+    #if COMPASS_USECOG == true
+    draw_compass(td->cog, course_to(home_lat, home_lon, td->latitude, td->longitude), 50, COMPASS_POS_Y, COMPASS_SCALE * GLOBAL_SCALE);
+    #else
+    draw_compass(td->heading, course_to(home_lat, home_lon, td->latitude, td->longitude), 50, COMPASS_POS_Y, COMPASS_SCALE * GLOBAL_SCALE);
+    #endif
 #endif
-
-
 #ifdef BATT_STATUS
-	draw_bat_status(td->voltage, td->ampere, getWidth(20), getHeight(5), scale_factor * 3);
+    draw_batt_status(td->voltage, td->ampere, BATT_STATUS_POS_X, BATT_STATUS_POS_Y, BATT_STATUS_SCALE * GLOBAL_SCALE);
 #endif
-
-#ifdef BATT_REMAINING
-	draw_bat_remaining(((td->voltage/CELLS)-CELL_MIN)/(CELL_MAX-CELL_MIN)*100, getWidth(5), getHeight(5), 3);
+#ifdef TOTAL_AMPS
+	draw_TOTAL_AMPS(td->ampere, TOTAL_AMPS_POS_X, TOTAL_AMPS_POS_Y, TOTAL_AMPS_SCALE * GLOBAL_SCALE);
 #endif
-
+#ifdef TOTAL_DIST
+	draw_TOTAL_DIST((int)td->speed, TOTAL_DIST_POS_X, TOTAL_DIST_POS_Y, TOTAL_DIST_SCALE * GLOBAL_SCALE);
+#endif
+#ifdef TOTAL_TIME
+	draw_TOTAL_TIME((int)td->speed, TOTAL_TIME_POS_X, TOTAL_TIME_POS_Y, TOTAL_TIME_SCALE * GLOBAL_SCALE);
+#endif
 #ifdef POSITION
-	#if defined(FRSKY)
-	//we assume that if we get the NS and EW values from frsky protocol, that we have a fix
-	if ((td->ew == 'E' || td->ew == 'W') && (td->ns == 'N' || td->ns == 'S')){
-		setting_home = true;
-		draw_position((td->ns == 'N'? 1:-1) * td->latitude, (td->ew == 'E'? 1:-1) * td->longitude, true, 0, 0, getWidth(90), getHeight(5), scale_factor*2.7);
-	}else{
-		//no fix
-		setting_home = false;
-		home_counter = 0;
-		draw_position((td->ns == 'N'? 1:-1) * td->latitude, (td->ew == 'E'? 1:-1) * td->longitude, false, 0, 0, getWidth(80), getHeight(5), scale_factor*2.7);
-	}
-	
-	//if 20 packages after each other have a fix automatically set home
-	if (setting_home && !home_set){
-		if (++home_counter == 20){
-			home_set = true;
-			home_lat = (td->ns == 'N'? 1:-1) * td->latitude;
-			home_lon = (td->ew == 'E'? 1:-1) * td->longitude;
-		}
-	}
-	#endif
-
-	#if defined(MAVLINK)
-	// if satfix is reported by flightcontrol
-	if (td->fix > 2 && !home_set){
-		setting_home = true;
-	}
-
-	//if 20 packages after each other have a fix, automatically set home
-	if (setting_home && !home_set){
-		if (++home_counter == 20){
-			home_set = true;
-			home_lat = td->latitude;
-			home_lon = td->longitude;
-			td->ns = 1;
-			td->ew = 1;
-		}
-	}
-	draw_position(td->latitude, td->longitude, td->fix, td->sats, td->fix, getWidth(80), getHeight(5), scale_factor*2.5);
-	#endif
-
-	#if defined(LTM)
-	// if satfix is reported by flightcontrol
-	if (td->fix > 2 && !home_set){
-		setting_home = true;
-	}
-
-	if (setting_home && !home_set){
-		//if 20 packages after each other have a fix
-//		if (++home_counter == 20){
-		    //if LTM O frame reports home fix, set home position, use lat/long from O frame
-		    if (td->home_fix == 1){
-			home_set = true;
-			home_lat = td->home_latitude;
-			home_lon = td->home_longitude;
-			td->ns = 1;
-			td->ew = 1;
-		    }
-//		}
-	}
-	draw_position(td->latitude, td->longitude, td->fix, td->sats, td->fix, getWidth(80), getHeight(5), scale_factor*2.5);
-	#endif
+    #if defined(FRSKY)
+    draw_position((td->ns == 'N'? 1:-1) * td->latitude, (td->ew == 'E'? 1:-1) * td->longitude, POSITION_POS_X, POSITION_POS_Y, POSITION_SCALE * GLOBAL_SCALE);
+    #endif
+    draw_position(td->latitude, td->longitude, POSITION_POS_X, POSITION_POS_Y, POSITION_SCALE * GLOBAL_SCALE);
 #endif
-
-
-
 #ifdef DISTANCE
-	if (home_set)
-		#ifdef FRSKY
-		draw_home_distance((int)distance_between(home_lat, home_lon, (td->ns == 'N'? 1:-1) *td->latitude, (td->ns == 'E'? 1:-1) *td->longitude), getWidth(50), getHeight(5), scale_factor * 2.5);
-		#elif defined(LTM) || defined(MAVLINK)
-                draw_home_distance((int)distance_between(home_lat, home_lon, td->latitude, td->longitude), getWidth(50), getHeight(5), scale_factor * 2.5);
-		#endif
+	#ifdef FRSKY
+	draw_home_distance((int)distance_between(home_lat, home_lon, (td->ns == 'N'? 1:-1) *td->latitude, (td->ns == 'E'? 1:-1) *td->longitude), home_set, DISTANCE_POS_X, DISTANCE_POS_Y, DISTANCE_SCALE * GLOBAL_SCALE);
+	#elif defined(LTM) || defined(MAVLINK) || defined(SMARTPORT)
+        draw_home_distance((int)distance_between(home_lat, home_lon, td->latitude, td->longitude), home_set, DISTANCE_POS_X, DISTANCE_POS_Y, DISTANCE_SCALE * GLOBAL_SCALE);
+	#endif
 #endif
+#ifdef DOWNLINK_RSSI
+    int i;
+    int best_dbm = -1000;
+    int ac = td->rx_status->wifi_adapter_cnt;
 
-#ifdef HORIZON
-#if defined(FRSKY)
-	float x_val, y_val, z_val;
-    	x_val = td->x;
-    	y_val = td->y;
-    	z_val = td->z;
+    no_signal=true;
+    for(i=0; i<ac; ++i) { // find out which card has best signal (and if atleast one card has a signal)
+	if (td->rx_status->adapter[i].signal_good == 1) {
+    	    if (best_dbm < td->rx_status->adapter[i].current_signal_dbm) best_dbm = td->rx_status->adapter[i].current_signal_dbm;
+	}
+	if (td->rx_status->adapter[i].signal_good == 1) no_signal=false;
+    }
 
-	#ifdef EXCHANGE_ROLL_AND_PITCH
-		#if DRAW_AHI_LADDER == true
-	draw_horizon(INVERT_ROLL * TO_DEG * (atan(y_val / sqrt((x_val*x_val) + (z_val*z_val)))), INVERT_PITCH * TO_DEG * (atan(x_val / sqrt((y_val*y_val)+(z_val*z_val)))), getWidth(50), getHeight(50), 1.5f);
-		#else
-	paintAHI(INVERT_ROLL * TO_DEG * (atan(y_val / sqrt((x_val*x_val) + (z_val*z_val)))), INVERT_PITCH * TO_DEG * (atan(x_val / sqrt((y_val*y_val)+(z_val*z_val)))));
-		#endif //AHI ladder
-	#else
-		#if DRAW_AHI_LADDER == true
-	draw_horizon((int)(INVERT_ROLL * TO_DEG * (atan(y_val / sqrt((x_val*x_val) + (z_val*z_val))))), (int)( INVERT_PITCH * TO_DEG * (atan(x_val / sqrt((y_val*y_val)+(z_val*z_val))))), getWidth(50), getHeight(50), 1.5f);
-		#else
-	paintAHI(INVERT_ROLL * TO_DEG * (atan(x_val / sqrt((y_val*y_val) + (z_val*z_val)))), INVERT_PITCH * TO_DEG * (atan(y_val / sqrt((x_val*x_val)+(z_val*z_val)))));
-		#endif // AHI ladder
-	#endif // EXCHANGE_ROLL_AND_PITCH
+    draw_total_signal(best_dbm, td->rx_status->received_block_cnt, td->rx_status->damaged_block_cnt, td->rx_status->lost_packet_cnt, td->rx_status->received_packet_cnt, td->rx_status->lost_per_block_cnt, DOWNLINK_RSSI_POS_X, DOWNLINK_RSSI_POS_Y, DOWNLINK_RSSI_SCALE * GLOBAL_SCALE);
+
+    #ifdef DOWNLINK_RSSI_DETAILED
+    for(i=0; i<ac; ++i) {
+        draw_card_signal(td->rx_status->adapter[i].current_signal_dbm, td->rx_status->adapter[i].signal_good, i, ac, td->rx_status->tx_restart_cnt, td->rx_status->adapter[i].received_packet_cnt, td->rx_status->adapter[i].wrong_crc_cnt, td->rx_status->adapter[i].type, td->rx_status->received_packet_cnt, td->rx_status->lost_packet_cnt, DOWNLINK_RSSI_DETAILED_POS_X, DOWNLINK_RSSI_DETAILED_POS_Y, DOWNLINK_RSSI_DETAILED_SCALE * GLOBAL_SCALE);
+    }
+    #endif
+#endif
+#ifdef SAT
+    #if defined(FRSKY)
+    //we assume that we have a fix if we get the NS and EW values from frsky protocol
+    if ((td->ew == 'E' || td->ew == 'W') && (td->ns == 'N' || td->ns == 'S')){
+	draw_sat(0, 2, SAT_POS_X, SAT_POS_Y, SAT_SCALE * GLOBAL_SCALE);
+    } else { //no fix
+	draw_sat(0, 0, SAT_POS_X, SAT_POS_Y, SAT_SCALE * GLOBAL_SCALE);
+    }
+    #elif defined(MAVLINK) || defined(SMARTPORT) || defined(LTM)
+    draw_sat(td->sats, td->fix, SAT_POS_X, SAT_POS_Y, SAT_SCALE * GLOBAL_SCALE);
+    #endif
+#endif
+#ifdef BATT_GAUGE
+    draw_batt_gauge(((td->voltage/CELLS)-CELL_MIN)/(CELL_MAX-CELL_MIN)*100, BATT_GAUGE_POS_X, BATT_GAUGE_POS_Y, BATT_GAUGE_SCALE * GLOBAL_SCALE);
+#endif
+#ifdef AHI
+#if defined(FRSKY) || defined(SMARTPORT)
+    float x_val, y_val, z_val;
+    x_val = td->x;
+    y_val = td->y;
+    z_val = td->z;
+    #if AHI_SWAP_ROLL_AND_PITCH == true
+    draw_ahi(AHI_INVERT_ROLL * TO_DEG * (atan(y_val / sqrt((x_val*x_val) + (z_val*z_val)))), AHI_INVERT_PITCH * TO_DEG * (atan(x_val / sqrt((y_val*y_val)+(z_val*z_val)))), AHI_SCALE * GLOBAL_SCALE);
+    #else
+    draw_ahi(AHI_INVERT_ROLL * TO_DEG * (atan(x_val / sqrt((y_val*y_val) + (z_val*z_val)))), AHI_INVERT_PITCH * TO_DEG * (atan(y_val / sqrt((x_val*x_val)+(z_val*z_val)))), AHI_SCALE * GLOBAL_SCALE);
+    #endif // AHI_SWAP_ROLL_AND_PITCH
 #elif defined(LTM) || defined(MAVLINK)
-	#if DRAW_AHI_LADDER == true
-	draw_horizon(INVERT_ROLL * td->roll, INVERT_PITCH * td->pitch, getWidth(50), getHeight(50), 1.5f);
-	#else
-	paintAHI(INVERT_ROLL * td->roll, INVERT_PITCH * td->pitch);
-	#endif //AHI ladder
+    draw_ahi(AHI_INVERT_ROLL * td->roll, AHI_INVERT_PITCH * td->pitch, AHI_SCALE * GLOBAL_SCALE);
 #endif //protocol
-#endif //HORIZON
+#endif //AHI
 
-
-
+    End(); // Render end (causes everything to be drawn on next vsync)
 }
+void draw_mode(int mode, int armed, float pos_x, float pos_y, float scale){
+    //autopilot mode, mavlink specific, could be used if mode is in telemetry data of other protocols as well
+    float text_scale = getWidth(2) * scale;
 
-
-void render_rssi(telemetry_data_t *td) {
-#ifdef VIDEO_RSSI
-    if(td->rx_status != NULL) {
-	int i;
-	int ac = td->rx_status->wifi_adapter_cnt;
-	int best_dbm = -1000;
-	float dbm_scale = 2;
-
-	// find out which card has best signal
-	for(i=0; i<ac; ++i) {
-	    if (best_dbm < td->rx_status->adapter[i].current_signal_dbm) best_dbm = td->rx_status->adapter[i].current_signal_dbm;
-	}
-	dbm_scale = 2.27778-0.0138889 * best_dbm;
-
-//	draw_total_signal(best_dbm, td->rx_status->received_block_cnt, td->rx_status->damaged_block_cnt, td->rx_status->lost_packet_cnt, td->rx_status->received_packet_cnt, getWidth(6), getHeight(92), scale_factor * 1.5 * dbm_scale, 255);
-	draw_total_signal(best_dbm, td->rx_status->received_block_cnt, td->rx_status->damaged_block_cnt, td->rx_status->lost_packet_cnt, td->rx_status->received_packet_cnt, td->datarx, td->validmsgsrx, getWidth(6), getHeight(92), scale_factor * 1.1 * dbm_scale, 255);
-	#ifdef VIDEO_RSSI_DETAILED
-	for(i=0; i<ac; ++i) {
-//	    draw_card_signal(td->rx_status->adapter[i].current_signal_dbm, i, td->rx_status->adapter[i].received_packet_cnt, td->rx_status->adapter[i].wrong_crc_cnt, getWidth(6), getHeight(82 - i * 2), scale_factor*1.7);
-	    draw_card_signal(td->rx_status->adapter[i].current_signal_dbm, i, td->rx_status->adapter[i].received_packet_cnt, td->rx_status->adapter[i].wrong_crc_cnt, td->rx_status->adapter[i].type, getWidth(6), getHeight(86 - i * 3.2), scale_factor*2.2);
-	}
+    if (armed == 1){
+	switch (mode) {
+	#if COPTER == true
+	case 0: sprintf(buffer, "STAB"); break;
+	case 1: sprintf(buffer, "ACRO"); break;
+	case 2: sprintf(buffer, "ALTHOLD"); break;
+	case 3: sprintf(buffer, "AUTO"); break;
+	case 4: sprintf(buffer, "GUIDED"); break;
+	case 5: sprintf(buffer, "LOITER"); break;
+	case 6: sprintf(buffer, "RTL"); break;
+	case 7: sprintf(buffer, "CIRCLE"); break;
+	case 9: sprintf(buffer, "LAND"); break;
+	case 11: sprintf(buffer, "DRIFT"); break;
+	case 13: sprintf(buffer, "SPORT"); break;
+	case 14: sprintf(buffer, "FLIP"); break;
+	case 15: sprintf(buffer, "AUTOTUNE"); break;
+	case 16: sprintf(buffer, "POSHOLD"); break;
+	case 17: sprintf(buffer, "BRAKE"); break;
+	case 18: sprintf(buffer, "THROW"); break;
+	case 19: sprintf(buffer, "AVOIDADSB"); break;
+	case 20: sprintf(buffer, "GUIDEDNOGPS"); break;
+	case 255: sprintf(buffer, "-----"); break;
+	#else
+	case 0: sprintf(buffer, "MAN"); break;
+	case 1: sprintf(buffer, "CIRC"); break;
+	case 2: sprintf(buffer, "STAB"); break;
+	case 3: sprintf(buffer, "TRAI"); break;
+	case 4: sprintf(buffer, "ACRO"); break;
+	case 5: sprintf(buffer, "FBWA"); break;
+	case 6: sprintf(buffer, "FBWB"); break;
+	case 7: sprintf(buffer, "CRUZ"); break;
+	case 8: sprintf(buffer, "TUNE"); break;
+	case 10: sprintf(buffer, "AUTO"); break;
+	case 11: sprintf(buffer, "RTL"); break;
+	case 12: sprintf(buffer, "LOIT"); break;
+	case 15: sprintf(buffer, "GUID"); break;
+	case 16: sprintf(buffer, "INIT"); break;
+	case 255: sprintf(buffer, "-----"); break;
 	#endif
-    }
-#endif
-
-#ifdef OSD_RSSI
-    if(td->rx_status_osd != NULL) {
-	int i;
-	int ac = td->rx_status_osd->wifi_adapter_cnt;
-	int best_dbm = -1000;
-	// find out which card has best signal
-	for(i=0; i<ac; ++i) {
-	    if (best_dbm < td->rx_status_osd->adapter[i].current_signal_dbm) best_dbm = td->rx_status_osd->adapter[i].current_signal_dbm;
+	default: sprintf(buffer, "-----"); break; // TODO: find out why strange numbers when using zs6bujs telemetry logs, default to something more sensible like "unknown mode"
 	}
-	draw_total_signal(best_dbm, td->rx_status_osd->received_block_cnt, td->rx_status_osd->damaged_block_cnt, td->rx_status_osd->lost_packet_cnt, td->rx_status_osd->received_packet_cnt, getWidth(80), getHeight(92), scale_factor*2.5, 255);
-	#ifdef OSD_RSSI_DETAILED
-	for(i=0; i<ac; ++i) {
-//	    draw_card_signal(td->rx_status_osd->adapter[i].current_signal_dbm, i, td->rx_status_osd->adapter[i].received_packet_cnt, td->rx_status_osd->adapter[i].wrong_crc_cnt, getWidth(80), getHeight(82 - i * 2), scale_factor*1.7);
-	    draw_card_signal(td->rx_status_osd->adapter[i].current_signal_dbm, i, td->rx_status_osd->adapter[i].received_packet_cnt, td->rx_status_osd->adapter[i].wrong_crc_cnt, td->rx_status->adapter[i].type, getWidth(80), getHeight(82 - i * 5), scale_factor*1.7);
-	}
-	#endif
-    }
-#endif
-
-#ifdef RC_RSSI
-    if(td->rx_status_rc != NULL) {
-	draw_rc_signal(td->rx_status_rc->adapter[0].current_signal_dbm, td->rx_status_rc->lost_packet_cnt, getWidth(80), getHeight(92), scale_factor*2.5, 255);
-    }
-#endif
-
-}
-
-
-
-//taken from tinygps: https://github.com/mikalhart/TinyGPS/blob/master/TinyGPS.cpp#L296
-float distance_between(float lat1, float long1, float lat2, float long2) {
-  // returns distance in meters between two positions, both specified 
-  // as signed decimal-degrees latitude and longitude. Uses great-circle 
-  // distance computation for hypothetical sphere of radius 6372795 meters.
-  // Because Earth is no exact sphere, rounding errors may be up to 0.5%.
-  // Courtesy of Maarten Lamers
-  float delta = (long1-long2)*0.017453292519;
-  float sdlong = sin(delta);
-  float cdlong = cos(delta);
-  lat1 = (lat1)*0.017453292519;
-  lat2 = (lat2)*0.017453292519;
-  float slat1 = sin(lat1);
-  float clat1 = cos(lat1);
-  float slat2 = sin(lat2);
-  float clat2 = cos(lat2);
-  delta = (clat1 * slat2) - (slat1 * clat2 * cdlong); 
-  delta = delta*delta; 
-  delta += (clat2 * sdlong)*(clat2 * sdlong); 
-  delta = sqrt(delta); 
-  float denom = (slat1 * slat2) + (clat1 * clat2 * cdlong); 
-  delta = atan2(delta, denom); 
-  return delta * 6372795; 
-}
-
-//taken from tinygps: https://github.com/mikalhart/TinyGPS/blob/master/TinyGPS.cpp#L321
-float course_to (float lat1, float long1, float lat2, float long2) 
-{
-  // returns course in degrees (North=0, West=270) from position 1 to position 2,
-  // both specified as signed decimal-degrees latitude and longitude.
-  // Because Earth is no exact sphere, calculated course may be off by a tiny fraction.
-  // Courtesy of Maarten Lamers
-  float dlon = (long2-long1)*0.017453292519;
-  lat1 = (lat1)*0.017453292519;
-  lat2 = (lat2)*0.017453292519;
-  float a1 = sin(dlon) * cos(lat2);
-  float a2 = sin(lat1) * cos(lat2) * cos(dlon);
-  a2 = cos(lat1) * sin(lat2) - a2;
-  a2 = atan2(a1, a2);
-  if (a2 < 0.0)
-  {
-    a2 += M_PI*2;
-  }
-  return TO_DEG*(a2);
-}
-
-
-void rotatePoints(float *x, float *y, int angle, int points, int center_x, int center_y){
-	double cosAngle = cos(-angle * 0.017453292519);
-	double sinAngle = sin(-angle * 0.017453292519);
-
-	int i = 0;
-	int tmp_x = 0;
-	int tmp_y = 0;
-	while (i < points){
-		tmp_x = center_x + (x[i]-center_x)*cosAngle-(y[i]-center_y)*sinAngle;
-		tmp_y = center_y + (x[i]-center_x)*sinAngle + (y[i] - center_y)*cosAngle;
-		x[i] = tmp_x;
-		y[i] = tmp_y;
-		i++;
-	}
-}
-
-
-void draw_total_signal(int8_t signal, int goodblocks, int badblocks, int packets_lost, int packets_received, int data_received, int valid_msgs, int pos_x, int pos_y, float scale, int color){
-    Fill(255,color,color,OPACITY);
-    #if defined(DRAW_OUTLINE)
-    Stroke(0,0,0,1);
-    StrokeWidth(1);
-    #endif
-
-    sprintf(buffer, "%ddBm", signal);
-    Text(pos_x, pos_y, buffer, SansTypeface, scale * 1.5);
-
-    sprintf(buffer, "%d/%d/%d (%d/%d)", badblocks, packets_lost, packets_received, data_received, valid_msgs);
-    Text(pos_x, getHeight(89), buffer, SansTypeface, scale_factor * 2.5);
-
-//    sprintf(buffer, "T: %d/%d", data_received, valid_msgs);
-//    Text(pos_x, getHeight(86), buffer, SansTypeface, scale_factor * 2.5);
-}
-
-
-void draw_rc_signal(int8_t signal, int packets_lost, int pos_x, int pos_y, float scale, int color){
-    Fill(255,color,color,OPACITY);
-    #if defined(DRAW_OUTLINE)
-    Stroke(0,0,0,1);
-    StrokeWidth(1);
-    #endif
-    sprintf(buffer, "%ddBm", signal);
-//    Text(pos_x, pos_y, buffer, SansTypeface, scale);
-    Text(pos_x, pos_y, buffer, SansTypeface, scale * 1.5);
-    sprintf(buffer, "Lost: %d", packets_lost);
-//    Text(pos_x, getHeight(89), buffer, SansTypeface, scale_factor * 2.1);
-    Text(pos_x, getHeight(89), buffer, SansTypeface, scale_factor * 2.5);
-}
-
-
-
-void draw_card_signal(int8_t signal, int card, int packets, int wrongcrcs, int type, int pos_x, int pos_y, float scale){
-    Fill(0xff,0xff,0xff,OPACITY);
-    #if defined(DRAW_OUTLINE)
-    Stroke(0,0,0,1);
-    StrokeWidth(1);
-    #endif
-
-    if (type == 0) { // Atheros
-	sprintf(buffer, "Rx%d(A): %ddBm (%d)", card, signal, packets);
     } else {
-	sprintf(buffer, "Rx%d(R): %ddBm (%d)", card, signal, packets);
+	switch (mode) {
+	#if COPTER == true
+	case 0: sprintf(buffer, "[STAB]"); break;
+	case 1: sprintf(buffer, "[ACRO]"); break;
+	case 2: sprintf(buffer, "[ALTHOLD]"); break;
+	case 3: sprintf(buffer, "[AUTO]"); break;
+	case 4: sprintf(buffer, "[GUID]"); break;
+	case 5: sprintf(buffer, "[LOIT]"); break;
+	case 6: sprintf(buffer, "[RTL]"); break;
+	case 7: sprintf(buffer, "[CIRCLE]"); break;
+	case 9: sprintf(buffer, "[LAND]"); break;
+	case 11: sprintf(buffer, "[DRIFT]"); break;
+	case 13: sprintf(buffer, "[SPORT]"); break;
+	case 14: sprintf(buffer, "[FLIP]"); break;
+	case 15: sprintf(buffer, "[AUTOTUNE]"); break;
+	case 16: sprintf(buffer, "[POSHOLD]"); break;
+	case 17: sprintf(buffer, "[BRAKE]"); break;
+	case 18: sprintf(buffer, "[THROW]"); break;
+	case 19: sprintf(buffer, "[AVOIDADSB]"); break;
+	case 20: sprintf(buffer, "[GUIDEDNOGPS]"); break;
+	case 255: sprintf(buffer, "[-----]"); break;
+	#else
+	case 0: sprintf(buffer, "[MAN]"); break;
+	case 1: sprintf(buffer, "[CIRC]"); break;
+	case 2: sprintf(buffer, "[STAB]"); break;
+	case 3: sprintf(buffer, "[TRAI]"); break;
+	case 4: sprintf(buffer, "[ACRO]"); break;
+	case 5: sprintf(buffer, "[FBWA]"); break;
+	case 6: sprintf(buffer, "[FBWB]"); break;
+	case 7: sprintf(buffer, "[CRUZ]"); break;
+	case 8: sprintf(buffer, "[TUNE]"); break;
+	case 10: sprintf(buffer, "[AUTO]"); break;
+	case 11: sprintf(buffer, "[RTL]"); break;
+	case 12: sprintf(buffer, "[LOIT]"); break;
+	case 15: sprintf(buffer, "[GUID]"); break;
+	case 16: sprintf(buffer, "[INIT]"); break;
+	case 255: sprintf(buffer, "[-----]"); break;
+	#endif
+	default: sprintf(buffer, "[-----]"); break; // TODO: find out why strange numbers when using zs6bujs telemetry logs, default to something more sensible like "unknown mode"
+	}
     }
-    Text(pos_x, pos_y, buffer, SansTypeface, scale);
+    TextMid(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
 }
+void draw_rssi(int rssi, float pos_x, float pos_y, float scale){
+    float text_scale = getWidth(2) * scale;
+    VGfloat width_value = TextWidth("00", myfont, text_scale);
 
+    TextEnd(getWidth(pos_x)-width_value, getHeight(pos_y), "", osdicons, text_scale * 0.6);
 
+    sprintf(buffer, "%02d", rssi);
+    TextEnd(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
 
-void paintArrow(int heading, int pos_x, int pos_y){
-	if (heading == 360) heading = 0;
-
-#ifdef INVERT_HOME_ARROW
-	heading = 360 - heading;
-#endif
-	
-	//offset for arrow, so middle of the arrow is at given position
-	pos_x -= 20;
-	pos_y -= 20;
-	
-	float x[8] = {10+pos_x, 10+pos_x, 0+pos_x, 20+pos_x, 40+pos_x, 30+pos_x, 30+pos_x, 10+pos_x};
-	float y[8] = {0+pos_y, 20+pos_y, 20+pos_y, 40+pos_y, 20+pos_y,20+pos_y,0+pos_y,0+pos_y};
-	Fill(0xff,0xff,0xff,OPACITY);
-	#if defined(DRAW_OUTLINE)
-	Stroke(0,0,0,1);
-	StrokeWidth(2);
-	#endif
-	rotatePoints(x, y, heading, 8, pos_x+20,pos_y+20);
-	Polygon(x, y, 8);
-	Polyline(x, y, 8);
+    Text(getWidth(pos_x), getHeight(pos_y), "%", myfont, text_scale*0.6);
 }
+void draw_cog(int cog, float pos_x, float pos_y, float scale){
+    float text_scale = getWidth(2) * scale;
+    VGfloat width_value = TextWidth("000°", myfont, text_scale);
 
-void paintAHI(int hor_angle, int ver_angle){
-	//if vertical angle is larger than 45° leave the ahi at highest pos
-	if (ver_angle > 45)
-		ver_angle = 45;
-	else if (ver_angle < -45)
-		ver_angle = -45;
+    TextEnd(getWidth(pos_x)-width_value, getHeight(pos_y), "", osdicons, text_scale*0.7);
 
-	int offset_x = (width / 6 * cos(hor_angle * 0.017453292519));
-	int offset_y = (width / 6 * sin(hor_angle * 0.017453292519));
-	
-	int mid_y = getHeight(50);
-	int horizon_y = (mid_y - 100) / 45 * ver_angle + mid_y;
-
-	Stroke(0,0,0,1);
-	StrokeWidth(5);
-	//outer black border
-	int mid_x = getWidth(50);
-	Line(mid_x - offset_x,horizon_y - offset_y, mid_x + offset_x, horizon_y + offset_y);
-	Stroke(0xff,0xff,0xff,1);
-	StrokeWidth(2);
-	//inner white line
-	Line(mid_x - offset_x,horizon_y - offset_y, mid_x + offset_x, horizon_y + offset_y);
+    sprintf(buffer, "%d°", cog);
+    TextEnd(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
 }
+void draw_climb(float climb, float pos_x, float pos_y, float scale){
+    float text_scale = getWidth(2) * scale;
+    VGfloat width_value = TextWidth("-00.0", myfont, text_scale);
 
-//new stuff from fritz walter https://www.youtube.com/watch?v=EQ01b3aJ-rk
-void draw_bat_remaining(int remaining, int pos_x, int pos_y, float scale){
-	//prevent black empty indicator to draw left to battery
-	if (remaining < 0) remaining = 0;
-	else if (remaining > 100) remaining = 100;
+    TextEnd(getWidth(pos_x)-width_value, getHeight(pos_y), "", osdicons, text_scale*0.6);
+    if (climb > 0.0f) {
+	sprintf(buffer, "+%.1f", climb);
+    } else {
+	sprintf(buffer, "%.1f", climb);
+    }
+    TextEnd(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
+    Text(getWidth(pos_x)+getWidth(0.4), getHeight(pos_y), "m/s", myfont, text_scale*0.6);
+}
+void draw_baroalt(float baroalt, float pos_x, float pos_y, float scale){
+    float text_scale = getWidth(2) * scale;
 
-	int s_width = 20 * scale;
-	int s_height = 10 * scale;
-	int corner = 3 * scale;
-	int plus_w = 2 * scale;
-	int plus_h = 5 * scale;
-	int stroke = 1 * scale;
+    #if IMPERIAL == true
+    VGfloat width_value = TextWidth("0000", myfont, text_scale);
+    sprintf(buffer, "%.0f", baroalt*TO_FEET);
+    #else
+    VGfloat width_value = TextWidth("000.0", myfont, text_scale);
+    sprintf(buffer, "%.1f", baroalt);
+    #endif
+    TextEnd(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
 
-	if (remaining <= CELL_WARNING_PCT1 && remaining > CELL_WARNING_PCT2){
-		Fill(255,165, 0,OPACITY);
-	}else if (remaining <= CELL_WARNING_PCT2){
-		Fill(255,0, 0,OPACITY);
+    TextEnd(getWidth(pos_x)-width_value-getWidth(0.3)*scale, getHeight(pos_y), " ", osdicons, text_scale*0.7);
+
+    #if IMPERIAL == true
+    Text(getWidth(pos_x)+getWidth(0.4), getHeight(pos_y), "ft", myfont, text_scale*0.6);
+    #else
+    Text(getWidth(pos_x)+getWidth(0.4), getHeight(pos_y), "m", myfont, text_scale*0.6);
+    #endif
+}
+void draw_gpsalt(float gpsalt, float pos_x, float pos_y, float scale){
+    float text_scale = getWidth(2) * scale;
+
+    #if IMPERIAL == true
+    VGfloat width_value = TextWidth("0000", myfont, text_scale);
+    sprintf(buffer, "%.0f", gpsalt*TO_FEET);
+    #else
+    VGfloat width_value = TextWidth("000.0", myfont, text_scale);
+    sprintf(buffer, "%.1f", gpsalt);
+    #endif
+    TextEnd(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
+
+    TextEnd(getWidth(pos_x)-width_value-getWidth(0.3)*scale, getHeight(pos_y), " ", osdicons, text_scale*0.7);
+
+    #if IMPERIAL == true
+    Text(getWidth(pos_x)+getWidth(0.4), getHeight(pos_y), "ft", myfont, text_scale*0.6);
+    #else
+    Text(getWidth(pos_x)+getWidth(0.4), getHeight(pos_y), "m", myfont, text_scale*0.6);
+    #endif
+}
+void draw_airspeed(int airspeed, float pos_x, float pos_y, float scale){
+    float text_scale = getWidth(2) * scale;
+    VGfloat width_value = TextWidth("100", myfont, text_scale);
+    VGfloat width_speedo = TextWidth("", osdicons, text_scale*0.65) + getWidth(0.5)*scale;
+
+    TextEnd(getWidth(pos_x)-width_value, getHeight(pos_y), "", osdicons, text_scale*0.65);
+    TextEnd(getWidth(pos_x)-width_value-width_speedo, getHeight(pos_y), "", osdicons, text_scale*0.65);
+
+    #if IMPERIAL == true
+    sprintf(buffer, "%d", airspeed*TO_MPH);
+    #else
+    sprintf(buffer, "%d", airspeed);
+    #endif
+    TextEnd(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
+
+    #if IMPERIAL == true
+    Text(getWidth(pos_x)+getWidth(0.4), getHeight(pos_y), "mph", myfont, text_scale*0.6);
+    #else
+    Text(getWidth(pos_x)+getWidth(0.4), getHeight(pos_y), "km/h", myfont, text_scale*0.6);
+    #endif
+}
+void draw_gpsspeed(int gpsspeed, float pos_x, float pos_y, float scale){
+    float text_scale = getWidth(2) * scale;
+    VGfloat width_value = TextWidth("100", myfont, text_scale);
+    VGfloat width_speedo = TextWidth("", osdicons, text_scale*0.65);
+
+    TextEnd(getWidth(pos_x)-width_value, getHeight(pos_y), "", osdicons, text_scale*0.65);
+    TextEnd(getWidth(pos_x)-width_value-width_speedo, getHeight(pos_y), "", osdicons, text_scale*0.7);
+
+    #if IMPERIAL == true
+    sprintf(buffer, "%d", gpsspeed*TO_MPH);
+    #else
+    sprintf(buffer, "%d", gpsspeed);
+    #endif
+    TextEnd(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
+
+    #if IMPERIAL == true
+    Text(getWidth(pos_x)+getWidth(0.4), getHeight(pos_y), "mph", myfont, text_scale*0.6);
+    #else
+    Text(getWidth(pos_x)+getWidth(0.4), getHeight(pos_y), "km/h", myfont, text_scale*0.6);
+    #endif
+}
+void draw_uplink_signal(int8_t uplink_signal, int uplink_lostpackets, int8_t rc_signal, int rc_lostpackets, float pos_x, float pos_y, float scale){
+    float text_scale = getWidth(2) * scale;
+    VGfloat height_text = TextHeight(myfont, text_scale*0.6)+getHeight(0.3)*scale;
+    VGfloat width_value = TextWidth("-00", myfont, text_scale);
+    VGfloat width_symbol = TextWidth(" ", osdicons, text_scale*0.7);
+
+    StrokeWidth(OUTLINEWIDTH);
+
+    if ((uplink_signal < -125) && (rc_signal < -125)) { // both no signal, display red dashes
+	Fill(255,20,20,getOpacity(COLOR)); // red
+	Stroke(255,20,20,getOpacity(OUTLINECOLOR));
+	sprintf(buffer, "-- ");
+    } else if (rc_signal < -125) { // only r/c no signal, so display uplink signal
+	Fill(COLOR);
+	Stroke(OUTLINECOLOR);
+	sprintf(buffer, "%02d", uplink_signal);
+    } else { // if both have signal, display r/c signal
+	Fill(COLOR);
+	Stroke(OUTLINECOLOR);
+	sprintf(buffer, "%02d", rc_signal);
+    }
+
+    TextEnd(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
+
+    Fill(COLOR);
+    Stroke(OUTLINECOLOR);
+
+    Text(getWidth(pos_x), getHeight(pos_y), "dBm", myfont, text_scale*0.6);
+
+    sprintf(buffer, "%d/%d", rc_lostpackets, uplink_lostpackets);
+    Text(getWidth(pos_x)-width_value-width_symbol, getHeight(pos_y)-height_text, buffer, myfont, text_scale*0.6);
+
+    TextEnd(getWidth(pos_x)-width_value - getWidth(0.3) * scale, getHeight(pos_y), "", osdicons, text_scale * 0.7);
+}
+void draw_kbitrate(int cts, int kbitrate, uint16_t kbitrate_measured_tx, uint16_t kbitrate_tx, uint32_t fecs_skipped, uint32_t injection_failed, long long injection_time,float pos_x, float pos_y, float scale){
+    float text_scale = getWidth(2) * scale;
+    VGfloat height_text_small = TextHeight(myfont, text_scale*0.6)+getHeight(0.3)*scale;
+    VGfloat width_value = TextWidth("10.0", myfont, text_scale);
+    VGfloat width_symbol = TextWidth("", osdicons, text_scale*0.8);
+//    VGfloat width_value_ms = TextWidth("0.0", myfont, text_scale*0.6);
+
+    float mbit = (float)kbitrate / 1000;
+    float mbit_measured = (float)kbitrate_measured_tx / 1000;
+    float mbit_tx = (float)kbitrate_tx / 1000;
+    float ms = (float)injection_time / 1000;
+
+    if (cts == 0) {
+	sprintf(buffer, "%.1f (%.1f)", mbit_tx, mbit_measured);
+    } else {
+	sprintf(buffer, "%.1f (%.1f) CTS", mbit_tx, mbit_measured);
+    }
+    Text(getWidth(pos_x)-width_value-width_symbol, getHeight(pos_y)-height_text_small, buffer, myfont, text_scale*0.6);
+
+    if (fecs_skipped > fecs_skipped_last) {
+        Fill(255,20,20,getOpacity(COLOR)); // red
+	Stroke(255,20,20,getOpacity(OUTLINECOLOR));
+    } else {
+	Fill(COLOR);
+	Stroke(OUTLINECOLOR);
+    }
+    fecs_skipped_last = fecs_skipped;
+
+    TextEnd(getWidth(pos_x)-width_value, getHeight(pos_y), "", osdicons, text_scale * 0.8);
+
+    if (mbit > mbit_measured*0.98) {
+        Fill(255,20,20,getOpacity(COLOR)); // red
+	Stroke(255,20,20,getOpacity(OUTLINECOLOR));
+    } else if (mbit > mbit_measured*0.90) {
+        Fill(229,255,20,getOpacity(COLOR)); // yellow
+	Stroke(229,255,20,getOpacity(OUTLINECOLOR));
+    } else {
+	Fill(COLOR);
+	Stroke(OUTLINECOLOR);
+    }
+    sprintf(buffer, "%.1f", mbit);
+    TextEnd(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
+
+    Fill(COLOR);
+    Stroke(OUTLINECOLOR);
+
+    Text(getWidth(pos_x), getHeight(pos_y), "Mbit", myfont, text_scale*0.6);
+
+//    sprintf(buffer, "%.1f", ms);
+//    TextEnd(getWidth(pos_x)-width_value-width_symbol+width_value_ms, getHeight(pos_y)-height_text-height_text_small, buffer, myfont, text_scale*0.6);
+//    sprintf(buffer, "ms");
+//    Text(getWidth(pos_x)-width_value-width_symbol+width_value_ms, getHeight(pos_y)-height_text-height_text_small, buffer, myfont, text_scale*0.4);
+
+    sprintf(buffer, "%d/%d",injection_failed,fecs_skipped);
+    Text(getWidth(pos_x)-width_value-width_symbol, getHeight(pos_y)-height_text_small-height_text_small, buffer, myfont, text_scale*0.6);
+}
+void draw_sys(uint8_t cpuload_air, uint8_t temp_air, uint8_t cpuload_gnd, uint8_t temp_gnd, float pos_x, float pos_y, float scale) {
+    float text_scale = getWidth(2) * scale;
+    VGfloat height_text = TextHeight(myfont, text_scale)+getHeight(0.3)*scale;
+    VGfloat width_value = TextWidth("00", myfont, text_scale) + getWidth(0.5)*scale;
+    VGfloat width_label = TextWidth("%", myfont, text_scale*0.6) + getWidth(0.5)*scale;
+    VGfloat width_ag = TextWidth("A", osdicons, text_scale*0.4) - getWidth(0.3)*scale;
+
+    TextEnd(getWidth(pos_x)-width_value-width_ag, getHeight(pos_y), "", osdicons, text_scale*0.7);
+
+    TextEnd(getWidth(pos_x)-width_value, getHeight(pos_y), "A", myfont, text_scale*0.4);
+
+    if (cpuload_air > 95) {
+        Fill(255,20,20,getOpacity(COLOR)); // red
+	Stroke(255,20,20,getOpacity(OUTLINECOLOR));
+    } else if (cpuload_air > 85) {
+        Fill(229,255,20,getOpacity(COLOR)); // yellow
+	Stroke(229,255,20,getOpacity(OUTLINECOLOR));
+    } else {
+	Fill(COLOR);
+	Stroke(OUTLINECOLOR);
+    }
+    sprintf(buffer, "%d", cpuload_air);
+    TextEnd(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
+
+    sprintf(buffer, "%%");
+    Text(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale*0.6);
+
+    if (temp_air > 79) {
+        Fill(255,20,20,getOpacity(COLOR)); // red
+	Stroke(255,20,20,getOpacity(OUTLINECOLOR));
+    } else if (temp_air > 74) {
+        Fill(229,255,20,getOpacity(COLOR)); // yellow
+	Stroke(229,255,20,getOpacity(OUTLINECOLOR));
+    } else {
+	Fill(COLOR);
+	Stroke(OUTLINECOLOR);
+    }
+    sprintf(buffer, "%d°", temp_air);
+    TextEnd(getWidth(pos_x)+width_value+width_label+getWidth(0.7), getHeight(pos_y), buffer, myfont, text_scale);
+    Fill(COLOR);
+    Stroke(OUTLINECOLOR);
+
+    TextEnd(getWidth(pos_x)-width_value-width_ag, getHeight(pos_y)-height_text, "", osdicons, text_scale*0.7);
+
+    TextEnd(getWidth(pos_x)-width_value, getHeight(pos_y)-height_text, "G", myfont, text_scale*0.4);
+
+    if (cpuload_gnd > 95) {
+        Fill(255,20,20,getOpacity(COLOR)); // red
+	Stroke(255,20,20,getOpacity(OUTLINECOLOR));
+    } else if (cpuload_gnd > 85) {
+        Fill(229,255,20,getOpacity(COLOR)); // yellow
+	Stroke(229,255,20,getOpacity(OUTLINECOLOR));
+    } else {
+	Fill(COLOR);
+	Stroke(OUTLINECOLOR);
+    }
+    sprintf(buffer, "%d", cpuload_gnd);
+    TextEnd(getWidth(pos_x), getHeight(pos_y)-height_text, buffer, myfont, text_scale);
+
+    Text(getWidth(pos_x), getHeight(pos_y)-height_text, "%", myfont, text_scale*0.6);
+
+    if (temp_gnd > 79) {
+        Fill(255,20,20,getOpacity(COLOR)); // red
+	Stroke(255,20,20,getOpacity(OUTLINECOLOR));
+    } else if (temp_gnd > 74) {
+        Fill(229,255,20,getOpacity(COLOR)); // yellow
+	Stroke(229,255,20,getOpacity(OUTLINECOLOR));
+    } else {
+	Fill(COLOR);
+	Stroke(OUTLINECOLOR);
+    }
+    sprintf(buffer, "%d°", temp_gnd);
+    TextEnd(getWidth(pos_x)+width_value+width_label+getWidth(0.7), getHeight(pos_y)-height_text, buffer, myfont, text_scale);
+    Fill(COLOR);
+    Stroke(OUTLINECOLOR);
+}
+void draw_message(int severity, char line1[30], char line2[30], char line3[30], float pos_x, float pos_y, float scale) {
+    float text_scale = getWidth(2) * scale;
+    VGfloat height_text = TextHeight(myfont, text_scale*0.7)+getHeight(0.3)*scale;
+    VGfloat height_text_small = TextHeight(myfont, text_scale*0.55)+getHeight(0.3)*scale;
+    VGfloat width_text = TextWidth(line1, myfont, text_scale*0.7);
+
+    if (severity == 0)  { // high severity
+	Fill(255,20,20,getOpacity(COLOR)); // red
+	Stroke(255,20,20,getOpacity(OUTLINECOLOR));
+	TextEnd(getWidth(pos_x)-width_text/2 - getWidth(0.3)*scale, getHeight(pos_y), "", osdicons, text_scale*0.8);
+	Text(getWidth(pos_x)+width_text/2 + getWidth(0.3)*scale, getHeight(pos_y), "", osdicons, text_scale*0.8);
+    } else if (severity == 1) { // medium
+        Fill(229,255,20,getOpacity(COLOR)); // yellow
+	Stroke(229,255,20,getOpacity(OUTLINECOLOR));
+	TextEnd(getWidth(pos_x)-width_text/2 - getWidth(0.3)*scale, getHeight(pos_y), "", osdicons, text_scale*0.8);
+	Text(getWidth(pos_x)+width_text/2 + getWidth(0.3)*scale, getHeight(pos_y), "", osdicons, text_scale*0.8);
+    } else { // low
+	Fill(COLOR);
+	Stroke(OUTLINECOLOR);
+    }
+
+    Fill(COLOR);
+    Stroke(OUTLINECOLOR);
+
+    TextMid(getWidth(pos_x), getHeight(pos_y), line1, myfont, text_scale*0.7);
+    TextMid(getWidth(pos_x), getHeight(pos_y) - height_text, line2, myfont, text_scale*0.55);
+    TextMid(getWidth(pos_x), getHeight(pos_y) - height_text-height_text_small, line3, myfont, text_scale*0.55);
+}
+void draw_home_arrow(float abs_heading, float craft_heading, float pos_x, float pos_y, float scale){
+    //abs_heading is the absolute direction/bearing the arrow should point eg bearing to home could be 45 deg
+    //because arrow is drawn relative to the osd/camera view we need to offset by craft's heading
+    #if HOME_ARROW_INVERT == true
+    abs_heading = abs_heading - 180;
+    #endif
+    float rel_heading = abs_heading - craft_heading; //direction arrow needs to point relative to camera/osd/craft
+    if (rel_heading < 0) rel_heading += 360;
+    if (rel_heading >= 360) rel_heading -=360;
+    pos_x = getWidth(pos_x);
+    pos_y = getHeight(pos_y);
+    //offset for arrow, so middle of the arrow is at given position
+    pos_x -= getWidth(1.25) * scale;
+    pos_y -= getWidth(1.25) * scale;
+
+    float x[8] = {getWidth(0.5)*scale+pos_x, getWidth(0.5)*scale+pos_x, pos_x, getWidth(1.25)*scale+pos_x, getWidth(2.5)*scale+pos_x, getWidth(2)*scale+pos_x, getWidth(2)*scale+pos_x, getWidth(0.5)*scale+pos_x};
+    float y[8] = {pos_y, getWidth(1.5)*scale+pos_y, getWidth(1.5)*scale+pos_y, getWidth(2.5)*scale+pos_y, getWidth(1.5)*scale+pos_y, getWidth(1.5)*scale+pos_y, pos_y, pos_y};
+    rotatePoints(x, y, rel_heading, 8, pos_x+getWidth(1.25)*scale,pos_y+getWidth(1.25)*scale);
+    Polygon(x, y, 8);
+    Polyline(x, y, 8);
+}
+void draw_compass(float heading, float home_heading, float pos_x, float pos_y, float scale){
+    float text_scale = getHeight(1.5) * scale;
+    float width_ladder = getHeight(16) * scale;
+    float width_element = getWidth(0.25) * scale;
+    float height_element = getWidth(0.50) * scale;
+    float ratio = width_ladder / 180;
+
+    VGfloat height_text = TextHeight(myfont, text_scale*1.5)+getHeight(0.1)*scale;
+    sprintf(buffer, "%.0f°", heading);
+    TextMid(getWidth(pos_x), getHeight(pos_y) - height_element - height_text, buffer, myfont, text_scale*1.5);
+
+    int i = heading - 90;
+    char* c;
+    bool draw = false;
+    while (i <= heading + 90) {  //find all values from heading - 90 to heading + 90 that are % 15 == 0
+	float x = getWidth(pos_x) + (i - heading) * ratio;
+	if (i % 30 == 0) {
+	    Rect(x-width_element/2, getHeight(pos_y), width_element, height_element*2);
+	}else if (i % 15 == 0) {
+	    Rect(x-width_element/2, getHeight(pos_y), width_element, height_element);
 	}else{
-		Fill(255, 255, 255,OPACITY);
+	    i++;
+	    continue;
 	}
-	
-	#if defined(DRAW_OUTLINE)
-	Stroke(0,0,0,1);
-	StrokeWidth(1);
-	#endif
-	Roundrect(pos_x, pos_y , s_width, s_height, corner, corner);
-	Rect(pos_x + s_width, pos_y + plus_h/2, plus_w, plus_h);
 
-	Fill(0, 0, 0,OPACITY);
-	Rect(pos_x + stroke + remaining / 100.0f * s_width, pos_y  + stroke, s_width - 2 * stroke - remaining / 100.0f * s_width, s_height - 2 * stroke);
+	int j = i;
+	if (j < 0) j += 360;
+	if (j >= 360) j -= 360;
+
+	switch (j) {
+	    case 0:
+	        draw = true;
+	        c = "N";
+	        break;
+	    case 90:
+	        draw = true;
+	        c = "E";
+	        break;
+	    case 180:
+	        draw = true;
+	        c = "S";
+	        break;
+	    case 270:
+	        draw = true;
+	        c = "W";
+	        break;
+	}
+	if (draw == true) {
+	    TextMid(x, getHeight(pos_y) + height_element*3.5, c, myfont, text_scale*1.5);
+	    draw = false;
+	}
+	if (j == home_heading) {
+	     TextMid(x, getHeight(pos_y) + height_element, "", osdicons, text_scale*1.3);
+	 }
+	i++;
+    }
+
+    float rel_home = home_heading-heading;
+    if (rel_home<0) rel_home+= 360;
+    if ((rel_home > 90) && (rel_home <= 180)) { TextMid(getWidth(pos_x)+width_ladder/2 * 1.2, getHeight(pos_y), "", osdicons, text_scale * 0.8); }
+    else if ((rel_home > 180) && (rel_home < 270)) { TextMid(getWidth(pos_x)-width_ladder/2 * 1.2, getHeight(pos_y), "", osdicons, text_scale * 0.8); }
+
+    TextMid(getWidth(pos_x), getHeight(pos_y) + height_element*2.5+height_text, "", osdicons, text_scale*2);
+}
+void draw_batt_status(float voltage, float current, float pos_x, float pos_y, float scale){
+    float text_scale = getWidth(2) * scale;
+    VGfloat height_text = TextHeight(myfont, text_scale)+getHeight(0.3)*scale;
+
+    #if BATT_STATUS_CURRENT == true
+    sprintf(buffer, "%.1f", current);
+    TextEnd(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
+    Text(getWidth(pos_x), getHeight(pos_y), " A", myfont, text_scale*0.6);
+    #endif
+
+    sprintf(buffer, "%.1f", voltage);
+    TextEnd(getWidth(pos_x), getHeight(pos_y)+height_text, buffer, myfont, text_scale);
+    Text(getWidth(pos_x), getHeight(pos_y)+height_text, " V", myfont, text_scale*0.6);
 }
 
+// display totals mAh used, distance flown (km), airborne time (mins) - wowi
+void draw_TOTAL_AMPS(float current, float pos_x, float pos_y, float scale){
 
-void draw_compass(int heading, int pos_x, int pos_y, bool ladder_enabled, float scale){
-	int width_number = 50 * scale;
-	int height_number = 20 * scale;
-	int space = 50 * scale;
-	
-//	fprintf(stdout,"draw compass\n");
+	// get time passed since last rendering
+	long time_diff = current_ts() - amps_ts;
+	amps_ts = current_ts();
+	total_amps = total_amps + current*(float)time_diff/3600;
 
-	if (!ladder_enabled){
-		pos_y += 20*scale;
+	float text_scale = getWidth(2) * scale;
+	VGfloat height_text = TextHeight(myfont, text_scale)+getHeight(0.3)*scale;
+	sprintf(buffer, "%5.0f", total_amps);
+	TextEnd(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
+	Text(getWidth(pos_x), getHeight(pos_y), " mAh", myfont, text_scale*0.6);
+
+}
+void draw_TOTAL_DIST(int gpsspeed, float pos_x, float pos_y, float scale){
+
+	// get time passed since last rendering
+	long time_diff = current_ts() - dist_ts;
+	dist_ts = current_ts();
+	total_dist = total_dist + gpsspeed*(float)time_diff/3600000;
+
+	float text_scale = getWidth(2) * scale;
+	VGfloat height_text = TextHeight(myfont, text_scale)+getHeight(0.3)*scale;
+	sprintf(buffer, "%3.1f", total_dist);
+	TextEnd(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
+	Text(getWidth(pos_x), getHeight(pos_y), " km", myfont, text_scale*0.6);
+
+}
+void draw_TOTAL_TIME(int gpsspeed, float pos_x, float pos_y, float scale){
+
+	// get time passed since last rendering
+	long time_diff = current_ts() - time_ts;
+	time_ts = current_ts();
+	if(gpsspeed>0){
+		total_time = total_time + (float)time_diff/60000; // flying time in minutes
 	}
-	//StrokeWidth(4);
-	//Stroke(0,0,0,1); // black border
-	//Fill(255,255,255,0);
-	//Rect(pos_x - width_number / 2, pos_y - height_number/2 , width_number, height_number);
 
-	StrokeWidth(2);
-	Stroke(0xff,0xff,0xff,OPACITY);
-	Fill(255,255,255,0);
-	Rect(pos_x - width_number / 2, pos_y - height_number/2 , width_number, height_number);
+	float text_scale = getWidth(2) * scale;
+	VGfloat height_text = TextHeight(myfont, text_scale)+getHeight(0.3)*scale;
+	sprintf(buffer, "%3.0f:%02d", total_time, (int)(total_time*60) % 60);
+	TextEnd(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
+	Text(getWidth(pos_x), getHeight(pos_y), " mins", myfont, text_scale*0.6);
 
-	//Fill(0,0,0,1);
-	Fill(0xff,0xff,0xff,OPACITY);
-	#if defined(DRAW_OUTLINE)
-	Stroke(0,0,0,1);
-	StrokeWidth(1);
-	#endif
-	sprintf(buffer, "%3d\xb0", heading);
-	TextMid(pos_x, pos_y - height_number / 4*1.5, buffer, SansTypeface, height_number / 2*1.5);
-
-	if (ladder_enabled){
-	int width_triangle = 20 * scale;
-	
-	int p0x = pos_x;
-	int p0y = pos_y + space;
-	int p1x = pos_x - width_triangle / 2;
-	int p1y = pos_y + space + width_triangle / 2;
-	int p2x = pos_x + width_triangle / 2;
-	int p2y = p1y;
-
-	VGfloat x2[] = { p0x, p1x, p2x, p0x };
-	VGfloat y2[] = { p0y, p1y, p2y, p0y };
-	Stroke(0, 0, 0, 1);
-	Polyline(x2, y2, 4);
-	Fill(255,255,255,0.5f);
-	Polygon(x2, y2, 4);
-	}
-	
-
-	if (ladder_enabled){
-	int width_comp = 150 * scale;
-	int height_comp = 20 * scale;
-	float ratio = width_comp / 180.0f;
-
-	int i = heading - 90;
-	char* c;
-	bool draw = false;
-	//find all values from heading - 90 to heading + 90 that are % 15 == 0
-	while (i <= heading + 90) {
-		int x = pos_x + (i - heading) * ratio;
-		if (i % 30 == 0) {
-			Stroke(0,0,0,1);
-			Fill(255, 255, 255, OPACITY);
-			StrokeWidth(1);
-			//outer black border
-			Rect(x-1.5, pos_y +height_comp/3 +space /4, 3, height_comp/3 );
-		}else if (i % 15 == 0) {
-			Stroke(0,0,0,1);
-			Fill(255,255,255,OPACITY);
-			StrokeWidth(1);
-			//outer black border
-			Rect(x-1.5, pos_y + height_comp / 3 + space / 4, 3, height_comp/5);
-		}else{
-			i++;
-			continue;
-		}
-
-		int j = i;
-		if (j < 0)
-			j += 360;
-		if (j >= 360)
-			j -= 360;
-
-		switch (j) {
-		case 0: {
-			draw = true;
-			c = "N";
-			break;
-		}
-		case 90: {
-			draw = true;
-			c = "0";
-			break;
-		}
-		case 180: {
-			draw = true;
-			c = "S";
-			break;
-		}
-		case 270: {
-			draw = true;
-			c = "W";
-			break;
-		}
-		}
-		if (draw == true) {
-			Stroke(0, 0, 0, 1);
-			StrokeWidth(0.4);
-			Fill(255,255,255,OPACITY);
-			TextMid(x, pos_y + height_comp / 3 + space / 3 * 1.6f, c, SansTypeface, scale_factor * scale*1.5f);
-			draw = false;
-		}
-		i++;
-	}
-	}
 }
 
-void draw_bat_status(float voltage, float current, int pos_x, int pos_y, float scale){
-	Fill(0xff,0xff,0xff,OPACITY);
-	#if defined(DRAW_OUTLINE)
-	Stroke(0,0,0,1);
-	StrokeWidth(1);
-	#endif
-	sprintf(buffer, "%.2fV", voltage);
-	TextEnd(pos_x, pos_y, buffer, SansTypeface, scale);
-#ifdef DRAW_CURRENT
-	sprintf(buffer, "%.2fA", current);
-	TextEnd(pos_x, pos_y + 40, buffer, SansTypeface, scale);
-#endif
+void draw_position(float lat, float lon, float pos_x, float pos_y, float scale){
+    float text_scale = getWidth(2) * scale;
+    VGfloat height_text = TextHeight(myfont, text_scale)+getHeight(0.3)*scale;
+    VGfloat width_value = TextWidth("-100.000000", myfont, text_scale);
+
+    TextEnd(getWidth(pos_x) - width_value, getHeight(pos_y), "  ", osdicons, text_scale*0.6);
+
+    sprintf(buffer, "%.6f", lon);
+    TextEnd(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
+
+    TextEnd(getWidth(pos_x) - width_value, getHeight(pos_y)+height_text, "  ", osdicons, text_scale*0.6);
+
+    sprintf(buffer, "%.6f", lat);
+    TextEnd(getWidth(pos_x), getHeight(pos_y)+height_text, buffer, myfont, text_scale);
 }
+void draw_home_distance(int distance, bool home_fixed, float pos_x, float pos_y, float scale){
+    float text_scale = getWidth(2) * scale;
+    VGfloat width_value = TextWidth("00000", myfont, text_scale);
 
+    if (!home_fixed){
+        Fill(255,20,20,getOpacity(COLOR)); // red
+	Stroke(255,20,20,getOpacity(OUTLINECOLOR));
+    }else{
+        Fill(COLOR);
+	Stroke(OUTLINECOLOR);
+    }
+    TextEnd(getWidth(pos_x)-width_value-getWidth(0.2), getHeight(pos_y), "", osdicons, text_scale * 0.6);
 
-void draw_position(float lat, float lon, bool fix, int sats, int fixtype, int pos_x, int pos_y, float scale){
-	Fill(0xff,0xff,0xff,OPACITY);
-	#if defined(DRAW_OUTLINE)
-	Stroke(0,0,0,1);
-	StrokeWidth(1);
-	#endif
+    Fill(COLOR);
+    Stroke(OUTLINECOLOR);
 
-	sprintf(buffer, "Lon: %.6f", lon);
-	Text(pos_x, pos_y, buffer, SansTypeface, scale);
-	sprintf(buffer, "Lat: %.6f", lat);
-	Text(pos_x, pos_y + 40, buffer, SansTypeface, scale);
-	if (!fix){
-		sprintf(buffer, "No valid fix!");
-		Text(pos_x, pos_y + 80, buffer, SansTypeface, scale*.75f);
-	}else /* if (sats > 0)*/{
-		#if defined(LTM) || defined(MAVLINK)
-		sprintf(buffer, "%d sats", sats);
-		Text(pos_x, pos_y + 80, buffer, SansTypeface, scale*.75f); 
-		#endif
-	}
-	
+    #if IMPERIAL == true
+    Text(getWidth(pos_x)+getWidth(0.4), getHeight(pos_y), "ft", myfont, text_scale*0.6);
+    sprintf(buffer, "%05d", (int)(distance*TO_FEET));
+    #else
+    Text(getWidth(pos_x)+getWidth(0.4), getHeight(pos_y), "m", myfont, text_scale*0.6);
+    sprintf(buffer, "%05d", distance);
+    #endif
+    TextEnd(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
 }
+void draw_alt_ladder(int alt, float pos_x, float pos_y, float scale){
+    float text_scale = getHeight(1.3) * scale;
+    float width_element = getWidth(0.50) * scale;
+    float height_element = getWidth(0.25) * scale;
+    float height_ladder = height_element * 21 * 4;
 
-void draw_home_distance(int distance, int pos_x, int pos_y, float scale){
-	Fill(0xff,0xff,0xff,OPACITY);
-	#if defined(DRAW_OUTLINE)
-	Stroke(0,0,0,1);
-	StrokeWidth(1);
-	#endif
-#ifdef IMPERIAL
-	sprintf(buffer, "%05dft", (int)(distance*TO_FEET));
-#else
-	sprintf(buffer, "%05dm", distance);
-#endif
-	TextMid(pos_x, pos_y, buffer, SansTypeface, scale);
+    float px = getWidth(pos_x); // ladder x position
+    float pxlabel = getWidth(pos_x) + width_element*2; // alt labels on ladder x position
+
+    float range = 100; // alt range range of display, i.e. lowest and highest number on the ladder
+    float range_half = range / 2;
+    float ratio_alt = height_ladder / range;
+
+    VGfloat offset_text_ladder = (TextHeight(myfont, text_scale) / 2) - height_element/2 - getHeight(0.25)*scale;
+    VGfloat offset_symbol = (TextHeight(osdicons, text_scale*2) / 2) - height_element/2 - getHeight(0.18)*scale;
+    VGfloat offset_alt_value = (TextHeight(myfont, text_scale*2) / 2) -height_element/2 - getHeight(0.4)*scale;
+
+    VGfloat width_symbol = TextWidth("", osdicons, text_scale*2);
+    VGfloat width_ladder_value = TextWidth("000", myfont, text_scale);
+
+    sprintf(buffer, "%d", alt); // large alt number
+    Text(pxlabel+width_ladder_value+width_symbol, getHeight(pos_y)-offset_alt_value, buffer, myfont, text_scale*2);
+    Text(pxlabel+width_ladder_value, getHeight(pos_y)-offset_symbol, "", osdicons, text_scale*2);
+
+    int k;
+    for (k = (int) (alt - range / 2); k <= alt + range / 2; k++) {
+	int y = getHeight(pos_y) + (k - alt) * ratio_alt;
+	if (k % 50 == 0) {
+	    Rect(px-width_element, y, width_element*2, height_element);
+	    sprintf(buffer, "%d", k);
+	    Text(pxlabel, y-offset_text_ladder, buffer, myfont, text_scale);
+	} else if (k % 5 == 0) {
+            Rect(px-width_element, y, width_element, height_element);
+        }
+    }
 }
+void draw_speed_ladder(int speed, float pos_x, float pos_y, float scale){
+    float text_scale = getHeight(1.3) * scale;
+    float width_element = getWidth(0.50) * scale;
+    float height_element = getWidth(0.25) * scale;
+    float height_ladder = height_element * 21 * 4;
 
-//autopilot mode, mavlink specific, could be used if mode is in telemetry data of other protocols as well
-void draw_mode(char *mode, int pos_x, int pos_y, float scale){
-	TextEnd(pos_x, pos_y, mode, SansTypeface, scale_factor * scale);
-}
+    float px = getWidth(pos_x); // ladder x position
+    float pxlabel = getWidth(pos_x) - width_element*2; // speed labels on ladder x position
 
-void draw_home_indicator(int home_angle, int pos_x, int pos_y, float scale){
-	//TODO use circle from openvg instead of this
-	//center circle
-	int radius = 3 * scale;
-	StrokeWidth(2);
-	Stroke(255, 255, 255, 1);
-	float i;
-	VGfloat x[100];
-	VGfloat y[100];
-	int z = 0;
+    float range = 40; // speed range of display, i.e. lowest and highest number on the ladder
+    float range_half = range / 2;
+    float ratio_speed = height_ladder / range;
 
-	for (i = 0; i < 6.28f; i += 0.1f) {
-		x[z] = sin(i) * radius + pos_x;
-		y[z] = cos(i) * radius + pos_y;
-		z++;
-	}
-	x[z] = x[0];
-	y[z] = y[0];
-	z++;
-	Polyline(x, y, z);
+    VGfloat offset_text_ladder = (TextHeight(myfont, text_scale) / 2) - height_element/2 - getHeight(0.25)*scale;
+    VGfloat offset_symbol = (TextHeight(osdicons, text_scale*2) / 2) - height_element/2 - getHeight(0.18)*scale;
+    VGfloat offset_speed_value = (TextHeight(myfont, text_scale*2) / 2) -height_element/2 - getHeight(0.4)*scale;
 
-	//home direction
-	//todo home indication is wrong
-	float length = 15 * scale;
-	float arg = home_angle;
-	VGfloat x1 = pos_x + sin(arg) * radius;
-	VGfloat y1 = pos_y + cos(arg) * radius;
-	VGfloat x2 = pos_x + sin(arg) * (radius + length);
-	VGfloat y2 = pos_y + cos(arg) * (radius + length);
-	Line(x1, y1, x2, y2);
-}
+    VGfloat width_symbol = TextWidth("", osdicons, text_scale*2);
+    VGfloat width_ladder_value = TextWidth("0", myfont, text_scale);
 
-void draw_altitude(int alt, int pos_x, int pos_y, bool ladder_enabled, float scale){
-	// altitude label
-	int space = 15 * scale;
-	int s_width = 45 * scale;
-	int s_height = 180 * scale;
-	int label_height = 20 * scale;
-	int pos_x_r = pos_x + s_width / 2 + width / 4 + space;
-	int pos_y_r = pos_y;
+    sprintf(buffer, "%d", speed); // large speed number
+    TextEnd(pxlabel-width_ladder_value-width_symbol, getHeight(pos_y)-offset_speed_value, buffer, myfont, text_scale*2);
+    TextEnd(pxlabel-width_ladder_value, getHeight(pos_y)-offset_symbol, "", osdicons, text_scale*2);
 
-	VGfloat x[6];
-	VGfloat y[6];
-
-	x[0] = pos_x_r;
-	y[0] = pos_y_r;
-	x[1] = pos_x_r + s_width / 5;
-	y[1] = pos_y_r + label_height / 2;
-	x[2] = x[1] + s_width;
-	y[2] = y[1];
-	x[3] = x[2];
-	y[3] = y[2] - label_height;
-	x[4] = x[1];
-	y[4] = y[3];
-	x[5] = x[0];
-	y[5] = y[0];
-	StrokeWidth(5);
-	Stroke(0, 0, 0, 1);
-	Polyline(x, y, 6);
-
-	Stroke(0xff, 0xff, 0xff, 1);
-	StrokeWidth(2);
-	Polyline(x, y, 6);
-
-
-	Fill(0xff,0xff,0xff,OPACITY);
-	#if defined(DRAW_OUTLINE)
-	Stroke(0,0,0,1);
-	StrokeWidth(1);
-	#endif
-	sprintf(buffer, "%d", alt);
-	TextMid(pos_x_r + s_width / 2 + s_width / 5, pos_y - scale_factor * scale*1.5 / 2, buffer, SansTypeface, scale_factor * scale*1.5);
-
-	scale = 1.5;
-
-	if (ladder_enabled){
-		int width_ladder = 150 * scale;
-		StrokeWidth(2);
-		int width_speed = 50 * scale;
-		int height_speed = 300 * scale;
-		int length_bar = 5 * scale;
-
-		int k;
-		int space_text = 5 * scale;
-		int distance = 100 * scale;
-
-		//ladder altitude
-		int range_altitude = 200;
-		float ratio_altitude = height_speed / range_altitude;
-		for (k = (int) (alt - range_altitude / 2); k <= alt + range_altitude / 2; k++) {
-			int y = pos_y + (k - alt) * ratio_altitude;
-			sprintf(buffer, "%d", k);
-			if (k % 100 == 0) {
-				int px = pos_x + width_ladder / 2 + distance + width_speed;
-				int px2 = px + 2 * length_bar;
-
-                                Stroke(0,0,0,1);
-                                Fill(0xff,0xff,0xff,OPACITY);
-                                StrokeWidth(1);
-                                //outer black border
-                                //Line(px, y, px2, y);
-                                Rect(px-length_bar, y-1.5, 2*length_bar, 3);
-
-				Fill(0xff,0xff,0xff,OPACITY);
-				Stroke(0,0,0,1);
-				StrokeWidth(0.4);
-				Text(pos_x + width_ladder / 2 + distance + width_speed + space_text + 2 * length_bar, y - width / 240 * scale, buffer, SansTypeface, width / 300 * scale*2.5);
-			}else if (k % 10 == 0) {
-                                int px = pos_x + width_ladder / 2 + distance + width_speed;
-                                int px2 = px + length_bar;
-		  
-		                Stroke(0,0,0,1);
-                                Fill(0xff,0xff,0xff,OPACITY);
-                                StrokeWidth(1);
-                                //outer black border
-                                //Line(px, y, px2, y);
-                                Rect(px-length_bar, y-1.5, length_bar, 3);
-
-                        }
-
-		}
-	}
-}
-
-void draw_speed(int speed, int pos_x, int pos_y, bool ladder_enabled, float scale){
-	// velocity label
-	StrokeWidth(2);
-	Stroke(0, 0, 0, 1);
-	int space = 15 * scale;
-	int s_width = 45 * scale;
-	int s_height = 180 * scale;
-	int label_height = 20 * scale;
-	int pos_x_r = pos_x + s_width / 2 + width / 4 + space;
-	int pos_y_r = pos_y;
-
-	VGfloat x[6];
-	VGfloat y[6];
-
-	int pos_x_l = pos_x - s_width / 2 - width / 4 - space;
-	int pos_y_l = pos_y;
-	x[0] = pos_x_l;
-	y[0] = pos_y_l;
-	x[1] = pos_x_l - s_width / 5;
-	y[1] = pos_y_l + label_height / 2;
-	x[2] = x[1] - s_width;
-	y[2] = y[1];
-	x[3] = x[2];
-	y[3] = y[2] - label_height;
-	x[4] = x[1];
-	y[4] = y[3];
-	x[5] = x[0];
-	y[5] = y[0];
-	StrokeWidth(5);
-	Stroke(0, 0, 0, 1);
-	Polyline(x, y, 6);
-
-	Stroke(0xff, 0xff, 0xff, 1);
-	StrokeWidth(2);
-	Polyline(x, y, 6);
-	
-	Fill(0xff,0xff,0xff,OPACITY);
-	#if defined(DRAW_OUTLINE)
-	Stroke(0,0,0,1);
-	StrokeWidth(1);
-	#endif
-	sprintf(buffer, "%d", speed);
-	TextMid(pos_x_l - s_width / 2 - s_width / 5, pos_y - scale_factor * scale*1.5 / 2, buffer, SansTypeface, scale_factor * scale*1.5);
-	
-	scale = 1.5;
-	if (ladder_enabled){
-		//ladder speed
-		int width_ladder = 150 * scale;
-
-		StrokeWidth(2);
-		int width_speed = 50 * scale;
-		int height_speed = 300 * scale;
-		int length_bar = 5 * scale;
-		int range_speed = 40;
-
-		int k;
-		int space_text = 5 * scale;
-		int distance = 100 * scale;
-		float ratio_speed = height_speed / range_speed;
-		for (k = (int) (speed - range_speed / 2); k <= speed + range_speed / 2; k++) {
-			int y = pos_y + (k - speed) * ratio_speed;
-			sprintf(buffer, "%d", k);
-			if (k % 5 == 0) {
-				int px = pos_x - width_ladder / 2 - distance - width_speed;
-				int px2 = px - 2 * length_bar;
-				Stroke(0,0,0,1);
-				Fill(0xff,0xff,0xff,OPACITY);
-				StrokeWidth(1);
-				//outer black border
-				//Line(px, y, px2, y);
-				Rect(px-length_bar, y-1.5, 2*length_bar, 3);
-				if (k >= 0){
-					Fill(0xff,0xff,0xff,OPACITY);
-					Stroke(0,0,0,1);
-					StrokeWidth(0.4);			
-					TextEnd(pos_x - width_ladder / 2 - distance - width_speed - space_text - 2 * length_bar, y - width / 240 * scale, buffer, SansTypeface, width / 300 * scale*2.5);
-				}
-			}else if (k % 1 == 0) {
-                                int px = pos_x - width_ladder / 2 - distance - width_speed;
-                                int px2 = px - length_bar;
-
-                                Stroke(0,0,0,1);
-                                Fill(0xff,0xff,0xff,OPACITY);
-                                StrokeWidth(1);
-
-                                //outer black border
-                                //Line(px, y, px2, y);
-                                Rect(px, y-1.5, length_bar, 3);
-                                //Stroke(0xff,0xff,0xff,1);
-                                //StrokeWidth(2);
-                                //inner white line
-                                //Line(px, y, px2, y);
-                        }
-
-		}
-	}
-}
-
-void draw_horizon(float roll, float pitch, int pos_x, int pos_y, float scale){
-	StrokeWidth(2);
-	Stroke(255, 255, 255, 1);
-	int height_ladder = 300 * scale;
-	int width_ladder = 150 * scale;
-	int range = 20;
-	int space_text = 5 * scale;
-	int pike = 4 * scale;
-	float ratio = height_ladder / range;
-	//int k;
-	Translate(pos_x, pos_y);
-	Rotate(roll);
-	Translate(-pos_x, -pos_y);
-
-	int y_start = height_ladder;
-
-	int k = pitch - range/2;
-	int max = pitch + range/2;
-	while (k <= max){
-		int y = pos_y + (k - pitch) * ratio;
+    int k;
+    for (k = (int) (speed - range_half); k <= speed + range_half; k++) {
+	int y = getHeight(pos_y) + (k - speed) * ratio_speed;
+	if (k % 5 == 0) { // wide element plus number label every 5 'ticks' on the scale
+	    Rect(px-width_element, y, width_element*2, height_element);
+ 	    if (k >= 0) {
 		sprintf(buffer, "%d", k);
-		if (k % 5 == 0 && k!= 0) {
-			Fill(0xff,0xff,0xff,OPACITY);
-			#if defined(DRAW_OUTLINE)
-			Stroke(0,0,0,1);
-			StrokeWidth(0.4);
-			#endif
-			TextEnd(pos_x - width_ladder / 2 - space_text, y - width / 300 * scale, buffer, SansTypeface, width / 300 * scale*2);
-			Text(pos_x + width_ladder / 2 + space_text, y - width / 300 * scale, buffer, SansTypeface, width / 300 * scale*2);
-		}
-		if ((k > 0) && (k % 5 == 0)) {
-			int px = pos_x - width_ladder / 2;
-			int px2 = pos_x + width_ladder / 2;
-			#if defined(DRAW_OUTLINE)
-			Stroke(0,0,0,1);
-			StrokeWidth(1);
-			#endif
-			Fill(255, 255, 255, OPACITY);
-			Rect(px, y-1.5, width_ladder/3, 3);
-			Rect(px+width_ladder*2/3, y-1.5, width_ladder/3, 3);
-		} else if ((k < 0) && (k % 5 == 0)) {
-			int px = pos_x - width_ladder / 2 +width_ladder / 3;
-			int px3 = pos_x - width_ladder / 2 + 0.2055f * width_ladder;
-			int px5 = pos_x - width_ladder / 2 + 0.077f * width_ladder;
-			
-			Fill(0xff,0xff,0xff,OPACITY);
-		    	#if defined(DRAW_OUTLINE)
-			Stroke(0,0,0,1);
-			StrokeWidth(1);
-			#endif
-			//outer black border
-			Rect(px, y-1.5, width_ladder/12, 3);
-			Rect(px3, y-1.5, width_ladder/12, 3);
-			Rect(px5, y-1.5, width_ladder/12, 3);
-
-			px = pos_x + width_ladder / 2 -  width_ladder / 3;
-			px3 = pos_x + width_ladder / 2 - 0.205f * width_ladder;
-			px5 = pos_x + width_ladder / 2 - 0.077f * width_ladder;
-
-			//outer black border
-			Rect(px, y-1.5, width_ladder/12, 3);
-			Rect(px3, y-1.5, width_ladder/12, 3);
-			Rect(px5, y-1.5, width_ladder/12, 3);
-		} else if (k == 0) {
-			Fill(0xff,0xff,0xff,OPACITY);
-		    	#if defined(DRAW_OUTLINE)
-			Stroke(0,0,0,1);
-			StrokeWidth(0.4);	
-			#endif
-			TextEnd(pos_x - width_ladder / 1.25f - space_text, y - width / 300 * scale, buffer, SansTypeface, width / 300 * scale*2);
-			Text(pos_x + width_ladder / 1.25f + space_text, y - width / 300 * scale, buffer, SansTypeface, width / 300 * scale*2);
-		    	#if defined(DRAW_OUTLINE)
-			Stroke(0,0,0,1);
-			StrokeWidth(1);
-			#endif
-			Fill(0xff,0xff,0xff,OPACITY);
-			//outer black border
-			Rect(pos_x - width_ladder / 1.25f, y-1.5, 2*(width_ladder /1.25f), 3);
-		}
-		k++;
+		TextEnd(pxlabel, y-offset_text_ladder, buffer, myfont, text_scale);
+	    }
+	} else if (k % 1 == 0) { // narrow element every single 'tick' on the scale
+	    Rect(px, y, width_element, height_element);
 	}
+    }
+}
+void draw_card_signal(int8_t signal, int signal_good, int card, int adapter_cnt, int restart_count, int packets, int wrongcrcs, int type, int totalpackets, int totalpacketslost, float pos_x, float pos_y, float scale){
+    float text_scale = getWidth(2) * scale;
+    VGfloat height_text = TextHeight(myfont, text_scale)+getHeight(0.4)*scale;
+    VGfloat width_value = TextWidth("-00", myfont, text_scale);
+    VGfloat width_cardno = TextWidth("0", myfont, text_scale*0.4);
+    VGfloat width_unit = TextWidth("dBm", myfont, text_scale*0.6);
+
+    Fill(COLOR);
+    Stroke(OUTLINECOLOR);
+    StrokeWidth(OUTLINEWIDTH);
+
+    sprintf(buffer, "");
+    TextEnd(getWidth(pos_x) - width_value - width_cardno - getWidth(0.3)*scale, getHeight(pos_y) - card * height_text, buffer, osdicons, text_scale*0.6);
+
+    sprintf(buffer, "%d",card);
+    TextEnd(getWidth(pos_x) - width_value - getWidth(0.3)*scale, getHeight(pos_y) - card * height_text, buffer, myfont, text_scale*0.4);
+
+    if (( signal_good == 0) || (signal == -127)) {
+	Fill(255,20,20,getOpacity(COLOR)); // red
+	Stroke(255,20,20,getOpacity(OUTLINECOLOR));
+	sprintf(buffer, "-- ");
+    } else {
+	Fill(COLOR);
+	Stroke(OUTLINECOLOR);
+	sprintf(buffer, "%d", signal);
+    }
+    TextEnd(getWidth(pos_x), getHeight(pos_y) - card * height_text, buffer, myfont, text_scale);
+    Fill(COLOR);
+    Stroke(OUTLINECOLOR);
+
+    sprintf(buffer, "dBm");
+    Text(getWidth(pos_x)+getWidth(0.4), getHeight(pos_y) - card * height_text, buffer, myfont, text_scale*0.6);
+
+    if (restart_count - tx_restart_count_last > 0) {
+	int y;
+	for (y=0; y<adapter_cnt; y++) {
+	    packetslost_last[y] = 0;
+	}
+    }
+    tx_restart_count_last = restart_count;
+
+    int lost=totalpackets-packets+totalpacketslost;
+    if (lost < packetslost_last[card]) lost = packetslost_last[card];
+    packetslost_last[card] = lost;
+    sprintf(buffer, "(%d)", lost);
+    Text(getWidth(pos_x)+width_unit+getWidth(0.65)*scale, getHeight(pos_y) - card * height_text, buffer, myfont, text_scale*0.7);
+}
+void draw_total_signal(int8_t signal, int goodblocks, int badblocks, int packets_lost, int packets_received, int lost_per_block, float pos_x, float pos_y, float scale){
+    float text_scale = getWidth(2) * scale;
+    VGfloat height_text = TextHeight(myfont, text_scale*0.6)+getHeight(0.3)*scale;
+    VGfloat width_value = TextWidth("-00", myfont, text_scale);
+    VGfloat width_label = TextWidth("dBm", myfont, text_scale*0.6);
+    VGfloat width_symbol = TextWidth(" ", osdicons, text_scale*0.7);
+
+    StrokeWidth(OUTLINEWIDTH);
+
+    if (no_signal == true) {
+        Fill(255,20,20,getOpacity(COLOR)); // red
+	Stroke(255,20,20,getOpacity(OUTLINECOLOR));
+	sprintf(buffer, "-- ");
+    } else {
+        Fill(COLOR);
+	Stroke(OUTLINECOLOR);
+	sprintf(buffer, "%02d", signal);
+    }
+    TextEnd(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
+
+    Fill(COLOR);
+    Stroke(OUTLINECOLOR);
+
+    Text(getWidth(pos_x)+getWidth(0.4), getHeight(pos_y), "dBm", myfont, text_scale*0.6);
+
+    sprintf(buffer, "%d/%d", badblocks, packets_lost);
+    Text(getWidth(pos_x)-width_value-width_symbol, getHeight(pos_y)-height_text, buffer, myfont, text_scale*0.6);
+
+    TextEnd(getWidth(pos_x)-width_value - getWidth(0.3) * scale, getHeight(pos_y), "", osdicons, text_scale * 0.7);
+
+    switch (lost_per_block) {
+	case 0:
+		sprintf(buffer, "▁");
+		Fill(COLOR);
+		break;
+	case 1:
+		sprintf(buffer, "▂");
+		Fill(74,255,4,0.5); // green
+	        break;
+	case 2:
+		sprintf(buffer, "▃");
+		Fill(112,255,4,0.5); //
+	        break;
+	case 3:
+		sprintf(buffer, "▄");
+		Fill(182,255,4,0.5); //
+	        break;
+	case 4:
+		sprintf(buffer, "▅");
+		Fill(255,208,4,0.5); //
+	        break;
+	case 5:
+		sprintf(buffer, "▆");
+		Fill(255,93,4,0.5); //
+	        break;
+	case 6:
+		sprintf(buffer, "▇");
+		Fill(255,50,4,0.5); //
+	        break;
+	case 7:
+		sprintf(buffer, "█");
+		Fill(255,0,4,0.5); // red
+	        break;
+	case 8:
+		sprintf(buffer, "█");
+		Fill(255,0,4,0.5); // red
+	        break;
+	default:
+		sprintf(buffer, "█");
+		Fill(255,0,4,0.5); // red
+	}
+
+    #if DOWNLINK_RSSI_FEC_BAR == true
+    StrokeWidth(0);
+    Text(getWidth(pos_x)+width_label+getWidth(0.7), getHeight(pos_y)+getHeight(0.5), buffer, osdicons, text_scale*0.7);
+
+    StrokeWidth(1);
+    Fill(0,0,0,0); // transparent
+    Text(getWidth(pos_x)+width_label+getWidth(0.7), getHeight(pos_y)+getHeight(0.5), "█", osdicons, text_scale*0.7);
+    #endif
+}
+void draw_sat(int sats, int fixtype, float pos_x, float pos_y, float scale){
+    float text_scale = getWidth(2) * scale;
+
+    Fill(COLOR);
+    Stroke(OUTLINECOLOR);
+    StrokeWidth(OUTLINEWIDTH);
+    if (fixtype < 2){
+        Fill(255,20,20,getOpacity(COLOR)); // red
+	Stroke(255,20,20,getOpacity(OUTLINECOLOR));
+        TextEnd(getWidth(pos_x), getHeight(pos_y), "", osdicons, text_scale*0.7);
+    }else{
+        Fill(COLOR);
+	Stroke(OUTLINECOLOR);
+	TextEnd(getWidth(pos_x), getHeight(pos_y), "", osdicons, text_scale*0.7);
+    }
+
+    #if defined(LTM) || defined(MAVLINK)
+    Fill(COLOR);
+    Stroke(OUTLINECOLOR);
+    sprintf(buffer, "%d", sats);
+    Text(getWidth(pos_x)+getWidth(0.2), getHeight(pos_y), buffer, myfont, text_scale);
+    #endif
+}
+void draw_batt_gauge(int remaining, float pos_x, float pos_y, float scale){
+    //new stuff from fritz walter https://www.youtube.com/watch?v=EQ01b3aJ-rk
+    //prevent black empty indicator to draw left to battery
+    if (remaining < 0) remaining = 0;
+    else if (remaining > 100) remaining = 100;
+
+    int cell_width = getWidth(4) * scale;
+    int cell_height = getWidth(1.6) * scale;
+    int plus_width = cell_width * 0.09;
+    int plus_height = cell_height * 0.3;
+
+    int corner = cell_width * 0.05;
+    int stroke_x = cell_width * 0.05;
+    int stroke_y = cell_height * 0.1;
+
+    if (remaining <= CELL_WARNING_PCT1 && remaining > CELL_WARNING_PCT2) {
+	Fill(255,165,0,getOpacity(COLOR));
+	Stroke(255,165,0,getOpacity(OUTLINECOLOR));
+    } else if (remaining <= CELL_WARNING_PCT2) { 
+	Fill(255,20,20,getOpacity(COLOR));
+	Stroke(255,20,20,getOpacity(OUTLINECOLOR));
+    } else {
+	Fill(COLOR);
+	Stroke(OUTLINECOLOR);
+    }
+
+    StrokeWidth(OUTLINEWIDTH);
+
+    Roundrect(getWidth(pos_x), getHeight(pos_y), cell_width, cell_height, corner, corner); // battery cell
+    Rect(getWidth(pos_x)+cell_width, getHeight(pos_y)+cell_height/2 - plus_height/2, plus_width, plus_height); // battery plus pole
+
+    Fill(0,0,0,0.5);
+    Rect(getWidth(pos_x) + stroke_x + remaining / 100.0f * cell_width, getHeight(pos_y) + stroke_y, cell_width - stroke_x*2 - remaining / 100.0f * cell_width, cell_height - stroke_y*2);
+}
+void draw_ahi(float roll, float pitch, float scale){
+    float text_scale = getHeight(1.2) * scale;
+    float height_ladder = getWidth(15) * scale;
+    float width_ladder = getWidth(10) * scale;
+    float height_element = getWidth(0.25) * scale;
+    float range = 20;
+    float space_text = getWidth(0.2) * scale;
+    float ratio = height_ladder / range;
+    float pos_x = getWidth(50);
+    float pos_y = getHeight(50);
+
+    VGfloat offset_text_ladder = (TextHeight(myfont, text_scale*0.85) / 2) - height_element/2;
+
+    float px_l  = pos_x - width_ladder / 2 + width_ladder / 3 - width_ladder / 12; // left three bars
+    float px3_l = pos_x - width_ladder / 2 + 0.205f * width_ladder- width_ladder / 12; // left three bars
+    float px5_l = pos_x - width_ladder / 2 + 0.077f * width_ladder- width_ladder / 12; // left three bars
+    float px_r =  pos_x + width_ladder / 2 - width_ladder / 3; // right three bars
+    float px3_r = pos_x + width_ladder / 2 - 0.205f * width_ladder; // right three bars
+    float px5_r = pos_x + width_ladder / 2 - 0.077f * width_ladder; // right three bars
+
+    StrokeWidth(OUTLINEWIDTH);
+    Stroke(OUTLINECOLOR);
+    Fill(COLOR);
+
+    Translate(pos_x, pos_y);
+    Rotate(roll);
+    Translate(-pos_x, -pos_y);
+
+    int k = pitch - range/2;
+    int max = pitch + range/2;
+    while (k <= max){
+	float y = pos_y + (k - pitch) * ratio;
+	if (k % 5 == 0 && k!= 0) {
+	    #if AHI_LADDER == true
+	    sprintf(buffer, "%d", k);
+	    TextEnd(pos_x - width_ladder / 2 - space_text, y - width / height_ladder, buffer, myfont, text_scale*0.85); // right numbers
+	    Text(pos_x + width_ladder / 2 + space_text, y - width / height_ladder, buffer, myfont, text_scale*0.85); // left numbers
+	    #endif
+	}
+	if ((k > 0) && (k % 5 == 0)) { // upper ladders
+	    #if AHI_LADDER == true
+	    float px = pos_x - width_ladder / 2;
+	    Rect(px, y, width_ladder/3, height_element);
+	    Rect(px+width_ladder*2/3, y, width_ladder/3, height_element);
+	    #endif
+	} else if ((k < 0) && (k % 5 == 0)) { // lower ladders
+	    #if AHI_LADDER == true
+	    Rect( px_l, y, width_ladder/12, height_element);
+	    Rect(px3_l, y, width_ladder/12, height_element);
+	    Rect(px5_l, y, width_ladder/12, height_element);
+	    Rect( px_r, y, width_ladder/12, height_element);
+	    Rect(px3_r, y, width_ladder/12, height_element);
+	    Rect(px5_r, y, width_ladder/12, height_element);
+	    #endif
+	} else if (k == 0) { // center line
+	    #if AHI_LADDER == true
+	    sprintf(buffer, "%d", k);
+	    TextEnd(pos_x - width_ladder / 1.25f - space_text, y - width / height_ladder, buffer, myfont, text_scale*0.85); // left number
+	    Text(pos_x + width_ladder / 1.25f + space_text, y - width / height_ladder, buffer, myfont, text_scale*0.85); // right number
+	    #endif
+	    Rect(pos_x - width_ladder / 1.25f, y, 2*(width_ladder /1.25f), height_element);
+	}
+	k++;
+    }
+}
+
+// work in progress
+void draw_osdinfos(int osdfps, float pos_x, float pos_y, float scale){
+    float text_scale = getWidth(2) * scale;
+    VGfloat width_value = TextWidth("00", myfont, text_scale);
+
+    TextEnd(getWidth(pos_x)-width_value, getHeight(pos_y), "OSDFPS:", myfont, text_scale*0.6);
+
+    sprintf(buffer, "%d", osdfps);
+    TextEnd(getWidth(pos_x), getHeight(pos_y), buffer, myfont, text_scale);
+}
+float distance_between(float lat1, float long1, float lat2, float long2) {
+    //taken from tinygps: https://github.com/mikalhart/TinyGPS/blob/master/TinyGPS.cpp#L296
+    // returns distance in meters between two positions, both specified
+    // as signed decimal-degrees latitude and longitude. Uses great-circle
+    // distance computation for hypothetical sphere of radius 6372795 meters.
+    // Because Earth is no exact sphere, rounding errors may be up to 0.5%.
+    // Courtesy of Maarten Lamers
+    float delta = (long1-long2)*0.017453292519;
+    float sdlong = sin(delta);
+    float cdlong = cos(delta);
+    lat1 = (lat1)*0.017453292519;
+    lat2 = (lat2)*0.017453292519;
+    float slat1 = sin(lat1);
+    float clat1 = cos(lat1);
+    float slat2 = sin(lat2);
+    float clat2 = cos(lat2);
+    delta = (clat1 * slat2) - (slat1 * clat2 * cdlong);
+    delta = delta*delta;
+    delta += (clat2 * sdlong)*(clat2 * sdlong);
+    delta = sqrt(delta);
+    float denom = (slat1 * slat2) + (clat1 * clat2 * cdlong);
+    delta = atan2(delta, denom);
+
+    return delta * 6372795;
+}
+float course_to (float lat1, float long1, float lat2, float long2) {
+    //taken from tinygps: https://github.com/mikalhart/TinyGPS/blob/master/TinyGPS.cpp#L321
+    // returns course in degrees (North=0, West=270) from position 1 to position 2,
+    // both specified as signed decimal-degrees latitude and longitude.
+    // Because Earth is no exact sphere, calculated course may be off by a tiny fraction.
+    // Courtesy of Maarten Lamers
+    float dlon = (long2-long1)*0.017453292519;
+    lat1 = (lat1)*0.017453292519;
+    lat2 = (lat2)*0.017453292519;
+    float a1 = sin(dlon) * cos(lat2);
+    float a2 = sin(lat1) * cos(lat2) * cos(dlon);
+    a2 = cos(lat1) * sin(lat2) - a2;
+    a2 = atan2(a1, a2);
+    if (a2 < 0.0) a2 += M_PI*2;
+    return TO_DEG*(a2);
+}
+void rotatePoints(float *x, float *y, float angle, int points, int center_x, int center_y){
+    double cosAngle = cos(-angle * 0.017453292519);
+    double sinAngle = sin(-angle * 0.017453292519);
+
+    int i = 0;
+    float tmp_x = 0;
+    float tmp_y = 0;
+    while (i < points){
+	tmp_x = center_x + (x[i]-center_x)*cosAngle-(y[i]-center_y)*sinAngle;
+	tmp_y = center_y + (x[i]-center_x)*sinAngle + (y[i] - center_y)*cosAngle;
+	x[i] = tmp_x;
+	y[i] = tmp_y;
+	i++;
+    }
 }
