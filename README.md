@@ -3,7 +3,7 @@ Affordable Digital HD Video Transmission made easy!
 
 
 
-Ez-WifiBroadcast is a radically simple digital data transmission system. A unidirectional data link is established using commercial off-the-shelf hardware like WiFi modules and a pair of Raspberry Pi computers. Coupled with special software this unique system allowes transmission of low latency HD video, telemetry and control data between endpoints. In comparison to a classical wireless connection Ez-WifiBroadcast tries to *imitate* the famous properties of an analog link like graceful signal degradation and no association between the endpoints. 
+Ez-WifiBroadcast is a radically simple digital data transmission system. A bidirectional data link is established using commercial off-the-shelf hardware like WiFi modules and a pair of Raspberry Pi computers. Coupled with special software this unique system allowes transmission of low latency HD video, telemetry and control data between endpoints. In comparison to a classical wireless connection Ez-WifiBroadcast tries to *imitate* the famous properties of an analog link like graceful signal degradation and no association between the endpoints. 
 
 EZ-WifiBroadcast system is based Befinitiv's Wifibroadcast (https://befinitiv.wordpress.com/wifibroadcast-analog-like-transmission-of-live-video-data/) project but since then has signicantly evolved and matured thanks to the active support from open source community  members.
 
