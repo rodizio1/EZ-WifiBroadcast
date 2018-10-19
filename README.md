@@ -9,8 +9,8 @@ EZ-WifiBroadcast system is based on Befinitiv's Wifibroadcast (https://befinitiv
 
 ### Downloads ###
 
-Release candidate(recommended): v1.6RC6  
-* [EZ-Wifibroadcast-1.6RC6.zip on Google Drive](https://drive.google.com/open?id=1OgKU4dQoQWsV4T4tVOjq_XM0VrXMXaxs) or [from mirror on Freehoster (beware of ads)](https://www.file-upload.net/en/download-13063079/EZ-Wifibroadcast-1.6RC6.zip.html)
+* Release candidate(recommended): v1.6RC6  
+[EZ-Wifibroadcast-1.6RC6.zip on Google Drive](https://drive.google.com/open?id=1OgKU4dQoQWsV4T4tVOjq_XM0VrXMXaxs) or [from mirror on Freehoster (beware of ads)](https://www.file-upload.net/en/download-13063079/EZ-Wifibroadcast-1.6RC6.zip.html)
 
 
 * Stable version: v1.5  
