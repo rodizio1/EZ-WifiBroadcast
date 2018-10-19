@@ -1,10 +1,11 @@
 # EZ-WifiBroadcast
 Affordable Digital HD Video Transmission made easy!
 
-The goal of this project is to make the usage of [Befinitiv's Wifibroadcast](https://befinitiv.wordpress.com/wifibroadcast-analog-like-transmission-of-live-video-data/) easy for people who would be otherwise drawn away because it can become quite time consuming and frustrating setting everything up if not used to tinkering with linux. Just download the SD card image, put it on two SD cards, switch everything on and 15 seconds later you'll see a live HD picture.
 
-|Head to the [Wiki page](https://github.com/bortek/EZ-WifiBroadcast/wiki) for instructions, features and Download links|
-|:-----:|
+
+Ez-WifiBroadcast is a radically simple digital data transmission system. A unidirectional data link is established using commercial off-the-shelf hardware like WiFi modules and a pair of Raspberry Pi computers. Coupled with special software this unique system allowes transmission of low latency HD video, telemetry and control data between endpoints. In comparison to a classical wireless connection Ez-WifiBroadcast tries to *imitate* the famous properties of an analog link like graceful signal degradation and no association between the endpoints. 
+
+EZ-WifiBroadcast system is based on infamous Befinitiv's Wifibroadcast](https://befinitiv.wordpress.com/wifibroadcast-analog-like-transmission-of-live-video-data/) project but since then has signicntly eveloved and maturd thanks to the active support from open source cumminity mebers.
 
 ### Downloads ###
 
