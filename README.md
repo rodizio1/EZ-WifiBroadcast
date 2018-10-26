@@ -35,7 +35,7 @@ Under discussion.
 
 * Raspbian, Linux Kernel, Drivers are licensed under GPLv2.
 
-* Original code (if found) is licensed as stipulated in respective source files or under the GPLv2 license if not otherwise specified.
+* Original code (if found) is licensed as stipulated in respective source files or under the GPLv2 license otherwise.
 
 
 ### Logotype ####
