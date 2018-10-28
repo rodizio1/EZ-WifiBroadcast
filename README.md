@@ -31,11 +31,11 @@ Afterwards a new release can be created and tagged.
 If you are in some way contributing to the project development please read [Code of Conduct](CODE_OF_CONDUCT.md) document to familiarize yourself with the rules. 
   
 ## License ##
-Under discussion.
-
+* EZ-WifiBroadcast is licensed under GPLv2, you can find it's contents in [this link](LICENSE)
 * Raspbian, Linux Kernel, Drivers are licensed under GPLv2.
-
 * Original code (if found) is licensed as stipulated in respective source files or under the GPLv2 license otherwise.
+
+### Acknowledgements for contributed work ###
 
 
 ### Logotype ####
