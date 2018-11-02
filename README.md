@@ -36,7 +36,7 @@ If you are in some way contributing to the project development please read [Code
 * Original code (if found) is licensed as stipulated in respective source files or under the GPLv2 license otherwise.
 
 ### Acknowledgements for contributed work ###
-
+Read about it [here](ACKNOWLEDGMENTS.md)
 
 ### Logotype ####
 Ez-WifiBroadcast logo was contributed by Richard Caseres (user @richardbmx) which we are all thankful for. 
