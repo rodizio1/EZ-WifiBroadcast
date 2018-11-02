@@ -1,4 +1,4 @@
-## Acknowledgements for contributed work ##
+# Acknowledgements #
 
 People working on this project would like to thank following users who contributed and made EZ-WifiBroadcast possible. 
 
