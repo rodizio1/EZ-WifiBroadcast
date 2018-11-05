@@ -19,6 +19,19 @@ EZ-WifiBroadcast system is based on [Befinitiv's Wifibroadcast](https://befiniti
 
 _**IMPORTANT: Read and follow the [wiring instructions](https://github.com/bortek/EZ-WifiBroadcast/wiki/Wiring)**_
 
+## Main Features ##
+
+- Supports Raspberry Pi A+, Pi1B+, Pi2B, Pi3B (Pi3B+ not at the moment), Pi Zero, Pi Zero W, Odroid-W.
+- Typical glass-to-glass talency of ~125ms. Minimum achieved latency ~110ms.
+- Raspberry Pi V1 and V2 cameras supported.
+- HDMI cameras supported via HDMI-CSI adapters.
+- Up to 1920x1080p 30fps Resolution and up to 12Mbit video bitrate achived.
+- Support for 2.3/2.4/2.5Ghz bands as well as 5.2Ghz to 5.8Ghz bands.
+- Ranges of 300m to 3km can be easily achived. In some special setups range of 30km was achived.
+- Bi-directional MAVLink telemetry support.
+- Quick bootup/startup, up to 10 seconds until video link is up.
+
+Full list of features can be found [here](https://github.com/bortek/EZ-WifiBroadcast/wiki/General-~-Features)
 
 
 ## For Contributors ## 
@@ -42,4 +55,4 @@ Read about it [here](ACKNOWLEDGMENTS.md)
 Ez-WifiBroadcast logo was contributed by Richard Caseres (user @richardbmx) which we are all thankful for. 
 
 ### Warranty/Disclamer ###
-This free software comes with no Warranty as stated in parts 11 and 12 of [GPLv2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html) license.
+This is a free software and comes with no Warranty as stated in parts 11 and 12 of [GPLv2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html) license.
