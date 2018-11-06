@@ -29,6 +29,7 @@ _**IMPORTANT: Read and follow the [wiring instructions](https://github.com/borte
 - Support for 2.3/2.4/2.5Ghz bands as well as 5.2Ghz to 5.8Ghz bands.
 - Ranges of 300m to 3km can be easily achived. In some special setups range of 30km was achived.
 - Bi-directional MAVLink telemetry support.
+- RC Control via MAVLink, SUMD (Graupner/JR), IBUS (FlySky), SRXL (Multiplex)
 - Quick bootup/startup, up to 10 seconds until video link is up.
 
 Full list of features can be found [here](https://github.com/bortek/EZ-WifiBroadcast/wiki/General-~-Features)
