@@ -16,7 +16,7 @@
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="EZ-WBC_Splashscreen.svg"
-   inkscape:export-filename="/home/yves/Images/EZ-WBC_Splashscreen-1.6.png"
+   inkscape:export-filename="/home/yves/Images/EZ-WBC_Splashscreen-2.0 beta1.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96">
   <defs
@@ -29,7 +29,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.82"
-     inkscape:cx="558.45436"
+     inkscape:cx="503.27005"
      inkscape:cy="345.8404"
      inkscape:document-units="mm"
      inkscape:current-layer="layer2"
@@ -179,7 +179,7 @@
        xml:space="preserve"
        id="flowRoot1581"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#f39200;fill-opacity:1;stroke:none"
-       transform="matrix(0.72810798,0,0,0.65037316,-142.44399,-401.3593)"><flowRegion
+       transform="matrix(0.72810798,0,0,0.65037316,-168.37332,-401.3593)"><flowRegion
          id="flowRegion1583"
          style="fill:#f39200;fill-opacity:1"><rect
            id="rect1585"
@@ -189,5 +189,5 @@
            y="766.34149"
            style="fill:#f39200;fill-opacity:1" /></flowRegion><flowPara
          id="flowPara1587"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:32.26724625px;font-family:Arial;-inkscape-font-specification:'Arial Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start">1.6</flowPara></flowRoot>  </g>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:32.26724625px;font-family:Arial;-inkscape-font-specification:'Arial Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start">2.0 beta1</flowPara></flowRoot>  </g>
 </svg>
