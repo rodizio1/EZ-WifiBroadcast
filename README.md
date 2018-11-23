@@ -1,3 +1,5 @@
+This project is no more maintained since a year ago. 
+You will be alone if you try to use it ...
 
 Affordable Digital HD Video Transmission made easy!
 
