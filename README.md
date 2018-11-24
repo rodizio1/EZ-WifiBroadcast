@@ -17,7 +17,7 @@ EZ-WifiBroadcast system is based on [Befinitiv's Wifibroadcast](https://befiniti
 * Stable version: v1.5  
 [EZ-Wifibroadcast-1.5.zip on Gdrive](https://drive.google.com/uc?id=0B8ke2EKPqvORdDNkSTdwNDZQZnc&export=download)
 
-_**IMPORTANT: Read and follow the [wiring instructions](https://github.com/bortek/EZ-WifiBroadcast/wiki/Wiring)**_
+_**IMPORTANT: Read and follow the [wiring instructions](https://github.com/bortek/EZ-WifiBroadcast/wiki/Hardware-~-Propper-Wiring)**_
 
 ## Main Features ##
 
