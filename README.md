@@ -41,8 +41,8 @@ Please use develop branch for making any changes. When code is tested and is rea
 
 Afterwards a new release can be created and tagged. 
 
-### Code of conduct ###
-If you are in some way contributing to the project development please read [Code of Conduct](CODE_OF_CONDUCT.md) document to familiarize yourself with the rules. 
+### Code of merit ###
+If you are in some way contributing to the project development please read [Code of merit](CODE_OF_MERIT.md) document to familiarize yourself with the rules. 
   
 ## License ##
 * EZ-WifiBroadcast is licensed under GPLv2, you can find it's contents in [this link](LICENSE)
