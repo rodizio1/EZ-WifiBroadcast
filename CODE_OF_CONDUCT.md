@@ -24,7 +24,7 @@ Users shall benefit from this project, not developers or anybody else.
 
 Respect is earned, not given.
 
-If the project creator thinks you create more problems than you solve or you cost more time than you save, you're out
+If the project creator thinks you create more problems than you solve or you cost more time than you save, you're out.
 
 Participation on the project equates to agreement of this Code of Merit.
 
@@ -32,4 +32,4 @@ No objectives beyond the stated objectives of this project are relevant to the p
 
 
 
-This Code of Conduct is adapted from Rosario Robertos Code of Merit: http://code-of-merit.org/
+This Code of Conduct is adapted from Rosario Robertos Code of Merit.
