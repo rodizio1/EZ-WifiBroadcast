@@ -7,6 +7,8 @@ People working on this project would like to thank following users who contribut
 - Mmormota for his stutter-free hello_video.bin versions
 - Eosbandi for the atheros txpower patch
 - Anemostec for his all-in-one rx and tx from which code snippets were taken
+- Careyer for his work on the Wiki
+- PilotNbr1 for his work on the Wiki
 - The RCGroups community for giving feedback and helping test things out
 
 and many more.
