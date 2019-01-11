@@ -1,48 +1,35 @@
-# Contributor Covenant Code of Conduct
+The project creator of the project has final say in every decision of the project, technical or otherwise, including overruling previous decisions. There are no limitations to this decisional power.
 
-## Our Pledge
+Contributions are an expected result of your membership on the project. Don't expect others to do your work or help you with your work forever.
 
-In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.
+All members have the same opportunities to seek any challenge they want within the project.
 
-## Our Standards
+Authority or position in the project will be proportional to the accrued contribution. Seniority must be earned.
 
-Examples of behavior that contributes to creating a positive environment include:
+Software is evolutive: the better implementations must supersede lesser implementations. Technical advantage is the primary evaluation metric. Breaking already existing functionality is to be avoided.
 
-* Using welcoming and inclusive language
-* Being respectful of differing viewpoints and experiences
-* Gracefully accepting constructive criticism
-* Focusing on what is best for the community
-* Showing empathy towards other community members
+This is a space for technical prowess; topics outside of the project will not be tolerated. Non technical conflicts will be discussed in a separate space. Disruption of the project will not be allowed.
 
-Examples of unacceptable behavior by participants include:
+Individual characteristics, including but not limited to, body, sex, sexual preference, race, language, religion, nationality, or political preferences are irrelevant in the scope of the project and will not be taken into account concerning your value or that of your contribution to the project.
 
-* The use of sexualized language or imagery and unwelcome sexual attention or advances
-* Trolling, insulting/derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or electronic address, without explicit permission
-* Other conduct which could reasonably be considered inappropriate in a professional setting
+Discuss or debate the idea, not the person.
 
-## Our Responsibilities
+If something is illegal outside the scope of the project, it is illegal in the scope of the project. This Code of Merit does not take precedence over governing law.
 
-Project maintainers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
+This Code of Merit governs the technical procedures of the project not the activities outside of it.
 
-Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
+The opposite of good is not evil. The opposite of good is good intentions.
 
-In case if project collaborators/developrs are willing to fork the code and drive their own spin-off they are of course free to do so. In such case development/test/discussions/etc. around spin-off project must be done outside of this project and it's respsective forums, support pages, chats or other project related activities.   
+Users shall benefit from this project, not developers or anybody else.
 
-## Scope
+Respect is earned, not given.
 
-This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or its community. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of a project may be further defined and clarified by project maintainers.
+If the project creator thinks you create more problems than you solve or you cost more time than you save, you're out
 
-## Enforcement
+Participation on the project equates to agreement of this Code of Merit.
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at bortek666@gmail.com. The project team will review and investigate all complaints, and will respond in a way that it deems appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
+No objectives beyond the stated objectives of this project are relevant to the project. Any intent to deviate the project from its original purpose of existence will constitute grounds for remedial action which may include expulsion from the project.
 
-Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
 
-## Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4, available at [http://contributor-covenant.org/version/1/4][version]
-
-[homepage]: http://contributor-covenant.org
-[version]: http://contributor-covenant.org/version/1/4/
+This Code of Conduct is adapted from Rosario Robertos Code of Merit: http://code-of-merit.org/
