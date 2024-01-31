@@ -6,7 +6,7 @@ Affordable Digital HD Video Transmission made easy!
 
 Ez-WifiBroadcast is a radically simple digital data transmission system. A bidirectional data link is established using commercial off-the-shelf hardware like WiFi modules and a pair of Raspberry Pi computers. Coupled with special software this unique system allowes transmission of low latency HD video, telemetry and control data between endpoints. In comparison to a classical wireless connection Ez-WifiBroadcast tries to *imitate* the famous properties of an analog link like graceful signal degradation and no association between the endpoints. 
 
-EZ-WifiBroadcast system is based on [Befinitiv's Wifibroadcast](https://befinitiv.wordpress.com/wifibroadcast-analog-like-transmission-of-live-video-data/) project but since then has signicantly evolved and matured thanks to the active support from open source community  members.
+EZ-WifiBroadcast system is based on [Befinitiv's Wifibroadcast](https://befinitiv.wordpress.com/wifibroadcast-analog-like-transmission-of-live-video-data/) project but since then has significantly evolved and matured thanks to the active support from open source community  members.
 
 ## Downloads ##
 
@@ -22,12 +22,12 @@ _**IMPORTANT: Read and follow the [wiring instructions](https://github.com/borte
 ## Main Features ##
 
 - Supports Raspberry Pi1A+, Pi1B+, Pi2B, Pi3B (Pi3A+ and Pi3B+ currently not supported!), Pi Zero, Pi Zero W, Odroid-W
-- Typical glass-to-glass talency of ~125ms. Minimum achieved latency ~110ms (FPV-VR app allows for lower latency)
+- Typical glass-to-glass latency of ~125ms. Minimum achieved latency ~110ms (FPV-VR app allows for lower latency)
 - Raspberry Pi V1 and V2 cameras supported
 - HDMI cameras supported via HDMI-CSI adapters
-- Up to 1920x1080p 30fps Resolution and up to 12Mbit video bitrate achived
+- Up to 1920x1080p 30fps Resolution and up to 12Mbit video bitrate achieved
 - Support for 2.3/2.4/2.5Ghz bands as well as 5.2Ghz to 5.8Ghz bands
-- Ranges of 300m to 3km can be easily achived. In some special setups range of 30km was achived
+- Ranges of 300m to 3km can be easily achieved. In some special setups range of 30km was achieved
 - Bi-directional MAVLink telemetry support
 - RC Control via MAVLink, SUMD (Graupner/JR), IBUS (FlySky), SRXL (Multiplex)
 - Quick bootup/startup, up to 10 seconds until video link is up
@@ -55,5 +55,5 @@ Read about it [here](ACKNOWLEDGMENTS.md)
 ### Logotype ####
 Ez-WifiBroadcast logo was contributed by Richard Caseres (user @richardbmx) which we are all thankful for. 
 
-### Warranty/Disclamer ###
+### Warranty/Disclaimer ###
 This is a free software and comes with no Warranty as stated in parts 11 and 12 of [GPLv2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html) license.
